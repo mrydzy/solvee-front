@@ -1,0 +1,15 @@
+$max-columns : 3;
+$max-rows : 4;
+
+$gray : #8c8c8c;
+$light-gray : #eFeFef;
+
+body {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+@import "map";
+

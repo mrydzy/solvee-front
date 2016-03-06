@@ -1,0 +1,16 @@
+include ./map-items.jade
+
+html
+    head
+        link(rel="stylesheet", type="text/css", href="main.css")
+        script(src="node_modules/jquery/dist/jquery.min.js")
+        script(src="node_modules/jquery.scrollto/jquery.scrollTo.min.js")
+        script(src="map-logic.js")
+        title= title
+    body
+        h1= title
+        div.map-wrapper
+            div(class='map-row')
+                each option, index in options
+                    +map-item(option, 'col-' + index)
+            +child-rows(options)

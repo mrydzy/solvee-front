@@ -1,0 +1,21 @@
+{
+  "name": "quiz-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "autosize": "^3.0.15",
+    "jquery": "^2.2.1",
+    "jquery.scrollto": "^2.1.2"
+  },
+  "devDependencies": {
+    "express": "^4.13.4",
+    "jade": "^1.11.0",
+    "gulp-sass": "^2.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Majka Rydzy",
+  "license": "ISC"
+}

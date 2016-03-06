@@ -1,0 +1,104 @@
+mixin map-item(item, colClass)
+    -var classes=[]
+    if (item.children.length > 0)
+        -classes.push("parent")
+    -classes.push(colClass)
+    div.map-col(class = classes)&attributes({'data-target': item.id, 'id': "node-" + item.id})=item.text
+//adds empty columns so that single items are always under their parent
+mixin single-kid(column, kid)
+    if (column > 0)
+        div.map-col-blank
+    if (column > 1)
+        div.map-col-blank
+    +map-item(kid, 'col-' + column)
+    if(column == 1)
+        div.map-col-blank
+mixin row(children, id, column)
+    div.row-wrapper(class='map-row-' + id)
+        +lines(column, children.length)
+        div.map-row
+            +child-cols(children, column)
+        +child-rows(children)
+mixin child-cols(children, column)
+    if (children.length == 1)
+        +single-kid(column, children[0])
+    else
+        each child, index in children
+            +map-item(child, 'col-' + index)
+mixin child-rows(children)
+    each child, index in children
+        div(class='index' + index)
+        if child.children.length > 0
+            if index == 1 && children.length == 2
+                +row(child.children, child.id, 2)
+            else
+                +row(child.children, child.id, index)
+//lines
+mixin lines(column, numberOfChildren)
+    case column
+        when 0
+            +left(numberOfChildren)
+        when 1
+            +middle(numberOfChildren)
+        when 2
+            +right(numberOfChildren)
+mixin right(numberOfChildren)
+    case numberOfChildren
+        when 1
+            +right-one()
+        when 2
+            +right-two()
+        when 3
+            +right-three()
+mixin right-three()
+    +right-one()
+    +three-lines()
+mixin right-two()
+    +right-one()
+    +two-lines()
+mixin right-one()
+    div.map-lines-row
+        div.map-lines.right.single
+mixin middle(numberOfChildren)
+    case numberOfChildren
+        when 1
+            +middle-one()
+        when 2
+            +middle-two()
+        when 3
+            +middle-three()
+mixin left(numberOfChildren)
+    case numberOfChildren
+        when 1
+            +left-one()
+        when 2
+            +left-two()
+        when 3
+            +left-three()
+mixin middle-one()
+    div.map-lines-row
+        div.map-lines.right
+        div.map-lines
+mixin middle-two()
+    +middle-one()
+    +two-lines()
+mixin middle-three()
+    +middle-one()
+    +three-lines()
+mixin left-three()
+    +left-one()
+    +three-lines()
+mixin left-two()
+    +left-one()
+    +two-lines()
+mixin left-one()
+    div.map-lines-row
+        div.map-lines.left.single
+mixin two-lines()
+    div.map-lines-row
+        div.map-lines.top.left
+        div.map-lines.top.right
+mixin three-lines()
+    div.map-lines-row
+        div.map-lines.top.left.right
+        div.map-lines.top.right
