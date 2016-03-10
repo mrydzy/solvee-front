@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="main.css"/>
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="node_modules/jquery.scrollto/jquery.scrollTo.min.js"></script>
+        <script src="node_modules/autosize/dist/autosize.min.js"></script>
+        <script src="node_modules/jade/jade.js"></script>
+        <script src="create-map-logic.js"></script>
+        <title></title>
+    </head>
+    <body>
+        <h1></h1>
+        <div class="map-wrapper">
+            <form id="map-form">
+                <div class="map-row">
+                    <div id="so">SEO(please enable javascript~)</div>
+                        <pre id="jadehi" style="display:none">
+                        .con
+                          .pex
+                            h1= title
+                          .cot
+                            h1 List
+                            ul.list
+                              - for(var i in tmp=[1,2,8,"yooo~",9])
+                                li= "Item - "+tmp[i]
+                          .fot
+                            .line
+                            p= foot
+                        </pre>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

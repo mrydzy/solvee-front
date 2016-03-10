@@ -89,6 +89,11 @@ app.get('/create', function (req, res) {
 
 app.use(express.static('../dist'));
 
+
+app.get('/test', function (req, res) {
+  res.sendFile( 'jade-test.html', {root: '../dist'});
+});
+
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!');
 });
