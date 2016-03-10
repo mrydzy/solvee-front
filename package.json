@@ -6,11 +6,11 @@
   "dependencies": {
     "autosize": "^3.0.15",
     "jquery": "^2.2.1",
-    "jquery.scrollto": "^2.1.2"
+    "jquery.scrollto": "^2.1.2",
+    "jade": "^1.11.0"
   },
   "devDependencies": {
     "express": "^4.13.4",
-    "jade": "^1.11.0",
     "gulp-sass": "^2.2.0"
   },
   "scripts": {
