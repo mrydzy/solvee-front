@@ -99,17 +99,20 @@ $(function() {
     return children;
   }
 
-  function compileJade() {
-    //console.log('jadeVar' + jadeVar);
-    console.log(djson);
-    var compiled = jade.compile(jadeVar)(djson);
-    $("#so").html(compiled);
+  function initColsActions() {
     $(".map-col:empty").each(function() {
       var textAreaId = textIdPrefix + $(this).attr('data-target');
       return $(this).prepend('<textarea id= ' + textAreaId + ' class="col-input" placeholder="Placeholder. Add text to keep, leave empty to remove.">').addClass('map-placeholder');
     });
     autosize($('textarea'));
     $('textarea').blur(handleBlur);
+  }
+
+  function compileJade() {
+    console.log(djson);
+    var compiled = jade.compile(jadeVar)(djson);
+    $("#so").html(compiled);
+    initColsActions();
     initMapRows();
   }
 

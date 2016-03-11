@@ -59,39 +59,16 @@ const sampleJson = {
 }
   ]
 }
-//
-//var mapInit = {
-//  title: "New Map",
-//  options: [{
-//  id: 1,
-//  text: "",
-//  children: []
-//}, {
-//  id: 2,
-//  text: "",
-//  children: []
-//}, {
-//  id: 3,
-//  text: "",
-//  children: []
-//}]}
-
-
 app.set('view engine', 'jade');
 
 app.get('/', function (req, res) {
   res.render('map', sampleJson);
 });
-//
-//app.get('/create', function (req, res) {
-//  res.render('map-builder', mapInit);
-//});
 
 app.use(express.static('../dist'));
 
-
-app.get('/test', function (req, res) {
-  res.sendFile( 'jade-test.html', {root: 'views/'});
+app.get('/build', function (req, res) {
+  res.sendFile( 'map-builder.html', {root: 'views/'});
 });
 
 app.listen(3000, () => {
