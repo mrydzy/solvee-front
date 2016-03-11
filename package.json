@@ -5,12 +5,14 @@
   "main": "app.js",
   "dependencies": {
     "autosize": "^3.0.15",
+    "gulp-inject-element": "^2.0.2",
+    "jade": "^1.11.0",
     "jquery": "^2.2.1",
-    "jquery.scrollto": "^2.1.2",
-    "jade": "^1.11.0"
+    "jquery.scrollto": "^2.1.2"
   },
   "devDependencies": {
     "express": "^4.13.4",
+    "gulp-copy": "0.0.2",
     "gulp-sass": "^2.2.0"
   },
   "scripts": {

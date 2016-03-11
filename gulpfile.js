@@ -1,14 +1,15 @@
 var gulp = require('gulp');
 var gnf = require('gulp-npm-files');
 var sass = require('gulp-sass');
-var inject = require('gulp-inject');
+var gulpCopy = require("gulp-copy");
 
 
-gulp.task('inject', function() {
-  gulp.src('./dist/jade-test.html')
-    .pipe(inject(gulp.src('./src/views/map-builder.jade', {read: false}), {relative: true}))
-    .pipe(gulp.dest('./dist/t'));
-});
+gulp.task('copy', function() {
+  gulp.src('src/js/*.js')
+    .pipe(gulpCopy('dist/', {prefix: 2}));
+  gulp.src('src/resources/*')
+    .pipe(gulpCopy('dist/', {prefix: 2}));
+})
 
 gulp.task('copyNpmDependenciesOnly', function() {
   gulp.src(gnf(), {base:'./'}).pipe(gulp.dest('./dist'));
