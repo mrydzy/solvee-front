@@ -23,6 +23,7 @@ gulp.task('sass', function(){
 
 gulp.task('watch', function(){
   gulp.watch('src/scss/**/*.scss', ['sass']);
+  gulp.watch('src/js/**/*.js', ['copy']);
 });
 
 

@@ -27,7 +27,6 @@ mixin child-cols(children, column)
             +map-item(child, 'col-' + index)
 mixin child-rows(children)
     each child, index in children
-        div(class='index' + index)
         if child.children.length > 0
             if index == 1 && children.length == 2
                 +row(child.children, child.id, 2)
@@ -50,15 +49,6 @@ mixin right(numberOfChildren)
             +right-two()
         when 3
             +right-three()
-mixin right-three()
-    +right-one()
-    +three-lines()
-mixin right-two()
-    +right-one()
-    +two-lines()
-mixin right-one()
-    div.map-lines-row
-        div.map-lines.right.single
 mixin middle(numberOfChildren)
     case numberOfChildren
         when 1
@@ -75,6 +65,16 @@ mixin left(numberOfChildren)
             +left-two()
         when 3
             +left-three()
+
+mixin right-three()
+    +right-one()
+    +three-lines()
+mixin right-two()
+    +right-one()
+    +two-lines()
+mixin right-one()
+    div.map-lines-row
+        div.map-lines.right.single
 mixin middle-one()
     div.map-lines-row
         div.map-lines.right
