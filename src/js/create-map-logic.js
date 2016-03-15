@@ -82,4 +82,33 @@ $(function() {
   }
 });
 
+function submitTree() {
+  console.log(djson);
+  var clone = JSON.parse(JSON.stringify(djson)); //Object.assign({}, djson);
+  var cleanTree = clearTree(clone);
+  saveTree(cleanTree);
+}
+
+function cleanNode(node) {
+  //console.log('clean', node);
+  node.children = filterEmpty(node.children);
+  node.children.forEach(cleanNode);
+}
+
+function filterEmpty(array) {
+  return array.filter(function(node){return node.text !== ""})
+}
+
+function clearTree(json) {
+  json.options = filterEmpty(json.options);
+  json.options.forEach(cleanNode)
+  return json;
+}
+
+function saveTree(cleanTree) {
+  var tree = {name: 'some Name', data: JSON.stringify(cleanTree)};
+
+  sendTree(tree);
+}
+
 

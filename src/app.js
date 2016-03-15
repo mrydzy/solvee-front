@@ -61,9 +61,7 @@ const sampleJson = {
 }
 app.set('view engine', 'jade');
 
-app.get('/', function (req, res) {
-  res.render('map', sampleJson);
-});
+app.use(require('./routes'));
 
 app.use(express.static('../dist'));
 
