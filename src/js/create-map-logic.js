@@ -1,65 +1,31 @@
 const textIdPrefix = 'text-';
 const maxChildren = 3;
 
-$(function() {
-//consts////////////////////
-  const childrenTemplate = [{
-      id: 1,
-      text: "",
-      children: []
-    }, {
+var djson = {
+  title: "New Map",
+  options: [{
+    id: 1,
+    text: "",
+    children: []
+  }, {
     id: 2,
-      text: "",
-      children: []
+    text: "",
+    children: []
   }, {
     id: 3,
-      text: "",
-      children: []
-  }];
+    text: "",
+    children: []
+  }]};
 
-  var djson = {
-    title: "New Map",
-    options: [{
-      id: 1,
-      text: "",
-      children: []
-    }, {
-      id: 2,
-      text: "",
-      children: []
-    }, {
-      id: 3,
-      text: "",
-      children: []
-    }]};
-
-  var djson2 = {
-    title: "New Map",
-    options: [{
-      id: 1,
-      text: "test",
-      children: childrenTemplate
-    }, {
-      id: 2,
-      text: "",
-      children: []
-    }, {
-      id: 3,
-      text: "",
-      children: []
-    }]};
+$(function() {
 
   document.title = djson.title;
-  //jade compile
-
   var jadeVar = $("#jadehi").html()
     .replace(/&gt;/g,'>')
     .replace(/&amp;/g,'&');
 
-
   //actions/////////////////
-  compileJade();
-
+  prepareMap();
 
   //functions//////////////
   function handleBlur() {
@@ -82,7 +48,7 @@ $(function() {
     current.text = value;
     if (current.children.length < 1) {
       current.children = generateChildren(id);
-      compileJade();
+      prepareMap();
     }
   }
 
@@ -108,14 +74,12 @@ $(function() {
     $('textarea').blur(handleBlur);
   }
 
-  function compileJade() {
-    console.log(djson);
+  function prepareMap() {
     var compiled = jade.compile(jadeVar)(djson);
     $("#so").html(compiled);
     initColsActions();
     initMapRows();
   }
-
 });
 
 

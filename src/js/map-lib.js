@@ -3,6 +3,8 @@ var rowIdRegex;
 $('document').ready(function() {
   mapContainer = $('.map-wrapper');
   rowIdRegex = /\d+/;
+
+  initMapRows();
 });
 function initMapRows() {
   $('.map-row').on('click', '.map-col', function (e) {
