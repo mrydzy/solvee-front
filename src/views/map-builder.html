@@ -5,6 +5,7 @@
         <script src="node_modules/jquery.scrollto/jquery.scrollTo.min.js"></script>
         <script src="node_modules/autosize/dist/autosize.min.js"></script>
         <script src="node_modules/jade/jade.js"></script>
+        <script src="services.js"></script>
         <script src="map-lib.js"></script>
         <script src="map-service.js"></script>
         <script src="create-map-logic.js"></script>
@@ -22,7 +23,7 @@ mixin map-item(item, colClass)
     if (item.children.length > 0)
         -classes.push("parent")
     -classes.push(colClass)
-    div.map-col(class = classes)&attributes({'data-target': item.id, 'id': "node-" + item.id})=item.text
+    div.map-col(class = classes)&attributes({'data-target': item.id, 'id': "node-" + item.id, contenteditable: 'true'})=item.text
 //adds empty columns so that single items are always under their parent
 mixin single-kid(column, kid)
     if (column > 0)

@@ -29,6 +29,7 @@ $(function() {
 
   //functions//////////////
   function handleBlur() {
+    log('blur', $(this));
     var wrapper = $(this).parent();
     var value = $.trim($(this).val());
     if (value) { //textarea is not empty
@@ -45,6 +46,7 @@ $(function() {
     for (var i = 1; i < id.length; i++ ) {
       current = current.children[id.charAt(i) - 1];
     }
+    log("updating", current, value);
     current.text = value;
     if (current.children.length < 1) {
       current.children = generateChildren(id);
