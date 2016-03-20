@@ -32,11 +32,6 @@ $(function() {
     log('blur', $(this));
     var wrapper = $(this).parent();
     var value = $.trim($(this).val());
-    //if (value) { //textarea is not empty
-    //  wrapper.removeClass('map-placeholder');
-    //} else {//textarea is empty
-    //  wrapper.addClass('map-placeholder');
-    //}
     updateNode(this, value, wrapper);
   }
 
@@ -59,20 +54,19 @@ $(function() {
   function confirmRemoveBranch(current, wrapper) {
     myConfirm('You are about to remove option\'s branch', function () {
         removeBranch(current, wrapper);
+        prepareMap();
       }, function () {
-        //do nothing
+        prepareMap();
       },
       'Are you sure?'
     );
   }
 
-
-
   function updateNode(area, value, wrapper) {
     var id = area.id.replace(textIdPrefix, '');
     var current = getCurrentNode(id);
 
-    if (value === current.value) {
+    if (value == current.text) {
       log("nothing was modified");
       return;
     }
@@ -84,10 +78,10 @@ $(function() {
       if (current.children.length < 1) {
         current.children = generateChildren(id);
       }
+      prepareMap();
     } else { //textarea ie empty
         confirmRemoveBranch(current, wrapper);
     }
-    prepareMap();
   }
 
   function generateChildren(id) {
@@ -109,14 +103,27 @@ $(function() {
     });
     autosize($('textarea'));
     $('textarea').blur(handleBlur);
+    $('.node-remover').click(removeNodeOnClick);
   }
 
+  function removeNodeOnClick(event) {
+    log('removing', this.id);
+    var id = this.id.replace('nr-', '');
+    var current = getCurrentNode(id);
+
+    var wrapper = $(this.parent).parent();
+    confirmRemoveBranch(current, wrapper)
+  }
+
+
   function prepareMap() {
+    log("recreating map");
     var compiled = jade.compile(jadeVar)(djson);
     $("#so").html(compiled);
     initColsActions();
     initMapRows();
   }
+
 });
 
 function submitTree() {
@@ -144,7 +151,6 @@ function clearTree(json) {
 
 function saveTree(cleanTree) {
   var tree = {name: 'some Name', data: JSON.stringify(cleanTree)};
-
   sendTree(tree);
 }
 

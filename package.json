@@ -6,11 +6,11 @@
   "dependencies": {
     "autosize": "^3.0.15",
     "gulp-inject-element": "^2.0.2",
+    "isomorphic-fetch": "^2.2.1",
     "jade": "^1.11.0",
     "jquery": "^2.2.1",
     "jquery-ui": "^1.10.5",
-    "jquery.scrollto": "^2.1.2",
-    "restler": "^3.4.0"
+    "jquery.scrollto": "^2.1.2"
   },
   "devDependencies": {
     "express": "^4.13.4",

@@ -1,6 +1,6 @@
 const express = require('express');
-var rest = require('restler');
 const router = express.Router();
+const fetch = require('isomorphic-fetch');
 
 const backendUrl = "http://localhost:3300/trees";
 const sampleJson = {
@@ -63,15 +63,18 @@ const sampleJson = {
 
 router.get('/:id', function(req, res) {
   var treeId = req.params.id;
-  rest.get(backendUrl + '/' + treeId).on('complete', function(result) {
-    if (result instanceof Error) {
-      console.log('Error:', result.message);
-      this.retry(5000); // try again after 5 sec
-    } else {
-      console.log(result);
-      res.render('map', JSON.parse(result.data));
-    }
-  });
+  fetch(backendUrl + '/' + treeId)
+    .then(function(response) {
+      if (response.status >= 400) {
+        throw new Error("Bad response from server");
+      }
+      return response.json();
+    })
+    .then(function(response) {
+      console.log(response.data);
+      res.render('map', JSON.parse(response.data));
+    });
+
 });
 
 module.exports = router;

@@ -20,12 +20,15 @@
                 <div id="so">Please enable javascript</div>
                     <!-- map-items - todo import instead -->
                         <pre id="jadehi" style="display:none">
+
 mixin map-item(item, colClass)
     -var classes=[]
     if (item.children.length > 0)
         -classes.push("parent")
     -classes.push(colClass)
     div.map-col(class = classes)&attributes({'data-target': item.id, 'id': "node-" + item.id})
+        if (item.children.length > 0)
+            div.node-remover(id='nr-' + item.id)="x"
         textarea(class='col-input')&attributes({'data-target': item.id, 'id': "text-" + item.id, 'placeholder':"Placeholder. Add text to keep, leave empty to remove."})=item.text
 //adds empty columns so that single items are always under their parent
 mixin single-kid(column, kid)
