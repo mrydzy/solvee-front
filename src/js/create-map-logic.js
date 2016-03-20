@@ -18,8 +18,15 @@ var djson = {
   }]};
 
 $(function() {
-
   document.title = djson.title;
+
+  $('#map-title').bind('input', function() {
+    log('changing title');
+    djson.title = $(this).val();
+    document.title = djson.title
+
+  });
+
   var jadeVar = $("#jadehi").html()
     .replace(/&gt;/g,'>')
     .replace(/&amp;/g,'&');
