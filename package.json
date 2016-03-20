@@ -8,6 +8,7 @@
     "gulp-inject-element": "^2.0.2",
     "jade": "^1.11.0",
     "jquery": "^2.2.1",
+    "jquery-ui": "^1.10.5",
     "jquery.scrollto": "^2.1.2",
     "restler": "^3.4.0"
   },

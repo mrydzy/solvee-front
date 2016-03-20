@@ -32,28 +32,62 @@ $(function() {
     log('blur', $(this));
     var wrapper = $(this).parent();
     var value = $.trim($(this).val());
-    if (value) { //textarea is not empty
-      wrapper.removeClass('map-placeholder');
-      updateNode(this, value)
-    } else {//textarea is empty
-      wrapper.addClass('map-placeholder');
-    }
+    //if (value) { //textarea is not empty
+    //  wrapper.removeClass('map-placeholder');
+    //} else {//textarea is empty
+    //  wrapper.addClass('map-placeholder');
+    //}
+    updateNode(this, value, wrapper);
   }
 
-  function updateNode(area, value) {
-    var id = area.id.replace(textIdPrefix, '');
+  function getCurrentNode(id) {
     var current = djson.options[id.charAt(0) - 1]
     log("mining for current", current, id);
     for (var i = 1; i < id.length; i++ ) {
       current = current.children[id.charAt(i) - 1];
       log(current);
     }
-    log("updating", current, value);
-    current.text = value;
-    if (current.children.length < 1) {
-      current.children = generateChildren(id);
-      prepareMap();
+    return current;
+  }
+
+  function removeBranch(current, wrapper) {
+    current.text = "";
+    current.children = [];
+    wrapper.addClass('map-placeholder');
+  }
+
+  function confirmRemoveBranch(current, wrapper) {
+    myConfirm('You are about to remove option\'s branch', function () {
+        removeBranch(current, wrapper);
+      }, function () {
+        //do nothing
+      },
+      'Are you sure?'
+    );
+  }
+
+
+
+  function updateNode(area, value, wrapper) {
+    var id = area.id.replace(textIdPrefix, '');
+    var current = getCurrentNode(id);
+
+    if (value === current.value) {
+      log("nothing was modified");
+      return;
     }
+
+    log("updating", current, value);
+    if (value) { //textarea is not empty
+      wrapper.removeClass('map-placeholder');
+      current.text = value;
+      if (current.children.length < 1) {
+        current.children = generateChildren(id);
+      }
+    } else { //textarea ie empty
+        confirmRemoveBranch(current, wrapper);
+    }
+    prepareMap();
   }
 
   function generateChildren(id) {
