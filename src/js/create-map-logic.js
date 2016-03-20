@@ -43,8 +43,10 @@ $(function() {
   function updateNode(area, value) {
     var id = area.id.replace(textIdPrefix, '');
     var current = djson.options[id.charAt(0) - 1]
+    log("mining for current", current, id);
     for (var i = 1; i < id.length; i++ ) {
       current = current.children[id.charAt(i) - 1];
+      log(current);
     }
     log("updating", current, value);
     current.text = value;
@@ -68,9 +70,8 @@ $(function() {
   }
 
   function initColsActions() {
-    $(".map-col:empty").each(function() {
-      var textAreaId = textIdPrefix + $(this).attr('data-target');
-      return $(this).prepend('<textarea id= ' + textAreaId + ' class="col-input" placeholder="Placeholder. Add text to keep, leave empty to remove.">').addClass('map-placeholder');
+    $(".col-input:empty").each(function() {
+      return $(this.parentNode).addClass('map-placeholder');
     });
     autosize($('textarea'));
     $('textarea').blur(handleBlur);

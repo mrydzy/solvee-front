@@ -23,7 +23,8 @@ mixin map-item(item, colClass)
     if (item.children.length > 0)
         -classes.push("parent")
     -classes.push(colClass)
-    div.map-col(class = classes)&attributes({'data-target': item.id, 'id': "node-" + item.id, contenteditable: 'true'})=item.text
+    div.map-col(class = classes)&attributes({'data-target': item.id, 'id': "node-" + item.id})
+        textarea(class='col-input')&attributes({'data-target': item.id, 'id': "text-" + item.id, 'placeholder':"Placeholder. Add text to keep, leave empty to remove."})=item.text
 //adds empty columns so that single items are always under their parent
 mixin single-kid(column, kid)
     if (column > 0)
