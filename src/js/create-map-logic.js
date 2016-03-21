@@ -1,9 +1,13 @@
+require('../scss/main.scss');
+
 const $ = require('jquery');
 const jade = require('jade');
 const autosize = require('autosize');
+
 const log = require('./services').log;
 const mapUtils = require('./map-lib');
 const initMapRows = mapUtils.initMapRows;
+
 // const isOldNode = mapUtils.isOldNode;
 // const removeOldNodes = mapUtils.removeOldNodes;
 

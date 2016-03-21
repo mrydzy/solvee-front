@@ -8,7 +8,7 @@ module.exports = {
   output: {
     publicPath: '/assets/',
     path: '/',
-    filename: 'main.js'
+    filename: '[name].js'
   },
 
   cache: true,
@@ -16,9 +16,8 @@ module.exports = {
   devtool: "source-map",
 
   entry: {
-    main: [
-      './src/js/index.js'
-    ]
+    main: './src/js/map.js',
+    builder: './src/js/create-map-logic.js'
   },
 
   stats: {
@@ -46,7 +45,7 @@ module.exports = {
     }, {
       test: /\.html$/,
       exclude: /node_modules/,
-      loader: 'ngtemplate!html'
+      loader: 'html'
     }, {
       test: /\.(png|jpg|woff|woff2|svg)$/,
       loader: 'url-loader?limit=8192'

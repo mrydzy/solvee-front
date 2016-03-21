@@ -1,3 +1,4 @@
+require('../scss/main.scss');
 const $ = require('jquery');
 
 var mapContainer;

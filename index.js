@@ -19,7 +19,7 @@ if (_DEV_) {
 
   app.use(webpackDevMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath,
-    stats: {colors: true},
+    stats: { colors: true },
     historyApiFallback: true
   }));
 }
