@@ -5,20 +5,35 @@
   "main": "app.js",
   "dependencies": {
     "autosize": "^3.0.15",
+    "css-loader": "^0.23.1",
+    "dotenv": "^2.0.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
     "gulp-inject-element": "^2.0.2",
+    "html-loader": "^0.4.3",
     "isomorphic-fetch": "^2.2.1",
     "jade": "^1.11.0",
     "jquery": "^2.2.1",
-    "jquery-ui": "^1.10.5",
-    "jquery.scrollto": "^2.1.2"
+    "jquery.scrollto": "^2.1.2",
+    "json-loader": "^0.5.4",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.14"
   },
   "devDependencies": {
     "express": "^4.13.4",
     "gulp-copy": "0.0.2",
-    "gulp-sass": "^2.2.0"
+    "gulp-sass": "^2.2.0",
+    "webpack-dev-middleware": "^1.5.1"
   },
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "5.9"
   },
   "author": "Majka Rydzy",
   "license": "ISC"

@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('isomorphic-fetch');
 
-const backendUrl = "http://localhost:3300/trees";
-
 router.get('/:id', function(req, res) {
+  const backendUrl = req.app.locals.settings.API_URI;
+
   var treeId = req.params.id;
   fetch(backendUrl + '/' + treeId)
     .then(function(response) {
@@ -21,6 +21,8 @@ router.get('/:id', function(req, res) {
 });
 
 router.get('/edit/:id', function(req, res) {
+  const backendUrl = req.app.locals.settings.API_URI;
+  
   var treeId = req.params.id;
   fetch(backendUrl + '/' + treeId)
     .then(function(response) {

@@ -1,17 +1,21 @@
+const $ = require('jquery');
+
 var mapContainer;
 var rowIdRegex;
+
 $('document').ready(function() {
   mapContainer = $('.map-wrapper');
   rowIdRegex = /\d+/;
 
   initMapRows();
 });
+
 function initMapRows() {
   $('.map-row').on('click', '.map-col', function (e) {
     var target = e.currentTarget.dataset.target;
     mapContainer.addClass('stage-' + target);
     removeOldNodes(target);
-    $.scrollTo($('#map-bottom'), 500, {offset: (-($(window).height() - 100))});
+    // $.scrollTo($('#map-bottom'), 500, {offset: (-($(window).height() - 100))});
   });
 }
 
@@ -34,3 +38,9 @@ function isOldNode(currentClass, currentIteration, target) {
   }
   return false;
 }
+
+module.exports = {
+  initMapRows,
+  isOldNode,
+  removeOldNodes
+};

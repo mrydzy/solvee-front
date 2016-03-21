@@ -3,17 +3,21 @@
 const express = require('express');
 const app = express();
 
-app.set('view engine', 'jade');
+function configure(cfg) {
+  app.set('cfg', cfg);
 
-app.use(require('./routes'));
+  app.set('views', cfg.DIR);
+  app.set('view engine', 'jade');
 
-app.use(express.static('../dist'));
+  app.use(require('./routes'));
 
-app.get('/build', function (req, res) {
-  res.sendFile( 'map-builder.html', {root: 'views/'});
-});
+  app.use(express.static(cfg.DIR));
 
-app.listen(3000, () => {
-  console.log('Example app listening on port 3000!');
-});
+  app.get('/build', function (req, res) {
+    console.log(req.app);
+    res.sendFile( 'map-builder.html', {root: cfg.DIR + '/views'});
+  });
+  return app;
+}
 
+module.exports = configure;

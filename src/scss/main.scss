@@ -1,15 +1,13 @@
-$max-columns : 3;
-$max-rows : 4;
+@import "helpers/variables";
+@import "helpers/animations";
+@import "helpers/placeholders";
+@import "helpers/mixins";
 
-$gray : #8c8c8c;
-$light-gray : #eFeFef;
+@import "core";
 
-body {
-  box-sizing: border-box;
-}
-*, *::before, *::after {
-  box-sizing: inherit;
-}
-
-@import "map";
+@import "components/column";
+@import "components/confirm";
+@import "components/lines";
+@import "components/map";
+@import "components/row";
 

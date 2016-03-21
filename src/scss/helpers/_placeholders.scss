@@ -1,0 +1,20 @@
+%parent-frame {
+  border: 1px groove $light-gray;
+  background-color: #FCFCFC;
+}
+
+%map-item-frame {
+  border: 3px solid $gray;
+  background-color: #FDFDFD;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+%hide-row {
+  display: none;
+}
+
+%show-row {
+  display: flex;
+  flex-direction: column;
+}

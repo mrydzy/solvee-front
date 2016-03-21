@@ -1,22 +1,22 @@
-const backendUrl = 'http://localhost:3300/trees'
+const $ = require('jquery');
 
 function sendTree(data) {
   send("POST", data);
 }
 
 function getTree(treeId) {
-  $.get( "trees/" + treeId, function( data ) {
-    $( ".result" ).html( data );
-    alert( "Load was performed." );
+  $.get("/trees/" + treeId, function (data) {
+    $(".result").html(data);
+    alert("Load was performed.");
   });
 
-  send("GET", null ,treeId)
+  send("GET", null, treeId)
 }
 
 function send(type, data, success, suffix) {
   $.ajax({
     type: type,
-    url: backendUrl,
+    url: '/trees',
     data: data,
     success: success,
     dataType: 'application/json'

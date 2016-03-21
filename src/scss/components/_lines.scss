@@ -1,0 +1,33 @@
+.map-lines {
+  width: 36%;
+  min-height: 45px;
+  border: 0px solid transparent;
+  padding: 15px;
+  border-image: url('/assets/dotted.png') round;
+  border-image-slice: 33%;
+  &.bottom {
+    border-bottom-width: 10px;
+  }
+
+  &.left {
+    border-left-width: 10px;
+  }
+
+  &.top {
+    border-top-width: 10px;
+  }
+
+  &.right {
+    border-right-width: 10px;
+  }
+
+  &.single {
+    width: 72%;
+  }
+}
+
+.map-lines-row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}

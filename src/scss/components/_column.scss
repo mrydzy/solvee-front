@@ -1,0 +1,37 @@
+.map-col {
+  @extend %map-item-frame;
+
+  &, .map-col-blank {
+    min-height: 100px;
+    display: flex;
+    width: 30%;
+    min-width: 100px;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  textarea {
+    background: none;
+    border: none;
+    resize: none;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+
+  &.parent {
+    @extend %pulse;
+    @extend %map-item-frame;
+    @extend %parent-frame;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #F3F3F3;
+    }
+  }
+}
+
+.node-remover {
+  align-self: flex-end;
+}
