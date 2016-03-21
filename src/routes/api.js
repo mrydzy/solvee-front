@@ -15,24 +15,7 @@ router.get('/:id', function(req, res) {
     })
     .then(function(response) {
       console.log(response.data);
-      res.render('map', JSON.parse(response.data));
-    });
-
-});
-
-router.get('/edit/:id', function(req, res) {
-  var treeId = req.params.id;
-  fetch(backendUrl + '/' + treeId)
-    .then(function(response) {
-      if (response.status >= 400) {
-        throw new Error("Bad response from server");
-      }
-      return response.json();
-    })
-    .then(function(response) {
-      console.log(response.data);
-      res.sendFile( 'map-builder.html', {root: 'views/'});
-      //res.render('map', JSON.parse(response.data));
+      res.send(JSON.parse(response.data));
     });
 
 });

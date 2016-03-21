@@ -6,4 +6,6 @@ const router = express.Router();
 
 router.use('/maps', require('./maps'));
 
+router.use('/api/maps', require('./api'));
+
 module.exports = router;
