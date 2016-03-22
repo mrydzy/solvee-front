@@ -1,24 +1,29 @@
 const $ = require('jquery');
+const backendUrl = "http://localhost:3300/trees";
+
 
 function sendTree(data) {
-  send("POST", data);
+  send("POST", data, function(){}, "");
 }
 
-function getTree(treeId) {
-  $.get("/trees/" + treeId, function (data) {
-    $(".result").html(data);
-    alert("Load was performed.");
-  });
+function updateTree(data, id) {
+  send("PUT", data, function(){}, "/" + id);
+}
 
-  send("GET", null, treeId)
+function getTree(treeId, success) {
+  $.getJSON(backendUrl + treeId, success);
 }
 
 function send(type, data, success, suffix) {
   $.ajax({
     type: type,
-    url: '/trees',
+    url: backendUrl + suffix,
     data: data,
     success: success,
     dataType: 'application/json'
   });
 }
+
+module.exports = {
+  sendTree, getTree, updateTree
+};

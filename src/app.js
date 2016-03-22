@@ -14,9 +14,6 @@ function configure(cfg) {
 
   app.use(express.static(cfg.DIR));
 
-  app.get('/build', function (req, res) {
-    res.sendFile( 'map-builder.html', {root: cfg.DIR + '/views'});
-  });
   return app;
 }
 

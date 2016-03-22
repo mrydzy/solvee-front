@@ -17,7 +17,8 @@ module.exports = {
 
   entry: {
     main: './src/js/map.js',
-    builder: './src/js/create-map-logic.js'
+    builder: './src/js/build-map.js',
+    editor: './src/js/edit-map.js'
   },
 
   stats: {
