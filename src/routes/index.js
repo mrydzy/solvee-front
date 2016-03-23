@@ -8,4 +8,6 @@ router.use('/maps', require('./maps'));
 
 router.use('/api/maps', require('./api'));
 
+router.use('/auth', require('./auth'));
+
 module.exports = router;
