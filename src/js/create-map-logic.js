@@ -1,4 +1,5 @@
 require('../scss/main.scss');
+const callAnalytics = require('./analytics').callAnalytics;
 
 const $ = require('jquery');
 const jade = require('jade');
@@ -46,6 +47,7 @@ function removeBranch(current, wrapper) {
   current.text = "";
   current.children = [];
   wrapper.addClass('map-placeholder');
+  callAnalytics('map-builder', 'removeBranch', '', current.id);
 }
 
 function confirmRemoveBranch(current, wrapper) {
@@ -82,6 +84,7 @@ function updateNode(area, value, wrapper) {
 }
 
 function generateChildren(id) {
+  callAnalytics('map-builder', 'addBranch', '', id);
   var children = [];
   for (var i=1; i <= maxChildren; i++) {
     var currentId = parseInt(id + i);
@@ -120,7 +123,6 @@ function initMap(json) {
 
 function prepareMap() {
   log("recreating map");
-
   var compiled = jade.compile(jadeVar)(djson);
   $("#so").html(compiled);
   initColsActions();

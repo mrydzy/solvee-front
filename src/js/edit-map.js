@@ -3,6 +3,7 @@ const getTree = require('./map-service').getTree;
 const getClearTree = require('./create-map-logic').getCleanTree;
 const updateTree = require('./map-service').updateTree;
 const $ = require('jquery');
+const callAnalytics = require('./analytics').callAnalytics;
 
 $(function() {
   var path = window.location.pathname;
@@ -15,6 +16,7 @@ $(function() {
   function callUpdateTree() {
     var tree = {name: 'some Name', data: JSON.stringify(getClearTree())};
     updateTree(tree, id);
+    callAnalytics('map-editor', 'updateTree');
   }
 
   $('#save-tree-button').click(callUpdateTree);
