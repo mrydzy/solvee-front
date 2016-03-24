@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('isomorphic-fetch');
+const authUrl = require('../js/constants').authUrl;
 
 module.exports = (passport) => {
 
@@ -25,15 +26,15 @@ module.exports = (passport) => {
   });
 
   router.get('/build',
-    require('connect-ensure-login').ensureLoggedIn(),
+    require('connect-ensure-login').ensureLoggedIn(authUrl),
     (req, res) => {
-      res.sendFile( 'map-builder.html', {root: req.app.locals.settings.cfg.DIR + '/views'});
+      res.sendFile( 'map-builder.html', {root: req.app.get('cfg').DIR + '/views'});
     });
 
   router.get('/build/:id', function(req, res) {
-    require('connect-ensure-login').ensureLoggedIn(),
+    require('connect-ensure-login').ensureLoggedIn(authUrl),
       (req, res) => {
-        res.sendFile( 'map-editor.html', {root: req.app.locals.settings.cfg.DIR + '/views'});
+        res.sendFile( 'map-editor.html', {root: req.app.get('cfg').DIR + '/views'});
       };
   });
 

@@ -1,8 +1,9 @@
 const clientId = "1701796373392975";
-const clientSecret = "af0cedd38313c47f6889ff4a6c8bcb43";
-
+const clientSecret = process.env.APP_SECRET;
+const authUrl="/auth/login";
 
 module.exports = {
   clientId: clientId,
-  clientSecret: clientSecret
+  clientSecret: clientSecret,
+  authUrl: authUrl
 };
