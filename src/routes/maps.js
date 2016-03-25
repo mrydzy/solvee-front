@@ -5,6 +5,11 @@ const authUrl = require('../js/constants').authUrl;
 
 module.exports = (passport) => {
 
+  router.get('/', function(req, res) {
+    res.sendFile( 'maps-browser.html', {root: req.app.get('cfg').DIR + '/views'});
+  });
+
+
   router.get('/show/:id', function(req, res) {
     const backendUrl = req.app.locals.settings.cfg.API_URI;
 
@@ -28,6 +33,7 @@ module.exports = (passport) => {
   router.get('/build',
     require('connect-ensure-login').ensureLoggedIn(authUrl),
     (req, res) => {
+
       res.sendFile( 'map-builder.html', {root: req.app.get('cfg').DIR + '/views'});
     });
 
