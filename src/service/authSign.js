@@ -9,9 +9,10 @@ const appSecret = process.env.APP_SECRET;
 
 
 function getPayload(user) {
+  console.log(user);
   return {
-    sub: user.id,
-    iss: websiteUrl
+    user: user.id,
+    issuer: websiteUrl
   }
 }
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const sign = require('../service/authJWT').sign;
+const sign = require('../service/authSign').sign;
 
 const backendUrl = "http://localhost:3300";
 

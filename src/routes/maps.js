@@ -33,16 +33,15 @@ module.exports = (passport) => {
   router.get('/build',
     require('connect-ensure-login').ensureLoggedIn(authUrl),
     (req, res) => {
-
       res.sendFile( 'map-builder.html', {root: req.app.get('cfg').DIR + '/views'});
     });
 
-  router.get('/build/:id', function(req, res) {
+  router.get('/build/:id',
     require('connect-ensure-login').ensureLoggedIn(authUrl),
       (req, res) => {
         res.sendFile( 'map-editor.html', {root: req.app.get('cfg').DIR + '/views'});
-      };
-  });
+      }
+  );
 
   return router;
 

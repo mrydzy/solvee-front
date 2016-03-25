@@ -16,6 +16,7 @@ passport.use(new FacebookStrategy({
     enableProof: true
   },
   function(accessToken, refreshToken, profile, done) {
+    console.log(profile);
     done(null, {id: profile.id, name: profile.displayName});
   }
 ));

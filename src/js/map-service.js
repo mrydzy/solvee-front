@@ -24,8 +24,7 @@ function addCredentials(headers) {
 
 function getHeaders() {
   var headers = {};
-  addCredentials(headers);
-  console.log('using headers', headers);
+  headers = addCredentials(headers);
   return headers;
 }
 
