@@ -7,8 +7,8 @@ const app = express();
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
 
-const clientId = require('./js/constants').clientId;
-const clientSecret = require('./js/constants').clientSecret;
+const clientId = require('./service/constants').clientId;
+const clientSecret = require('./service/constants').clientSecret;
 passport.use(new FacebookStrategy({
     clientID: clientId,
     clientSecret: clientSecret,
