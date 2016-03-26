@@ -2,7 +2,7 @@ const initMap = require('./create-map-logic').initMap;
 const getClearTree = require('./create-map-logic').getCleanTree;
 const sendTree = require('./map-service').sendTree;
 const validateTree = require('./map-service').validateTree;
-const analytics = require('./../service/analytics').createMapAnalytics;
+const analytics = require('./../service/tracking').createMapAnalytics;
 const $ = require('jquery');
 
 var emptyMapJson = {

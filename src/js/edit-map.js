@@ -3,7 +3,7 @@ const getTree = require('./map-service').getTree;
 const getClearTree = require('./create-map-logic').getCleanTree;
 const populatePlaceholders = require('./create-map-logic').populatePlaceholders;
 const updateTree = require('./map-service').updateTree;
-const analytics = require('./../service/analytics').editMapAnalytics;
+const analytics = require('./../service/tracking').editMapAnalytics;
 
 const $ = require('jquery');
 

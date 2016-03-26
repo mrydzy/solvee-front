@@ -1,5 +1,5 @@
 require('../scss/main.scss');
-const callAnalytics = require('./../service/analytics').callAnalytics;
+const callAnalytics = require('./../service/tracking').callAnalytics;
 
 const $ = require('jquery');
 const jade = require('jade');
