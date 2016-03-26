@@ -13,7 +13,9 @@ $(function() {
   var id = parseInt(path.substring(1));
   analytics(id);
   getTree(path, function(json) {
-    var treeWithPlaceholders = populatePlaceholders(JSON.parse(json.data));
+    var jsonTree = JSON.parse(json.data);
+    $('#map-title').val(jsonTree.title);
+    var treeWithPlaceholders = populatePlaceholders(jsonTree);
     initMap(treeWithPlaceholders);
   });
 
