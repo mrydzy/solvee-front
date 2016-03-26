@@ -6,16 +6,26 @@ const backendUrl = "http://localhost:3300/trees";
 function sendTree(tree) {
   if (validateTree(tree)) {
     var data = {name: 'some Name', data: JSON.stringify(tree)};
-    send("POST", data, function(){}, "");
+    send("POST", data, "")
+      .done(function(event) {
+        window.location.href = '/maps/show/'+ event.id;
+      }
+    ).fail(function (event) {
+      alert('There was an error submitting your request :(. Please contact us for support or try again later!');
+    });
   }
-
 }
 
 function updateTree(tree, id) {
   if (validateTree(tree)) {
-    var data = {name: 'some Name', data: JSON.stringify(getClearTree())};
-    send("PUT", data, function () {
-    }, "/" + id);
+    var data = {name: 'some Name', data: JSON.stringify(tree)};
+    send("PUT", data, "/" + id)
+    .done(function () {
+        window.location.href = '/maps/show/'+id;
+      }
+    ).fail(function (event) {
+        alert('There was an error submitting your request :(. Please contact us for support or try again later!');
+    });;
   }
 }
 
@@ -37,14 +47,13 @@ function getHeaders() {
   return headers;
 }
 
-function send(type, data, success, suffix) {
-  $.ajax({
+function send(type, data, suffix) {
+  return $.ajax({
     type: type,
     url: backendUrl + suffix,
     data: data,
-    success: success,
     headers: getHeaders(),
-    dataType: 'application/json'
+    dataType: 'text json'
   });
 }
 

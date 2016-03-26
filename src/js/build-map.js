@@ -21,7 +21,8 @@ var emptyMapJson = {
     children: []
   }]};
 
-function submitTree() {
+function submitTree(e) {
+  e.preventDefault();
   sendTree(getClearTree());
 }
 

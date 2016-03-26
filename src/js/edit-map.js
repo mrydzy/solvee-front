@@ -17,9 +17,9 @@ $(function() {
     initMap(treeWithPlaceholders);
   });
 
-  function callUpdateTree() {
+  function callUpdateTree(e) {
+    e.preventDefault();
     updateTree(getClearTree(), id);
   }
   $('#map-form').on('submit', callUpdateTree);
-  //$('#save-tree-button').click(callUpdateTree);
 });
