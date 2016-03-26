@@ -8,9 +8,9 @@ const autosize = require('autosize');
 const log = require('./services').log;
 const mapUtils = require('./map-lib');
 const initMapRows = mapUtils.initMapRows;
-
 const textIdPrefix = 'text-';
-const maxChildren = 3;
+const maxChildren = require('./../service/constants').maxChildren;
+const maxDepth = require('./../service/constants').maxDepth;
 
 var jadeVar;var djson = {};
 
@@ -73,7 +73,7 @@ function updateNode(area, value, wrapper) {
   if (value) { //textarea is not empty
     wrapper.removeClass('map-placeholder');
     current.text = value;
-    if (current.children.length < 1) {
+    if (current.children.length < 1 && id.toString().length < maxDepth) {
       current.children = generateChildren(id);
     }
     prepareMap();
