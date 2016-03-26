@@ -82,16 +82,19 @@ function updateNode(area, value, wrapper) {
   }
 }
 
+function getChild(id) {
+  return {
+    id: id,
+    text: "",
+    children: []
+  }
+}
+
 function generateChildren(id) {
   var children = [];
   for (var i=1; i <= maxChildren; i++) {
     var currentId = parseInt(id + i);
-    children.push({
-      id: currentId,
-      id: currentId,
-      text: "",
-      children: []
-    });
+    children.push(getChild(currentId));
   }
   return children;
 }
@@ -148,7 +151,31 @@ function clearTree(json) {
   return json;
 }
 
+Array.prototype.insert = function (index, item) {
+  this.splice(index, 0, item);
+};
+
+function addPlaceholders(array, prefix) {
+  var i = 1;
+  while (array.length <= maxChildren && i <= maxChildren) {
+     if (array.length < i || array[i-1].id != prefix + i) {
+       array.insert(i-1, getChild(parseInt(prefix + i)));
+     } else {
+       addPlaceholders(array[i-1].children, prefix + i);
+     }
+    i++;
+  }
+}
+
+function populatePlaceholders(json) {
+  addPlaceholders(json.options, '');
+  console.log(json);
+  return json;
+}
+
 module.exports = {
-  initMap, getCleanTree
+  initMap,
+  getCleanTree,
+  populatePlaceholders
 };
 
