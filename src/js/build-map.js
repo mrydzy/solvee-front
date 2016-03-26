@@ -27,6 +27,7 @@ function submitTree(e) {
 }
 
 $(function() {
+  $('#map-title').val('');
   $('#map-form').on('submit', submitTree);
   initMap(emptyMapJson);
   analytics();
