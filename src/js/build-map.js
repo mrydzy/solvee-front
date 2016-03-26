@@ -1,6 +1,7 @@
 const initMap = require('./create-map-logic').initMap;
 const getClearTree = require('./create-map-logic').getCleanTree;
 const sendTree = require('./map-service').sendTree;
+const analytics = require('./../service/analytics').createMapAnalytics;
 const $ = require('jquery');
 
 var emptyMapJson = {
@@ -27,4 +28,5 @@ function submitTree() {
 $(function() {
   $('#save-tree-button').click(submitTree);
   initMap(emptyMapJson);
+  analytics();
 });

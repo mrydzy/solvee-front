@@ -47,18 +47,17 @@ function removeBranch(current, wrapper) {
   current.text = "";
   current.children = [];
   wrapper.addClass('map-placeholder');
-  //callAnalytics('map-builder', 'remove-existing-branch', '', id);
 }
 
 function confirmRemoveBranch(current, wrapper) {
-  myConfirm('You are about to remove option\'s branch', function () {
+  var confirmRemove = window.confirm('Are you sure you want to remove option\'s branch');
+  if (confirmRemove) {
       removeBranch(current, wrapper);
       prepareMap();
-    }, function () {
-      prepareMap();
-    },
-    'Are you sure?'
-  );
+    $(document).trigger( "remove-branch", [ 'remove-' + current.id ] );
+  } else {
+    prepareMap();
+  }
 }
 
 function updateNode(area, value, wrapper) {
