@@ -5,7 +5,7 @@ const backendUrl = "http://localhost:3300/trees";
 
 function sendTree(tree) {
   if (validateTree(tree)) {
-    var data = {name: 'some Name', data: JSON.stringify(tree)};
+    var data = {data: JSON.stringify(tree)};
     send("POST", data, "")
       .done(function(event) {
         window.location.href = '/maps/show/'+ event.id;
@@ -18,7 +18,7 @@ function sendTree(tree) {
 
 function updateTree(tree, id) {
   if (validateTree(tree)) {
-    var data = {name: 'some Name', data: JSON.stringify(tree)};
+    var data = {data: JSON.stringify(tree)};
     send("PUT", data, "/" + id)
     .done(function () {
         window.location.href = '/maps/show/'+id;
