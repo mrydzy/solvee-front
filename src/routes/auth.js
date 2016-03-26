@@ -14,7 +14,7 @@ module.exports = (passport) => {
 
   router.get('/success', function (req, res) {
     res.cookie('credentials', sign(req.user));
-    res.sendFile( 'login-success.html', {root: req.app.locals.settings.cfg.DIR + '/views/auth'});
+    res.sendFile( 'login-success.htmel', {root: req.app.locals.settings.cfg.DIR + '/views/auth'});
   });
 
   router.get('/facebook/callback',

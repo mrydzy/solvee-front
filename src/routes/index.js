@@ -7,7 +7,6 @@ const router = express.Router();
 
 module.exports = (passport) => {
   router.use('/maps', require('./maps')(passport));
-  router.use('/api/maps', require('./api'));
   router.use('/auth', require('./auth')(passport));
 
   return router;
