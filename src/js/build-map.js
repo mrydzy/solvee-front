@@ -5,7 +5,7 @@ const analytics = require('./../service/analytics').createMapAnalytics;
 const $ = require('jquery');
 
 var emptyMapJson = {
-  title: "New Map",
+  title: "",
   options: [{
     id: 1,
     text: "",

@@ -14,12 +14,6 @@ const maxDepth = require('./../service/constants').maxDepth;
 
 var jadeVar;var djson = {};
 
-$('#map-title').bind('input', function() {
-  log('changing title');
-  djson.title = $(this).val();
-  document.title = djson.title;
-});
-
 $(function() {
   jadeVar = $("#jadehi").html()
     .replace(/&gt;/g, '>')
@@ -120,7 +114,13 @@ function removeNodeOnClick(event) {
 function initMap(json) {
   djson = json;
   document.title = djson.title;
+  $(this).val(djson.title);
   prepareMap();
+  $('#map-title').change(function() {
+    log('changing title');
+    djson.title = $(this).val();
+    document.title = djson.title;
+  });
 }
 
 function prepareMap() {
@@ -169,7 +169,6 @@ function addPlaceholders(array, prefix) {
 
 function populatePlaceholders(json) {
   addPlaceholders(json.options, '');
-  console.log(json);
   return json;
 }
 
