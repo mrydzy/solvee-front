@@ -1,6 +1,5 @@
 require('../scss/main.scss');
 const $ = require('jquery');
-const callAnalytics = require('./analytics').callAnalytics;
 
 var mapContainer;
 var rowIdRegex;
@@ -22,8 +21,6 @@ function initMapRows() {
 }
 
 function removeOldNodes(target) {
-  callAnalytics('map', 'click', '', target);
-
   var classes = mapContainer[0].classList;
   var classesNumber = classes.length;
   for (var i = 0; i < classesNumber; i++) {

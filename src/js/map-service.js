@@ -2,6 +2,7 @@ const $ = require('jquery');
 const readCookie = require('./services').readCookie;
 const backendUrl = "http://localhost:3300/trees";
 
+
 function sendTree(data) {
   send("POST", data, function(){}, "");
 }

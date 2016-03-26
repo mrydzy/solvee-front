@@ -1,5 +1,5 @@
 require('../scss/main.scss');
-const callAnalytics = require('./analytics').callAnalytics;
+const callAnalytics = require('./../service/analytics').callAnalytics;
 
 const $ = require('jquery');
 const jade = require('jade');
@@ -17,7 +17,7 @@ var jadeVar;var djson = {};
 $('#map-title').bind('input', function() {
   log('changing title');
   djson.title = $(this).val();
-  document.title = djson.title
+  document.title = djson.title;
 });
 
 $(function() {
@@ -47,7 +47,7 @@ function removeBranch(current, wrapper) {
   current.text = "";
   current.children = [];
   wrapper.addClass('map-placeholder');
-  callAnalytics('map-builder', 'removeBranch', '', current.id);
+  //callAnalytics('map-builder', 'remove-existing-branch', '', id);
 }
 
 function confirmRemoveBranch(current, wrapper) {
@@ -84,11 +84,11 @@ function updateNode(area, value, wrapper) {
 }
 
 function generateChildren(id) {
-  callAnalytics('map-builder', 'addBranch', '', id);
   var children = [];
   for (var i=1; i <= maxChildren; i++) {
     var currentId = parseInt(id + i);
     children.push({
+      id: currentId,
       id: currentId,
       text: "",
       children: []
@@ -145,7 +145,7 @@ function filterEmpty(array) {
 
 function clearTree(json) {
   json.options = filterEmpty(json.options);
-  json.options.forEach(cleanNode)
+  json.options.forEach(cleanNode);
   return json;
 }
 
