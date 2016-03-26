@@ -18,9 +18,8 @@ $(function() {
   });
 
   function callUpdateTree() {
-    var tree = {name: 'some Name', data: JSON.stringify(getClearTree())};
-    updateTree(tree, id);
+    updateTree(getClearTree(), id);
   }
-
-  $('#save-tree-button').click(callUpdateTree);
+  $('#map-form').on('submit', callUpdateTree);
+  //$('#save-tree-button').click(callUpdateTree);
 });

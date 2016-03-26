@@ -1,6 +1,7 @@
 const initMap = require('./create-map-logic').initMap;
 const getClearTree = require('./create-map-logic').getCleanTree;
 const sendTree = require('./map-service').sendTree;
+const validateTree = require('./map-service').validateTree;
 const analytics = require('./../service/analytics').createMapAnalytics;
 const $ = require('jquery');
 
@@ -21,12 +22,11 @@ var emptyMapJson = {
   }]};
 
 function submitTree() {
-  var tree = {name: 'some Name', data: JSON.stringify(getClearTree())};
-  sendTree(tree);
+  sendTree(getClearTree());
 }
 
 $(function() {
-  $('#save-tree-button').click(submitTree);
+  $('#map-form').on('submit', submitTree);
   initMap(emptyMapJson);
   analytics();
 });

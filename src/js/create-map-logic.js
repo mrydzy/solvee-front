@@ -111,15 +111,23 @@ function removeNodeOnClick(event) {
   confirmRemoveBranch(current, wrapper)
 }
 
+function handleTitle(titleInput) {
+  djson.title = titleInput.val();
+  document.title = djson.title;
+  if (djson.title.length < 1 ) {
+    $(titleInput).addClass('error');
+  } else {
+    $(titleInput).removeClass('error');
+  }
+}
+
 function initMap(json) {
   djson = json;
-  document.title = djson.title;
-  $(this).val(djson.title);
+  var mapTitleInput = $('#map-title');
+  handleTitle(mapTitleInput);
   prepareMap();
-  $('#map-title').change(function() {
-    log('changing title');
-    djson.title = $(this).val();
-    document.title = djson.title;
+  mapTitleInput.change(function() {
+    handleTitle($(this));
   });
 }
 
@@ -127,6 +135,7 @@ function prepareMap() {
   log("recreating map");
   var compiled = jade.compile(jadeVar)(djson);
   $("#so").html(compiled);
+  $('#text-1').attr('required', true);
   initColsActions();
   initMapRows();
 }

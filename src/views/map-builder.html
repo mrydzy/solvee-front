@@ -19,7 +19,7 @@
         <div class="map-wrapper">
 
             <form id="map-form">
-                <div><input class="map-title" id="map-title" type="text"/></div>
+                <div><input class="map-title" id="map-title" type="text" value="" required/></div>
                 <div id="so">Please enable javascript</div>
                     <!-- map-items - todo import instead -->
                         <pre id="jadehi" style="display:none">
@@ -137,8 +137,8 @@ div(class='map-row')
 +child-rows(options)
                         </pre>
                 </div>
-            </form>
-        <button id="save-tree-button">Save</button>
+            <button type="submit" id="save-tree-button">Save</button>
+        </form>
         </div>
     </body>
 </html>
