@@ -6,7 +6,6 @@ const analytics = require('./../service/tracking').createMapAnalytics;
 const $ = require('jquery');
 
 var emptyMapJson = {
-  title: "",
   options: [{
     id: 1,
     text: "",
@@ -23,7 +22,8 @@ var emptyMapJson = {
 
 function submitTree(e) {
   e.preventDefault();
-  sendTree(getClearTree());
+  var title = $('#map-title').val();
+  sendTree(getClearTree(), title);
 }
 
 $(function() {

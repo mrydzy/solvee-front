@@ -13,15 +13,17 @@ $(function() {
   var id = parseInt(path.substring(1));
   analytics(id);
   getTree(path, function(json) {
+    console.log('json', json);
     var jsonTree = JSON.parse(json.data);
-    $('#map-title').val(jsonTree.title);
+    $('#map-title').val(json.name);
     var treeWithPlaceholders = populatePlaceholders(jsonTree);
     initMap(treeWithPlaceholders);
   });
 
   function callUpdateTree(e) {
     e.preventDefault();
-    updateTree(getClearTree(), id);
+    var title = $('#map-title').val();
+    updateTree(getClearTree(), title, id);
   }
   $('#map-form').on('submit', callUpdateTree);
 });

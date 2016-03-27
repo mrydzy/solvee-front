@@ -3,9 +3,9 @@ const readCookie = require('./services').readCookie;
 const backendUrl = "http://localhost:3300/trees";
 
 
-function sendTree(tree) {
+function sendTree(tree, name) {
   if (validateTree(tree)) {
-    var data = {data: JSON.stringify(tree)};
+    var data = {data: JSON.stringify(tree), name : name};
     send("POST", data, "")
       .done(function(event) {
         window.location.href = '/maps/show/'+ event.id;
@@ -16,9 +16,9 @@ function sendTree(tree) {
   }
 }
 
-function updateTree(tree, id) {
+function updateTree(tree, name, id) {
   if (validateTree(tree)) {
-    var data = {data: JSON.stringify(tree)};
+    var data = {data: JSON.stringify(tree), name : name};
     send("PUT", data, "/" + id)
     .done(function () {
         window.location.href = '/maps/show/'+id;
@@ -58,10 +58,6 @@ function send(type, data, suffix) {
 }
 
 function validateTree(tree) {
-  if (tree.title.length == 0) {
-    throw 'hey, title is obligatory!';
-    return false;
-  }
   if (tree.options.length < 1) {
     throw 'hey, create some selection there!';
     return false;

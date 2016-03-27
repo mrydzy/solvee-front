@@ -112,9 +112,10 @@ function removeNodeOnClick(event) {
 }
 
 function handleTitle(titleInput) {
-  djson.title = titleInput.val();
-  document.title = djson.title;
-  if (djson.title.length < 1 ) {
+  //djson.title = titleInput.val();
+  var title = titleInput.val();
+  document.title = title;
+  if (title.length < 1 ) {
     $(titleInput).addClass('error');
   } else {
     $(titleInput).removeClass('error');
