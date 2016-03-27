@@ -1,6 +1,7 @@
 const $ = require('jquery');
 const readCookie = require('./services').readCookie;
 const backendUrl = "http://localhost:3300/trees";
+// const backendUrl = "http://api-decisions.herokuapp.com/trees";
 
 
 function sendTree(tree, name) {
@@ -21,13 +22,14 @@ function updateTree(tree, name, id) {
   if (validateTree(tree)) {
     var data = {data: JSON.stringify(tree), name : name};
     send("PUT", data, "/" + id)
-    .done(function () {
-        alert('Congrats, tree was created!');
-        window.location.href = '/maps/show/'+id;
-      }
-    ).fail(function (event) {
+      .done(function () {
+          alert('Congrats, tree was created!');
+          window.location.href = '/maps/show/'+id;
+        }
+      )
+      .fail(function (event) {
         alert('There was an error submitting your request :(. Please contact us for support or try again later!');
-    });;
+    });
   }
 }
 

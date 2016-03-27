@@ -1,24 +1,25 @@
 .map-lines {
   width: 36%;
   min-height: 45px;
-  border: 0px solid transparent;
+  //border: 0px solid transparent;
   padding: 15px;
-  border-image: url('/assets/dotted.png') round;
-  border-image-slice: 33%;
+  border: 0 dashed $color-option-inactive;
+  //border-image: url('/assets/dotted.png') round;
+  //border-image-slice: 33%;
   &.bottom {
-    border-bottom-width: 10px;
+    border-bottom-width: 4px;
   }
 
   &.left {
-    border-left-width: 10px;
+    border-left-width: 4px;
   }
 
   &.top {
-    border-top-width: 10px;
+    border-top-width: 4px;
   }
 
   &.right {
-    border-right-width: 10px;
+    border-right-width: 4px;
   }
 
   &.single {

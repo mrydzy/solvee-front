@@ -14,10 +14,17 @@ $('document').ready(function() {
 function initMapRows() {
   $('.map-row').on('click', '.map-col', function (e) {
     var target = e.currentTarget.dataset.target;
+    $(e.currentTarget).addClass('active');
     mapContainer.addClass('stage-' + target);
     removeOldNodes(target);
     // $.scrollTo($('#map-bottom'), 500, {offset: (-($(window).height() - 100))});
   });
+  $('.map-col').on('hover', highlightPath)
+}
+
+function highlightPath(e) {
+  var $target = $(e.currentTarget);
+  $target.parents('.row-wrapper')
 }
 
 function removeOldNodes(target) {

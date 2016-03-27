@@ -19,11 +19,11 @@ module.exports = (passport) => {
       .then(function(response) {
         if (response.status >= 400) {
           throw new Error("Bad response from server");
+          res.send(500);
         }
         return response.json();
       })
       .then(function(response) {
-        console.log(response.data);
         res.render('map', JSON.parse(response.data));
       })
       .catch(e => res.send(e));

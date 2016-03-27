@@ -1,13 +1,35 @@
 %parent-frame {
-  border: 1px groove $light-gray !important;
-  background-color: #FCFCFC;
+  //border: 2px solid red !important;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -24px;
+    z-index: -1;
+    left: 50%;
+    margin-left: -16px;
+    width: 32px;
+    height: 32px;
+    border: 16px solid transparent;
+    border-top-color: $color-option-bg;
+    transition: bottom .3s ease-in-out;
+  }
+  &.active {
+    &::after {
+      bottom: 32px !important;
+    }
+  }
+  &:hover {
+    &::after {
+      bottom: -32px;
+    }
+  }
 }
 
 %map-item-frame {
-  border: 3px solid $gray;
-  background-color: #FDFDFD;
+  //border: 3px solid $gray;
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 %hide-row {

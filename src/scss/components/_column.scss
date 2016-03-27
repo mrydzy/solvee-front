@@ -2,12 +2,17 @@
   @extend %map-item-frame;
 
   &, .map-col-blank {
+    position: relative;
+    color: $color-option-text;
+    justify-content: center;
+    z-index: 1;
     min-height: 100px;
     display: flex;
     width: 30%;
     min-width: 100px;
     align-items: center;
     flex-direction: column;
+    background-color: $color-option-bg;
   }
 
   textarea {
@@ -27,7 +32,7 @@
     cursor: pointer;
 
     &:hover {
-      background-color: #F3F3F3;
+      //background-color: #F3F3F3;
     }
   }
 }
