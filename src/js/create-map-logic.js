@@ -20,11 +20,16 @@ $(function() {
     .replace(/&amp;/g, '&');
 });
 
-function handleBlur() {
-  log('blur', $(this));
-  var wrapper = $(this).parent();
+function handleBlur(event) {
   var value = $.trim($(this).val());
-  updateNode(this, value, wrapper);
+  if (!event.relatedTarget || event.relatedTarget.id !='save-tree-button')  {
+    var wrapper = $(this).parent();
+    updateNode(this, value, wrapper);
+  } else {
+    var id = event.currentTarget.id.replace(textIdPrefix, '');
+    var current = getCurrentNode(id);
+    current.text = value;
+  }
 }
 
 function getCurrentNode(id) {
@@ -98,7 +103,7 @@ function initColsActions() {
     return $(this.parentNode).addClass('map-placeholder');
   });
   autosize($('textarea'));
-  $('textarea').blur(handleBlur);
+  $('textarea').on('blur', handleBlur);
   $('.node-remover').click(removeNodeOnClick);
 }
 

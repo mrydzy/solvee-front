@@ -8,6 +8,7 @@ function sendTree(tree, name) {
     var data = {data: JSON.stringify(tree), name : name};
     send("POST", data, "")
       .done(function(event) {
+        alert('Congrats, tree was created!');
         window.location.href = '/maps/show/'+ event.id;
       }
     ).fail(function (event) {
@@ -21,6 +22,7 @@ function updateTree(tree, name, id) {
     var data = {data: JSON.stringify(tree), name : name};
     send("PUT", data, "/" + id)
     .done(function () {
+        alert('Congrats, tree was created!');
         window.location.href = '/maps/show/'+id;
       }
     ).fail(function (event) {

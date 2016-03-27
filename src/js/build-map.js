@@ -22,6 +22,7 @@ var emptyMapJson = {
 
 function submitTree(e) {
   e.preventDefault();
+  console.log('submit!!!');
   var title = $('#map-title').val();
   sendTree(getClearTree(), title);
 }

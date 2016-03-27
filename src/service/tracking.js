@@ -50,7 +50,6 @@ function createMapAnalytics() {
 }
 
 function editMapAnalytics(mapId) {
-  console.log('Edyta');
   $(document).on( "remove-branch", function(event, mapId) {
     callAnalytics('map-editor' , 'remove-branch', mapId);
     callMixPanel('remove-branch-on-edit', {
