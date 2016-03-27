@@ -30,5 +30,5 @@ $(function() {
   $('#map-title').val('');
   $('#map-form').on('submit', submitTree);
   initMap(emptyMapJson);
-  analytics();
+  $(document).on('map-ready', analytics);
 });

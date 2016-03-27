@@ -11,7 +11,7 @@ $(function() {
   var path = window.location.pathname;
   path = path.substring(path.lastIndexOf('/'));
   var id = parseInt(path.substring(1));
-  analytics(id);
+
   getTree(path, function(json) {
     console.log('json', json);
     var jsonTree = JSON.parse(json.data);
@@ -26,4 +26,6 @@ $(function() {
     updateTree(getClearTree(), title, id);
   }
   $('#map-form').on('submit', callUpdateTree);
+  $(document).on('map-ready', function() {analytics(id);});
+
 });

@@ -139,6 +139,7 @@ function prepareMap() {
   $('#text-1').attr('required', true);
   initColsActions();
   initMapRows();
+  $(document).trigger( "map-ready");
 }
 
 function getCleanTree() {
