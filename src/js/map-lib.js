@@ -3,6 +3,7 @@ const $ = require('jquery');
 
 var mapContainer;
 var rowIdRegex;
+const nodePrefix = 'node-';
 
 $('document').ready(function() {
   mapContainer = $('.map-wrapper');
@@ -14,12 +15,35 @@ $('document').ready(function() {
 function initMapRows() {
   $('.map-row').on('click', '.map-col', function (e) {
     var target = e.currentTarget.dataset.target;
-    $(e.currentTarget).addClass('active');
+    removeActiveNodes();
+    markActiveNodes(target);
     mapContainer.addClass('stage-' + target);
     removeOldNodes(target);
     // $.scrollTo($('#map-bottom'), 500, {offset: (-($(window).height() - 100))});
   });
   $('.map-col').on('hover', highlightPath)
+}
+
+var active = [];
+
+function markActiveNodes(target) {
+  addActive(target);
+  target = Math.floor(target / 10);
+  if (target > 0 ) {
+    markActiveNodes(target);
+  }
+}
+
+function removeActiveNodes() {
+  for (var i = 0; i < active.length; i++ ) {
+    $(active[i]).removeClass('active');
+  }
+}
+
+function addActive(id) {
+  var nodeId = '#' + nodePrefix + id;
+  $(nodeId).addClass('active');
+  active.push(nodeId);
 }
 
 function highlightPath(e) {
