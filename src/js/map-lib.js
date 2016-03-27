@@ -15,8 +15,7 @@ $('document').ready(function() {
 function initMapRows() {
   $('.map-row').on('click', '.map-col', function (e) {
     var target = e.currentTarget.dataset.target;
-    removeActiveNodes();
-    markActiveNodes(target);
+    handleNodes(target);
     mapContainer.addClass('stage-' + target);
     removeOldNodes(target);
     // $.scrollTo($('#map-bottom'), 500, {offset: (-($(window).height() - 100))});
@@ -25,6 +24,12 @@ function initMapRows() {
 }
 
 var active = [];
+
+function handleNodes(target) {
+  //TODO: ptymalizacja - znalezc wspolny podciag i nie czyscic wspolnego drzewa
+  removeActiveNodes();
+  markActiveNodes(target);
+}
 
 function markActiveNodes(target) {
   addActive(target);
