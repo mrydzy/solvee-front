@@ -1,3 +1,4 @@
+//This is currently not used (but included directly into HTML), because I need to figure out how to include it from outside and still use all advantages of async code
 (function(e, b) {
     if (!b.__SV) {
         var a, f, i, g;

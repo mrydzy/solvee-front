@@ -1,3 +1,4 @@
+//This is currently not used (but included directly into HTML), because I need to figure out how to include it from outside and still use all advantages of async code
 (function (i, s, o, g, r, a, m) {
   i['GoogleAnalyticsObject'] = r;
   i[r] = i[r] || function () {
