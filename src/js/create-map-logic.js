@@ -175,7 +175,7 @@ function distributeTwins(node) { //if there are just 2 children, 1 should be set
 
 function updateId(newId, node, suffix) {
   node.id = newId;
-  for (var i = 0; i < node.children; i++) {
+  for (var i = 0; i < node.children.length; i++) {
     updateId(newId * 10 + i + 1, node.children[i], suffix);
   }
 }
