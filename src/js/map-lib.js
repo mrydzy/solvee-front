@@ -55,6 +55,8 @@ function markLinesForTwins(currentChoice, lineIdPrefix) {
       break;
     case 2:
       markLineActive(lineIdPrefix + '-right', 'right-active');
+    case 3:
+      markLineActive(lineIdPrefix + '-right', 'right-active');
   }
 }
 

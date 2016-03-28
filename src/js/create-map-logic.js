@@ -154,6 +154,9 @@ function getCleanTree() {
 
 function cleanNode(node) {
   node.children = filterEmpty(node.children);
+  if (node.children.length == 2) {
+    distributeTwins(node);
+  }
   node.children.forEach(cleanNode);
 }
 
@@ -161,8 +164,17 @@ function filterEmpty(array) {
   return array.filter(function(node){return node.text !== ""})
 }
 
-function distributeTwins(array) { //if there are just 2 children, they should have ids 1 and 3
+function distributeTwins(node) { //if there are just 2 children, 1 should be set!
+  if ((node.children[0].id % 10) !== 1) { //with twins, the first one has to be set
+    updateId(node.id*10+1, node.children[0]);
+  }
+}
 
+function updateId(newId, node) {
+  node.id = newId;
+  for (var i = 0; i < node.children; i++) {
+    updateId(newId * 10 + i + 1, node.children[i]);
+  }
 }
 
 function clearTree(json) {
