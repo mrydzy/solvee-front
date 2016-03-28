@@ -12,14 +12,27 @@
 
   &.left {
     border-left-width: 4px;
+
+    &.left-active {
+      border-left-color: red;
+    }
+
   }
 
   &.top {
     border-top-width: 4px;
+
+    &.top-active {
+      border-top-color: red;
+    }
   }
 
   &.right {
     border-right-width: 4px;
+
+    &.right-active {
+      border-right-color: red;
+    }
   }
 
   &.single {

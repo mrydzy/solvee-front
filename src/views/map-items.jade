@@ -81,10 +81,10 @@ mixin right-two(id)
     +two-lines(bottomLinePrefix + id)
 mixin right-one(prefixedId)
     div.map-lines-row
-        div(id=prefixedId + right).map-lines.right.single.right-active
+        div(id=prefixedId + right).map-lines.right.single
 mixin middle-one(prefixedId)
     div.map-lines-row
-        div(id=prefixedId + left).map-lines.right.right-active
+        div(id=prefixedId + left).map-lines.right
         div(id=prefixedId + right).map-lines
 mixin middle-two(id)
     +middle-one(topLinePrefix + id)
@@ -100,7 +100,7 @@ mixin left-two(id)
     +two-lines(bottomLinePrefix + id)
 mixin left-one(prefixedId)
     div.map-lines-row
-        div(id=prefixedId + left).map-lines.left.single.left-active
+        div(id=prefixedId + left).map-lines.left.single
 mixin two-lines(prefixedId)
     div.map-lines-row
         div(id=prefixedId + left).map-lines.top.left
