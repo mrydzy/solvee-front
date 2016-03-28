@@ -17,6 +17,9 @@
       border-left-color: red;
     }
 
+    &.left-active-highlight {
+      border-left-color: blueviolet;
+    }
   }
 
   &.top {
@@ -25,6 +28,10 @@
     &.top-active {
       border-top-color: red;
     }
+
+    &.top-active-highlight {
+      border-top-color: blueviolet;
+    }
   }
 
   &.right {
@@ -32,6 +39,10 @@
 
     &.right-active {
       border-right-color: red;
+    }
+
+    &.right-active-highlight {
+      border-right-color: blueviolet;
     }
   }
 

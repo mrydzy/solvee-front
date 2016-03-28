@@ -21,11 +21,14 @@ function initMapRows() {
     removeOldNodes(target);
     // $.scrollTo($('#map-bottom'), 500, {offset: (-($(window).height() - 100))});
   });
-  //$('.map-col').on('hover', highlightPath)
+  $('.map-col').on('mouseenter', highlightPath);
+  $('.map-col').on('mouseleave', clearHighlightPath);
+
 }
 
-var activeNode = [];
-var activeLine = [];
+var activeNodeTracker = [];
+var activeLineTracker = [];
+var highlightedLineTracker = [];
 
 function handleNodes(target) {
   //możliwa optymalizacja - znalezc wspolny podciag i nie czyscic wspolnego drzewa (czy to się opłaca?)
@@ -33,10 +36,23 @@ function handleNodes(target) {
   markActivePath(target);
 }
 
+function highlightPath(e) {
+  var target = e.currentTarget.dataset.target;
+  console.log('highlight', target);
+  addActiveToLine(target, '-active-highlight', highlightedLineTracker);
+}
+
+function clearHighlightPath() {
+  for (var i = 0; i < highlightedLineTracker.length; i++ ) {
+    $(highlightedLineTracker[i].id).removeClass(highlightedLineTracker[i].activeClass);
+  }
+  highlightedLineTracker = [];
+}
+
 function markActivePath(target) {
   var node = getNode(target);
   addActiveToNode(node, '#' + nodePrefix + target);
-  addActiveToLine(target);
+  addActiveToLine(target, '-active', activeLineTracker);
   target = Math.floor(target / 10);
   if (target > 0 ) {
     markActivePath(target);
@@ -50,91 +66,91 @@ function getNode(path) {
 const bottomLinePrefix = '#bottom-';
 const topLinePrefix = '#top-';
 
-function markLineActive(id, activeClass) {
+function markLineActive(id, activeClass, tracker) {
   log('adding to', id, ' class ', activeClass);
   $(id).addClass(activeClass);
-  activeLine.push({id: id, activeClass: activeClass});
+  tracker.push({id: id, activeClass: activeClass});
 }
 
-function markSingleLine(currentChoice, rowId) {
+function markSingleLine(currentChoice, rowId, suffix, tracker) {
   switch(currentChoice) {
     case 1:
-      markLineActive(bottomLinePrefix + rowId + '-left', 'left-active');
-      markLineActive(topLinePrefix + rowId + '-left', 'left-active');
+      markLineActive(bottomLinePrefix + rowId + '-left', 'left' + suffix, tracker);
+      markLineActive(topLinePrefix + rowId + '-left', 'left' + suffix, tracker);
       break;
     case 2:
-      markLineActive(topLinePrefix + rowId + '-left', 'right-active');
-      markLineActive(bottomLinePrefix + rowId + '-left', 'right-active');
+      markLineActive(topLinePrefix + rowId + '-left', 'right' + suffix, tracker);
+      markLineActive(bottomLinePrefix + rowId + '-left', 'right' + suffix, tracker);
       break;
     case 3:
-      markLineActive(topLinePrefix + rowId + '-right', 'right-active');
-      markLineActive(bottomLinePrefix + rowId + '-right', 'right-active');
+      markLineActive(topLinePrefix + rowId + '-right', 'right' + suffix, tracker);
+      markLineActive(bottomLinePrefix + rowId + '-right', 'right' + suffix, tracker);
   }
 }
 
-function addLinesNotDirectActive(previousChoice, rowId, currentChoice) {
+function addLinesNotDirectActive(previousChoice, rowId, currentChoice, suffix, tracker) {
   switch (previousChoice) {
     case 1 :
-      markLineActive(topLinePrefix + rowId + '-left', 'left-active');
+      markLineActive(topLinePrefix + rowId + '-left', 'left' + suffix, tracker);
       if (currentChoice == 2) {
-        markLineActive(bottomLinePrefix + rowId + '-left', 'top-active right-active');
+        markLineActive(bottomLinePrefix + rowId + '-left', 'top' + suffix + ' right' + suffix, tracker);
       }
       if (currentChoice == 3) {
-        markLineActive(bottomLinePrefix + rowId + '-left', 'top-active');
-        markLineActive(bottomLinePrefix + rowId + '-right', 'top-active right-active');
+        markLineActive(bottomLinePrefix + rowId + '-left', 'top' + suffix, tracker);
+        markLineActive(bottomLinePrefix + rowId + '-right', 'top' + suffix + ' right' + suffix, tracker);
       }
       break;
     case 2:
-      markLineActive(topLinePrefix + rowId + '-left', 'right-active');
+      markLineActive(topLinePrefix + rowId + '-left', 'right' + suffix, tracker);
       if (currentChoice == 1) {
-        markLineActive(bottomLinePrefix + rowId + '-left', 'top-active left-active');
+        markLineActive(bottomLinePrefix + rowId + '-left', 'top' + suffix + ' left' + suffix, tracker);
       }
       if (currentChoice == 3) {
-        markLineActive(bottomLinePrefix + rowId + '-right', 'top-active right-active');
+        markLineActive(bottomLinePrefix + rowId + '-right', 'top' + suffix + ' right' + suffix, tracker);
       }
       break;
     case 3:
-      markLineActive(topLinePrefix + rowId + '-right', 'right-active');
+      markLineActive(topLinePrefix + rowId + '-right', 'right' + suffix, tracker);
       if (currentChoice == 1) {
-        markLineActive(bottomLinePrefix + rowId + '-left', 'top-active left-active');
-        markLineActive(bottomLinePrefix + rowId + '-right', 'top-active');
+        markLineActive(bottomLinePrefix + rowId + '-left', 'top' + suffix + ' left' + suffix, tracker);
+        markLineActive(bottomLinePrefix + rowId + '-right', 'top' + suffix, tracker);
       }
       if (currentChoice == 2) {
-        markLineActive(bottomLinePrefix + rowId + '-right', 'top-active');
-        markLineActive(bottomLinePrefix + rowId + '-left', 'right-active');
+        markLineActive(bottomLinePrefix + rowId + '-right', 'top' + suffix, tracker);
+        markLineActive(bottomLinePrefix + rowId + '-left', 'right' + suffix, tracker);
       }
       break;
   }
 }
 
-function addActiveToLine(path) {
+function addActiveToLine(path, suffix, tracker) {
   if (path > 3) { //at least second level
-
     var currentChoice = path % 10;
     var rowId = Math.floor(path / 10);
     var previousChoice = rowId % 10;
 
     if (previousChoice == currentChoice) {
-      markSingleLine(currentChoice, rowId);
+      markSingleLine(currentChoice, rowId, suffix, tracker);
     } else {
-      addLinesNotDirectActive(previousChoice, rowId, currentChoice);
+      addLinesNotDirectActive(previousChoice, rowId, currentChoice, suffix, tracker);
     }
-
   }
 }
 
 function removeActiveNodes() {
-  for (var i = 0; i < activeNode.length; i++ ) {
-    $(activeNode[i]).removeClass('active');
+  for (var i = 0; i < activeNodeTracker.length; i++ ) {
+    $(activeNodeTracker[i]).removeClass('active');
   }
-  for (var i = 0; i < activeLine.length; i++ ) {
-    $(activeLine[i].id).removeClass(activeLine[i].activeClass);
+  activeNodeTracker = [];
+  for (var i = 0; i < activeLineTracker.length; i++ ) {
+    $(activeLineTracker[i].id).removeClass(activeLineTracker[i].activeClass);
   }
+  activeLineTracker = [];
 }
 
 function addActiveToNode(node, nodeId) {
   node.addClass('active');
-  activeNode.push(nodeId);
+  activeNodeTracker.push(nodeId);
 }
 
 function removeOldNodes(target) {
