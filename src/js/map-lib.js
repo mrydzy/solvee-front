@@ -1,5 +1,6 @@
 require('../scss/main.scss');
 const $ = require('jquery');
+const log = require('./services').log;
 
 var mapContainer;
 var rowIdRegex;
@@ -50,29 +51,30 @@ function getNode(path) {
 function markLinesForTwins(currentChoice, lineIdPrefix) {
   switch(currentChoice) {
     case 1:
-      console.log('adding', lineIdPrefix + '-left');
-      $(lineIdPrefix + '-left').addClass('left-active');
+      markLineActive(lineIdPrefix + '-left', 'left-active');
       break;
     case 2:
-      console.log('adding', lineIdPrefix + '-right');
-      $(lineIdPrefix + '-right').addClass('right-active');
+      markLineActive(lineIdPrefix + '-right', 'right-active');
   }
 }
 
 function markLinesForTriplets(currentChoice, lineIdPrefix) {
   switch(currentChoice) {
     case 1:
-      console.log('adding', lineIdPrefix + '-left');
-      $(lineIdPrefix + '-left').addClass('left-active');
+      markLineActive(lineIdPrefix + '-left', 'left-active');
       break;
     case 2:
-      console.log('adding', lineIdPrefix + '-left');
-      $(lineIdPrefix + '-left').addClass('right-active');
+      markLineActive(lineIdPrefix + '-left', 'right-active');
       break;
     case 3:
-      console.log('adding', lineIdPrefix + '-right');
-      $(lineIdPrefix + '-right').addClass('right-active');
+      markLineActive(lineIdPrefix + '-right', 'right-active');
   }
+}
+
+function markLineActive(id, activeClass) {
+  log('adding to', id, ' class ', activeClass);
+  $(id).addClass(activeClass);
+  activeLine.push({id: id, activeClass: activeClass});
 }
 
 function addActiveToLine(path, levelChildrenCount) {
@@ -90,11 +92,12 @@ function addActiveToLine(path, levelChildrenCount) {
   }
 }
 
-
-
 function removeActiveNodes() {
   for (var i = 0; i < activeNode.length; i++ ) {
     $(activeNode[i]).removeClass('active');
+  }
+  for (var i = 0; i < activeLine.length; i++ ) {
+    $(activeLine[i].id).removeClass(activeLine[i].activeClass);
   }
 }
 
