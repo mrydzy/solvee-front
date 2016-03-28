@@ -166,17 +166,17 @@ function filterEmpty(array) {
 
 function distributeTwins(node) { //if there are just 2 children, 1 should be set!
   if ((node.children[0].id % 10) !== 1) { //with twins, the first one has to be set
-    updateId(node.id*10+1, node.children[1]);
+    updateId(node.id*10+1, node.children[1], 1);
   }
   if ((node.children[1].id % 10) !== 3) { //with twins, the first one has to be set
-    updateId(node.id*10+3, node.children[1]);
+    updateId(node.id*10+3, node.children[1], 3);
   }
 }
 
-function updateId(newId, node) {
+function updateId(newId, node, suffix) {
   node.id = newId;
   for (var i = 0; i < node.children; i++) {
-    updateId(newId * 10 + i + 1, node.children[i]);
+    updateId(newId * 10 + suffix + 1, node.children[i], suffix);
   }
 }
 
