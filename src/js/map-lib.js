@@ -48,30 +48,8 @@ function getNode(path) {
   return $('#' + nodePrefix + path);
 }
 
-function markLinesForTwins(currentChoice, lineIdPrefix) {
-  switch(currentChoice) {
-    case 1:
-      markLineActive(lineIdPrefix + '-left', 'left-active');
-      break;
-    case 2:
-      markLineActive(lineIdPrefix + '-right', 'right-active');
-    case 3:
-      markLineActive(lineIdPrefix + '-right', 'right-active');
-  }
-}
-
-function markLinesForTriplets(currentChoice, lineIdPrefix) {
-  switch(currentChoice) {
-    case 1:
-      markLineActive(lineIdPrefix + '-left', 'left-active');
-      break;
-    case 2:
-      markLineActive(lineIdPrefix + '-left', 'right-active');
-      break;
-    case 3:
-      markLineActive(lineIdPrefix + '-right', 'right-active');
-  }
-}
+const bottomLinePrefix = '#bottom-';
+const topLinePrefix = '#top-';
 
 function markLineActive(id, activeClass) {
   log('adding to', id, ' class ', activeClass);
@@ -79,18 +57,69 @@ function markLineActive(id, activeClass) {
   activeLine.push({id: id, activeClass: activeClass});
 }
 
+function markSingleLine(currentChoice, rowId) {
+  switch(currentChoice) {
+    case 1:
+      markLineActive(bottomLinePrefix + rowId + '-left', 'left-active');
+      markLineActive(topLinePrefix + rowId + '-left', 'left-active');
+      break;
+    case 2:
+      markLineActive(topLinePrefix + rowId + '-left', 'right-active');
+      markLineActive(bottomLinePrefix + rowId + '-left', 'right-active');
+      break;
+    case 3:
+      markLineActive(topLinePrefix + rowId + '-right', 'right-active');
+      markLineActive(bottomLinePrefix + rowId + '-right', 'right-active');
+  }
+}
+
+function addLinesNotDirectActive(previousChoice, rowId, currentChoice) {
+  switch (previousChoice) {
+    case 1 :
+      markLineActive(topLinePrefix + rowId + '-left', 'left-active');
+      if (currentChoice == 2) {
+        markLineActive(bottomLinePrefix + rowId + '-left', 'top-active right-active');
+      }
+      if (currentChoice == 3) {
+        markLineActive(bottomLinePrefix + rowId + '-left', 'top-active');
+        markLineActive(bottomLinePrefix + rowId + '-right', 'top-active right-active');
+      }
+      break;
+    case 2:
+      markLineActive(topLinePrefix + rowId + '-left', 'right-active');
+      if (currentChoice == 1) {
+        markLineActive(bottomLinePrefix + rowId + '-left', 'top-active left-active');
+      }
+      if (currentChoice == 3) {
+        markLineActive(bottomLinePrefix + rowId + '-right', 'top-active right-active');
+      }
+      break;
+    case 3:
+      markLineActive(topLinePrefix + rowId + '-right', 'right-active');
+      if (currentChoice == 1) {
+        markLineActive(bottomLinePrefix + rowId + '-left', 'top-active left-active');
+        markLineActive(bottomLinePrefix + rowId + '-right', 'top-active');
+      }
+      if (currentChoice == 2) {
+        markLineActive(bottomLinePrefix + rowId + '-right', 'top-active');
+        markLineActive(bottomLinePrefix + rowId + '-left', 'right-active');
+      }
+      break;
+  }
+}
 function addActiveToLine(path, levelChildrenCount) {
   if (path > 3) { //at least second level
 
     var currentChoice = path % 10;
-    var lineIdPrefix = '#bottom-' + Math.floor(path / 10);
-    //if it's a single kid it's handled by default
+    var rowId = Math.floor(path / 10);
+    var previousChoice = rowId % 10;
 
-    if (levelChildrenCount == 2) {
-      markLinesForTwins(currentChoice, lineIdPrefix);
+    if (previousChoice == currentChoice) {
+      markSingleLine(currentChoice, rowId);
     } else {
-      markLinesForTriplets(currentChoice, lineIdPrefix);
+      addLinesNotDirectActive(previousChoice, rowId, currentChoice);
     }
+
   }
 }
 
