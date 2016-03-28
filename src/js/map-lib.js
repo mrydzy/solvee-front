@@ -28,7 +28,7 @@ var activeNode = [];
 var activeLine = [];
 
 function handleNodes(target) {
-  //TODO: optymalizacja - znalezc wspolny podciag i nie czyscic wspolnego drzewa
+  //możliwa optymalizacja - znalezc wspolny podciag i nie czyscic wspolnego drzewa (czy to się opłaca?)
   removeActiveNodes();
   markActivePath(target);
 }
