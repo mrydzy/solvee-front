@@ -2,19 +2,19 @@
 - var bottomLinePrefix = 'bottom-'
 - var left = '-left'
 - var right = '-right'
-mixin map-item(item, colClass)
+mixin map-item(item, colClass, siblingsCount)
     -var classes=[]
     if (item.children.length > 0)
         -classes.push("parent")
     -classes.push(colClass)
-    div.map-col(class = classes)&attributes({'data-target': item.id, 'id': "node-" + item.id})=item.text
+    div.map-col(class = classes)&attributes({'data-target': item.id, 'id': "node-" + item.id, 'data-siblings': siblingsCount})=item.text
 //adds empty columns so that single items are always under their parent
 mixin single-kid(column, kid)
     if (column > 0)
         div.map-col-blank
     if (column > 1)
         div.map-col-blank
-    +map-item(kid, 'col-' + column)
+    +map-item(kid, 'col-' + column, 1)
     if(column == 1)
         div.map-col-blank
 mixin row(children, id, column)
@@ -28,7 +28,7 @@ mixin child-cols(children, column)
         +single-kid(column, children[0])
     else
         each child, index in children
-            +map-item(child, 'col-' + index)
+            +map-item(child, 'col-' + index, children.length)
 mixin child-rows(children)
     each child, index in children
         if child.children.length > 0

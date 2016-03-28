@@ -161,6 +161,10 @@ function filterEmpty(array) {
   return array.filter(function(node){return node.text !== ""})
 }
 
+function distributeTwins(array) { //if there are just 2 children, they should have ids 1 and 3
+
+}
+
 function clearTree(json) {
   json.options = filterEmpty(json.options);
   json.options.forEach(cleanNode);
