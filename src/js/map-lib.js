@@ -35,9 +35,8 @@ function handleNodes(target) {
 
 function markActivePath(target) {
   var node = getNode(target);
-  var levelChildrenCount = node.data('siblings');
   addActiveToNode(node, '#' + nodePrefix + target);
-  addActiveToLine(target, levelChildrenCount);
+  addActiveToLine(target);
   target = Math.floor(target / 10);
   if (target > 0 ) {
     markActivePath(target);
@@ -107,7 +106,8 @@ function addLinesNotDirectActive(previousChoice, rowId, currentChoice) {
       break;
   }
 }
-function addActiveToLine(path, levelChildrenCount) {
+
+function addActiveToLine(path) {
   if (path > 3) { //at least second level
 
     var currentChoice = path % 10;
