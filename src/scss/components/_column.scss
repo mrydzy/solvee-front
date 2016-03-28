@@ -15,6 +15,26 @@
     background-color: $color-option-bg;
   }
 
+  &.active {
+    background-color: $color-option-bg-active;
+    &::after {
+      display: none;
+    }
+  }
+  &.not-selected {
+    background-color: $color-option-bg-inactive;
+    &::after {
+      border-top-color: $color-option-bg-inactive;
+    }
+  }
+  &:hover {
+    background-color: $color-option-bg-active;
+    &::after {
+      border-top-color: $color-option-bg-active;
+      bottom: -32px;
+    }
+  }
+
   textarea {
     background: none;
     border: none;

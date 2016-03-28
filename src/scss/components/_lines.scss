@@ -3,46 +3,47 @@
   min-height: 45px;
   //border: 0px solid transparent;
   padding: 15px;
-  border: 0 dashed $color-option-inactive;
+  border: 0 $line-style $color-line-inactive;
   //border-image: url('/assets/dotted.png') round;
   //border-image-slice: 33%;
+  transition: all .3s ease-in-out;
   &.bottom {
-    border-bottom-width: 4px;
+    border-bottom-width: $line-width;
   }
 
   &.left {
-    border-left-width: 4px;
+    border-left-width: $line-width;
 
     &.left-active {
-      border-left-color: red;
+      border-left-color: $color-line-active;
     }
 
     &.left-active-highlight {
-      border-left-color: blueviolet;
+      border-left-color: $color-line-hover;
     }
   }
 
   &.top {
-    border-top-width: 4px;
+    border-top-width: $line-width;
 
     &.top-active {
-      border-top-color: red;
+      border-top-color: $color-line-active;
     }
 
     &.top-active-highlight {
-      border-top-color: blueviolet;
+      border-top-color: $color-line-hover;
     }
   }
 
   &.right {
-    border-right-width: 4px;
+    border-right-width: $line-width;
 
     &.right-active {
-      border-right-color: red;
+      border-right-color: $color-line-active;
     }
 
     &.right-active-highlight {
-      border-right-color: blueviolet;
+      border-right-color: $color-line-hover;
     }
   }
 

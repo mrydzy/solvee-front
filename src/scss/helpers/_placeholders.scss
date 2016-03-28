@@ -12,17 +12,7 @@
     height: 32px;
     border: 16px solid transparent;
     border-top-color: $color-option-bg;
-    transition: bottom .3s ease-in-out;
-  }
-  &.active {
-    &::after {
-      bottom: 32px !important;
-    }
-  }
-  &:hover {
-    &::after {
-      bottom: -32px;
-    }
+    transition: all .3s ease-in-out;
   }
 }
 

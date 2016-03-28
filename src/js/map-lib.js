@@ -150,6 +150,7 @@ function removeActiveNodes() {
 
 function addActiveToNode(node, nodeId) {
   node.addClass('active');
+  node.siblings().addClass('not-selected');
   activeNodeTracker.push(nodeId);
 }
 
