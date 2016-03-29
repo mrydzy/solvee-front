@@ -5,6 +5,7 @@ const log = require('./services').log;
 var mapContainer;
 var rowIdRegex;
 const nodePrefix = 'node-';
+var currentPath;
 
 $('document').ready(function() {
   mapContainer = $('.map-wrapper');
@@ -19,6 +20,7 @@ function initMapRows() {
     handleNodes(target);
     mapContainer.addClass('stage-' + target);
     removeOldNodes(target);
+    currentPath = target;
     // $.scrollTo($('#map-bottom'), 500, {offset: (-($(window).height() - 100))});
   });
   $('.map-col').on('mouseenter', highlightPath);
@@ -30,15 +32,36 @@ var activeNodeTracker = [];
 var activeLineTracker = [];
 var highlightedLineTracker = [];
 
+function removeDeactivationClass(path, index) {
+  $('#node-' + path.substring(0, index)).siblings().each(function() {
+    $(this).removeClass('not-selected');
+  })
+  if (index + 1 < path.length) {
+    removeDeactivationClass(path, index + 1);
+  }
+}
+
+function removeDeactivationFromNodes(oldPath, newPath) {
+  var i = 0;
+  while ((i < oldPath.length) && (i < newPath.length) && (oldPath.charAt(i) == newPath.charAt(i))) {
+    i++;
+  }
+  if (i < oldPath.length) {
+    removeDeactivationClass(oldPath, i + 1);
+  }
+}
+
 function handleNodes(target) {
-  //możliwa optymalizacja - znalezc wspolny podciag i nie czyscic wspolnego drzewa (czy to się opłaca?)
-  removeActiveNodes();
+  if (currentPath) {
+    removeDeactivationFromNodes(currentPath, target);
+  }
+  currentPath = target;
+  removeActiveNodes(); //możliwa optymalizacja - nie czyscic wspolnego drzewa użyć podciągu znalezionego dla siblingsów
   markActivePath(target);
 }
 
 function highlightPath(e) {
   var target = e.currentTarget.dataset.target;
-  console.log('highlight', target);
   addActiveToLine(target, '-active-highlight', highlightedLineTracker);
 }
 
@@ -67,7 +90,6 @@ const bottomLinePrefix = '#bottom-';
 const topLinePrefix = '#top-';
 
 function markLineActive(id, activeClass, tracker) {
-  log('adding to', id, ' class ', activeClass);
   $(id).addClass(activeClass);
   tracker.push({id: id, activeClass: activeClass});
 }
