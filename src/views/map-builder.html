@@ -26,7 +26,10 @@
                 <div id="so">Please enable javascript</div>
                     <!-- map-items - todo import instead -->
                         <pre id="jadehi" style="display:none">
-
+- var topLinePrefix = 'top-'
+- var bottomLinePrefix = 'bottom-'
+- var left = '-left'
+- var right = '-right'
 mixin map-item(item, colClass)
     -var classes=[]
     if (item.children.length > 0)
@@ -47,7 +50,7 @@ mixin single-kid(column, kid)
         div.map-col-blank
 mixin row(children, id, column)
     div.row-wrapper(class='map-row-' + id)
-        +lines(column, children.length)
+        +lines(column, children.length, id)
         div.map-row
             +child-cols(children, column)
         +child-rows(children)
@@ -65,75 +68,78 @@ mixin child-rows(children)
             else
                 +row(child.children, child.id, index)
 //lines
-mixin lines(column, numberOfChildren)
+mixin lines(column, numberOfChildren, id)
     case column
         when 0
-            +left(numberOfChildren)
+            +left(numberOfChildren, id)
         when 1
-            +middle(numberOfChildren)
+            +middle(numberOfChildren, id)
         when 2
-            +right(numberOfChildren)
-mixin right(numberOfChildren)
+            +right(numberOfChildren, id)
+mixin right(numberOfChildren, id)
     case numberOfChildren
         when 1
-            +right-one()
+            +right-one(topLinePrefix + id)
+            +right-one(bottomLinePrefix + id)
         when 2
-            +right-two()
+            +right-two(id)
         when 3
-            +right-three()
-mixin middle(numberOfChildren)
+            +right-three(id)
+mixin middle(numberOfChildren ,id)
     case numberOfChildren
         when 1
-            +middle-one()
+            +middle-one(topLinePrefix + id + left)
+            +middle-one(bottomLinePrefix + id + right)
         when 2
-            +middle-two()
+            +middle-two(id)
         when 3
-            +middle-three()
-mixin left(numberOfChildren)
+            +middle-three(id)
+mixin left(numberOfChildren, id)
     case numberOfChildren
         when 1
-            +left-one()
+            +left-one(topLinePrefix + id)
+            +left-one(bottomLinePrefix + id)
         when 2
-            +left-two()
+            +left-two(id)
         when 3
-            +left-three()
+            +left-three(id)
 
-mixin right-three()
-    +right-one()
-    +three-lines()
-mixin right-two()
-    +right-one()
-    +two-lines()
-mixin right-one()
+mixin right-three(id)
+    +right-one(topLinePrefix + id)
+    +three-lines(bottomLinePrefix + id)
+mixin right-two(id)
+    +right-one(topLinePrefix + id)
+    +two-lines(bottomLinePrefix + id)
+mixin right-one(prefixedId)
     div.map-lines-row
-        div.map-lines.right.single
-mixin middle-one()
+        div(id=prefixedId + right).map-lines.right.single
+mixin middle-one(prefixedId)
     div.map-lines-row
-        div.map-lines.right
-        div.map-lines
-mixin middle-two()
-    +middle-one()
-    +two-lines()
-mixin middle-three()
-    +middle-one()
-    +three-lines()
-mixin left-three()
-    +left-one()
-    +three-lines()
-mixin left-two()
-    +left-one()
-    +two-lines()
-mixin left-one()
+        div(id=prefixedId + left).map-lines.right
+        div(id=prefixedId + right).map-lines
+mixin middle-two(id)
+    +middle-one(topLinePrefix + id)
+    +two-lines(bottomLinePrefix + id)
+mixin middle-three(id)
+    +middle-one(topLinePrefix + id)
+    +three-lines(bottomLinePrefix + id)
+mixin left-three(id)
+    +left-one(topLinePrefix + id)
+    +three-lines(bottomLinePrefix + id)
+mixin left-two(id)
+    +left-one(topLinePrefix + id)
+    +two-lines(bottomLinePrefix + id)
+mixin left-one(prefixedId)
     div.map-lines-row
-        div.map-lines.left.single
-mixin two-lines()
+        div(id=prefixedId + left).map-lines.left.single
+mixin two-lines(prefixedId)
     div.map-lines-row
-        div.map-lines.top.left
-        div.map-lines.top.right
-mixin three-lines()
+        div(id=prefixedId + left).map-lines.top.left
+        div(id=prefixedId + right).map-lines.top.right
+mixin three-lines(prefixedId)
     div.map-lines-row
-        div.map-lines.top.left.right
-        div.map-lines.top.right
+        div(id=prefixedId + left).map-lines.top.left.right
+        div(id=prefixedId + right).map-lines.top.right
 div(class='map-row')
     each option, index in options
         +map-item(option, 'col-' + index)
