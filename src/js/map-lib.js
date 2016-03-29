@@ -33,9 +33,7 @@ var activeLineTracker = [];
 var highlightedLineTracker = [];
 
 function removeDeactivationClass(path, index) {
-  $('#node-' + path.substring(0, index)).siblings().each(function() {
-    $(this).removeClass('not-selected');
-  })
+  $('#node-' + path.substring(0, index)).siblings().removeClass('not-selected');
   if (index + 1 < path.length) {
     removeDeactivationClass(path, index + 1);
   }

@@ -6,13 +6,6 @@
   padding: 30px;
 }
 
-.map-placeholder {
-  @extend %map-item-frame;
-  border: 1px solid $light-gray;
-  background-color: $light-gray;
-}
-
-
 .col-input {
   width: 100%;
   box-sizing: border-box;

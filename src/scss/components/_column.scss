@@ -1,6 +1,5 @@
 .map-col {
   @extend %map-item-frame;
-
   &, .map-col-blank {
     position: relative;
     color: $color-option-text;
@@ -14,17 +13,20 @@
     flex-direction: column;
     background-color: $color-option-bg;
   }
-
-  &.active {
-    background-color: $color-option-bg-active;
-    &::after {
-      display: none;
-    }
-  }
   &.not-selected {
     background-color: $color-option-bg-inactive;
     &::after {
       border-top-color: $color-option-bg-inactive;
+    }
+  }
+  &.map-placeholder {
+    border: 1px solid $light-gray;
+    background-color: $light-gray;
+  }
+  &.active {
+    background-color: $color-option-bg-active;
+    &::after {
+      display: none;
     }
   }
   &:hover {
@@ -33,6 +35,7 @@
       border-top-color: $color-option-bg-active;
       bottom: -32px;
     }
+
   }
 
   textarea {
