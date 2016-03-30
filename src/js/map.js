@@ -8,5 +8,8 @@ $(function() {
   path = path.substring(path.lastIndexOf('/'));
   var id = parseInt(path.substring(1));
   analytics(id);
+  $('#embed').click(function() {
+    
+  })
 });
 

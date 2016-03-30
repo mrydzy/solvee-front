@@ -1,7 +1,13 @@
 include ./map-items.jade
-
+-var env = 'http://www.solvee.click/maps/show/'
 html
     head
+        meta(property='og:url', content='http://www.your-domain.com/your-page.html')
+        meta(property='og:type', content='website')
+        meta(property='og:title', content='Solvee.click')
+        meta(property='og:description', content='Your description')
+        meta(property='og:image', content='http://www.solvee.click/assets/icon.jpg')
+
         link(rel="stylesheet", type="text/css", href="/assets/styles.css")
         script(src="/assets/main.js")
         title= title
@@ -48,9 +54,10 @@ html
             mixpanel.init("0bb41d72e0cec6944482ae9e38bd3529");
     body
         include ./analytics.jade
-        h1= title
+        h1= name
         div.map-wrapper
             div(class='map-row')
-                each option, index in options
+                each option, index in map.options
                     +map-item(option, 'col-' + index)
-            +child-rows(options)
+            +child-rows(map.options)
+        include ./share.jade
