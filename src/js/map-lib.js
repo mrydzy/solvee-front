@@ -54,7 +54,7 @@ function handleNodes(target) {
     removeDeactivationFromNodes(currentPath, target);
   }
   currentPath = target;
-  removeActiveNodes(); //możliwa optymalizacja - nie czyscic wspolnego drzewa użyć podciągu znalezionego dla siblingsów
+  removeActiveNodes(); //mozliwa optymalizacja - nie czyscic wspolnego drzewa uzyc podciąau znalezionego dla siblingsow
   markActivePath(target);
 }
 
@@ -195,7 +195,7 @@ function isOldNode(currentClass, currentIteration, target) {
 }
 
 module.exports = {
-  initMapRows,
-  isOldNode,
-  removeOldNodes
+  initMapRows: initMapRows,
+  isOldNode: isOldNode,
+  removeOldNodes: removeOldNodes
 };

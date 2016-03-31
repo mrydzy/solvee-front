@@ -208,8 +208,8 @@ function populatePlaceholders(json) {
 }
 
 module.exports = {
-  initMap,
-  getCleanTree,
-  populatePlaceholders
+  initMap: initMap,
+  getCleanTree: getCleanTree,
+  populatePlaceholders: populatePlaceholders
 };
 

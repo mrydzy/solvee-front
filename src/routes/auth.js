@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const sign = require('../service/authSign').sign;
-const callAnalytics = require('./../service/tracking').callAnalytics;
-
-const backendUrl = "http://localhost:3300";
 
 module.exports = (passport) => {
 

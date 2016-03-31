@@ -76,7 +76,7 @@ function editMapAnalytics(mapId) {
 }
 
 module.exports = {
-  showMapAnalytics,
-  createMapAnalytics,
-  editMapAnalytics
+  showMapAnalytics: showMapAnalytics,
+  createMapAnalytics: createMapAnalytics,
+  editMapAnalytics: editMapAnalytics
 };

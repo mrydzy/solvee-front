@@ -18,7 +18,8 @@ module.exports = {
   entry: {
     main: './src/js/map.js',
     builder: './src/js/build-map.js',
-    editor: './src/js/edit-map.js'
+    editor: './src/js/edit-map.js',
+    embed: './src/js/embed.js'
   },
 
   stats: {

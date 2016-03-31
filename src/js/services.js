@@ -15,6 +15,6 @@ function readCookie(name) {
 }
 
 module.exports = {
-  log,
-  readCookie
+  log: log,
+  readCookie: readCookie
 };

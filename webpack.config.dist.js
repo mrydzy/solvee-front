@@ -8,15 +8,16 @@ module.exports = {
   output: {
     publicPath: '/assets/',
     path: 'dist/assets/',
-    filename: 'main.js'
+    filename: '[name].js'
   },
 
   debug: false,
   devtool: false,
   entry: {
-    main: [
-      './src/index.js'
-    ]
+    main: './src/js/map.js',
+    builder: './src/js/build-map.js',
+    editor: './src/js/edit-map.js',
+    embed: './src/js/embed.js'
   },
 
   stats: {

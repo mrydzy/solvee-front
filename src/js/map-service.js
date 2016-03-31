@@ -70,5 +70,8 @@ function validateTree(tree) {
 }
 
 module.exports = {
-  sendTree, getTree, updateTree, validateTree
+  sendTree: sendTree, 
+  getTree: getTree, 
+  updateTree: updateTree, 
+  validateTree: validateTree
 };
