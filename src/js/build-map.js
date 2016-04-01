@@ -27,9 +27,14 @@ function submitTree(e) {
   sendTree(getClearTree(), title);
 }
 
+function showEmbedCode() {
+  alert('Instert to your website ...');//TODO
+}
+
 $(function() {
   $('#map-title').val('');
   $('#map-form').on('submit', submitTree);
   initMap(emptyMapJson);
   $(document).on('map-ready', analytics);
+  $('embed-btn').click(showEmbedCode());
 });
