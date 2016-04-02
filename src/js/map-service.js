@@ -4,9 +4,9 @@ const backendUrl = "http://localhost:3300/trees";
 // const backendUrl = "http://api-decisions.herokuapp.com/trees";
 
 
-function sendTree(tree, name) {
+function sendTree(tree, name, lang) {
   if (validateTree(tree)) {
-    var data = {data: JSON.stringify(tree), name : name};
+    var data = {data: JSON.stringify(tree), name : name, lang: lang};
     send("POST", data, "")
       .done(function(event) {
         alert('Congrats, tree was created!');

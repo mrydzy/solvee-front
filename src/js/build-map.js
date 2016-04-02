@@ -24,11 +24,8 @@ function submitTree(e) {
   e.preventDefault();
   console.log('submit!!!');
   var title = $('#map-title').val();
-  sendTree(getClearTree(), title);
-}
-
-function showEmbedCode() {
-  alert('Instert to your website ...');//TODO
+  var lang = $('#lang').val();
+  sendTree(getClearTree(), title, lang);
 }
 
 $(function() {
@@ -36,5 +33,5 @@ $(function() {
   $('#map-form').on('submit', submitTree);
   initMap(emptyMapJson);
   $(document).on('map-ready', analytics);
-  $('embed-btn').click(showEmbedCode());
+
 });

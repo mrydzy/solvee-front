@@ -11,7 +11,7 @@ module.exports = (passport) => {
 
 
   router.get('/show/:id', function(req, res) {
-    const backendUrl = req.app.locals.settings.cfg.API_URI;
+    const backendUrl = req.app.locals.settings.cfg.API_URI + "/trees";
 
     var treeId = req.params.id;
 

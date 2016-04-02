@@ -13,10 +13,11 @@ passport.use(new FacebookStrategy({
     clientID: clientId,
     clientSecret: clientSecret,
     callbackURL: "http://www.localhost:3000/auth/facebook/callback",
-    enableProof: true
+    enableProof: true,
+    profileFields: ['id', 'displayName', 'emails']
   },
   function(accessToken, refreshToken, profile, done) {
-    done(null, {id: profile.id, name: profile.displayName});
+    done(null, {id: profile.id, name: profile.displayName, email: profile.emails[0].value});
   }
 ));
 

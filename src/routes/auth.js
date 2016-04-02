@@ -8,9 +8,10 @@ module.exports = (passport) => {
     res.sendFile( 'login.html', {root: req.app.locals.settings.cfg.DIR + '/views/auth'});
   });
 
-  router.get('/facebook', passport.authenticate('facebook'));
+  router.get('/facebook', passport.authenticate('facebook', { scope: 'email'}));
 
   router.get('/success', function (req, res) {
+    console.log(req);
     res.cookie('credentials', sign(req.user));
     res.sendFile( 'login-success.html', {root: req.app.locals.settings.cfg.DIR + '/views/auth'});
   });
