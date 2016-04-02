@@ -7,10 +7,10 @@ script.
         js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=1701793583393254";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-script.
+//script.
     !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 
-div.fb-share-button(data-href= env + id, data-layout='button_count')
-a.twitter-share-button(href=env + id, data-hashtags='solvee') Tweet
+div.fb-like(data-href= env + id, data-layout='box_count', data-share="true", data-action='like')
+//a.twitter-share-button(href=env + id, data-hashtags='solvee') Tweet
 button#embed-btn.btn
     a#embed.embed Embed
