@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const sign = require('../service/authSign').sign;
+const sign = require('../server/authSign').sign;
 
 module.exports = (passport) => {
 

@@ -1,8 +1,6 @@
 'use strict';
 
-const Boom = require('boom');
 const jwt = require('jsonwebtoken');
-const _ = require('lodash');
 
 const websiteUrl = process.env.WEBSITE_URL;
 const appSecret = process.env.APP_SECRET;

@@ -1,6 +1,6 @@
 require('../scss/main.scss');
 const $ = require('jquery');
-const log = require('./services').log;
+const log = require('./service/services').log;
 
 var mapContainer;
 var rowIdRegex;

@@ -1,16 +1,15 @@
 require('../scss/main.scss');
-const callAnalytics = require('./../service/tracking').callAnalytics;
 
 const $ = require('jquery');
 const jade = require('jade');
 const autosize = require('autosize');
 
-const log = require('./services').log;
+const log = require('./service/services').log;
 const mapUtils = require('./map-lib');
 const initMapRows = mapUtils.initMapRows;
 const textIdPrefix = 'text-';
-const maxChildren = require('./../service/constants').maxChildren;
-const maxDepth = require('./../service/constants').maxDepth;
+const maxChildren = require('./service/constants').maxChildren;
+const maxDepth = require('./service/constants').maxDepth;
 
 var jadeVar;var djson = {};
 

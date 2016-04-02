@@ -16,10 +16,10 @@ module.exports = {
   devtool: "source-map",
 
   entry: {
-    main: './src/js/map.js',
-    builder: './src/js/build-map.js',
-    editor: './src/js/edit-map.js',
-    embed: './src/js/embed.js'
+    main: './src/client/map.js',
+    builder: './src/client/build-map.js',
+    editor: './src/client/edit-map.js',
+    embed: './src/client/service/embed.js'
   },
 
   stats: {
