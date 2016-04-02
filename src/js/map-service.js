@@ -18,9 +18,9 @@ function sendTree(tree, name, lang) {
   }
 }
 
-function updateTree(tree, name, id) {
+function updateTree(tree, name, id, lang) {
   if (validateTree(tree)) {
-    var data = {data: JSON.stringify(tree), name : name};
+    var data = {data: JSON.stringify(tree), name : name, lang: lang};
     send("PUT", data, "/" + id)
       .done(function () {
           alert('Congrats, tree was created!');

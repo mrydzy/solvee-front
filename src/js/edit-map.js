@@ -16,6 +16,7 @@ $(function() {
     console.log('json', json);
     var jsonTree = JSON.parse(json.data);
     $('#map-title').val(json.name);
+    $('#lang').val(json.languageId);
     var treeWithPlaceholders = populatePlaceholders(jsonTree);
     initMap(treeWithPlaceholders);
   });
@@ -23,7 +24,8 @@ $(function() {
   function callUpdateTree(e) {
     e.preventDefault();
     var title = $('#map-title').val();
-    updateTree(getClearTree(), title, id);
+    var lang = $('#lang').val();
+    updateTree(getClearTree(), title, id, lang);
   }
   $('#map-form').on('submit', callUpdateTree);
   $(document).on('map-ready', function() {analytics(id);});
