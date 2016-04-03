@@ -24,7 +24,8 @@ module.exports = (passport) => {
         return response.json();
       })
       .then(function(response) {
-        res.render('map', { map: JSON.parse(response.data), name : response.name, id : response.id});
+        console.log(response);
+        res.render('map', { map: JSON.parse(response.data), name : response.name, id : response.id, username: response.User.name});
       })
       .catch(e => res.send(e));
 
