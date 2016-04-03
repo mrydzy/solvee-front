@@ -8,7 +8,7 @@ const appSecret = process.env.APP_SECRET;
 
 function getPayload(user) {
   return {
-    id: user.id,
+    facebookId: user.id,
     name: user.name,
     email: user.email,
     issuer: websiteUrl
