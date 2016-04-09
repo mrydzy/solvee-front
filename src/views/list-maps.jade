@@ -56,6 +56,10 @@ html
         h1= name
         h2= username
         div.list-wrapper
+            if lang
+                div#lang
+                    | Language:
+                    span=lang
             each map in mapList
                 div.map-row
                     a(href=env + '/show/' + map.id)=map.name
