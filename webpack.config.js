@@ -13,7 +13,7 @@ module.exports = {
 
   cache: true,
   debug: true,
-  devtool: "source-map",
+  // devtool: "source-map",
 
   entry: {
     main: './src/client/map.js',

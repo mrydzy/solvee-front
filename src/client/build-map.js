@@ -29,9 +29,18 @@ function submitTree(e) {
 }
 
 $(function() {
-  $('#map-title').val('');
+  var $mapTitle = $('#map-title');
+  if ($mapTitle.val()) {
+    $mapTitle.val('');
+  }
   $('#map-form').on('submit', submitTree);
   initMap(emptyMapJson);
   $(document).on('map-ready', analytics);
+  $('[name="lang"]').change(function(){
+    $('[name="lang"]').siblings('label').removeClass('active');
+    $('[name="lang"]:checked').siblings('label').addClass('active');
+    var radioValue = $(this).val();
+    console.log(radioValue);
+  })
 
 });

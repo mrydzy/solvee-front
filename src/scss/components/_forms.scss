@@ -1,5 +1,132 @@
-input {
-  &.map-title.error {
-    border-color: $error;
+.field-container {
+  margin: 20px 0;
+
+  label {
+    display: block;
+    margin: 20px 0 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: .8rem;
+    &::before {
+      content: '//';
+      margin-right: .3em;
+    }
+  }
+
+  input {
+    &.map-title.error {
+      border-color: $error;
+    }
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    width: 100%;
+    line-height: 30px;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+
+  .radio-groups-wrapper {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+  }
+
+  .radio-group {
+    display: flex;
+    label {
+      margin: 0;
+      cursor: pointer;
+      &::before {
+        display: none;
+      }
+    }
+
+    input {
+      position: absolute;
+      margin-top: -100vh;
+    }
+  }
+
+  button, input[type="button"] {
+    width: 100%;
+    max-width: 300px;
+    height: 40px;
+    position: relative;
+    border-radius: 4px;
+    border: none;
+    background-color: #4997DB;
+    font-weight: bold;
+    letter-spacing: 0.02em;
+    color: white;
+    font-size: 1rem;
+    text-align: left;
+    padding: 0 40px 0 60px;
+    min-width: 300px;
+    line-height: 37px;
+    cursor: pointer;
+    &::before {
+      content: '//';
+      position: absolute;
+      left: 20px;
+      z-index: 99;
+      font-size: 50px;
+      top: -3px;
+      font-weight: bold;
+      letter-spacing: -.07em;
+    }
+  }
+
+  &.actions {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+  }
+}
+
+.field-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.map-meta {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+}
+
+.map-title {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.map-language {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  .radio-group {
+    label {
+      opacity: .4;
+      &.active, &:hover {
+        opacity: 1;
+      }
+      img {
+        height: 30px;
+        box-shadow: 0 1px 2px #aaa;
+        transition: opacity ease-in-out .2s;
+      }
+    }
+  }
+}
+
+header {
+  padding: 20px;
+  background-color: $color-option-bg;
+  h1 {
+    margin: 0;
+    color: white;
+    font-weight: 200;
+    letter-spacing: 0.03em;
   }
 }
