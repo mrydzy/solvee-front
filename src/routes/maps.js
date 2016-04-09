@@ -6,7 +6,20 @@ const authUrl = require('../client/service/constants').authUrl;
 module.exports = (passport) => {
 
   router.get('/', function(req, res) {
-    res.sendFile( 'maps-browser.html', {root: req.app.get('cfg').DIR + '/views'});
+    const backendUrl = req.app.locals.settings.cfg.API_URI + "/trees";
+
+    fetch(backendUrl)
+      .then(function(response) {
+        if (response.status >= 400) {
+          throw new Error("Bad response from server");
+          res.send(500);
+        }
+        return response.json();
+      })
+      .then(function(response) {
+        res.render('list-maps', { mapList: response});
+      })
+      .catch(e => res.send(e));
   });
 
 
