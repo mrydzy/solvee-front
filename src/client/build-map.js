@@ -24,7 +24,7 @@ function submitTree(e) {
   e.preventDefault();
   console.log('submit!!!');
   var title = $('#map-title').val();
-  var lang = $('#lang').val();
+  var lang = $('[name="lang"]').val();
   sendTree(getClearTree(), title, lang);
 }
 

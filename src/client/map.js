@@ -1,5 +1,5 @@
 require('./map-lib');
-require('iframe-resizer').iframeResizerContentWindow
+require('iframe-resizer').iframeResizerContentWindow;
 const $ = require('jquery');
 const analytics = require('./service/tracking').showMapAnalytics;
 

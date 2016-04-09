@@ -1,0 +1,47 @@
+.sharing {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  button {
+    cursor: pointer;
+    background-color: #777;
+    border: none;
+    color: white;
+    padding: 10px;
+    margin-left: 20px;
+    border-radius: 4px;
+    font-size: 1.5rem;
+  }
+  .share-label {
+    font-size: 1rem;
+    position: relative;
+    top: -4px;
+  }
+}
+
+.icon {
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    position: relative;
+    height: 1em;
+    top: 2px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: .5em;
+  }
+}
+
+.icon-fb {
+  &::before {
+    background-image: url('/assets/icon-fb.svg');
+  }
+}
+
+.icon-embed {
+  &::before {
+    background-image: url('/assets/icon-embed.svg');
+  }
+}
