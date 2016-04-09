@@ -1,4 +1,5 @@
 require('../scss/main.scss');
+
 const $ = require('jquery');
 const log = require('./service/services').log;
 

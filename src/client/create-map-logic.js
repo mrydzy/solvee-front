@@ -119,11 +119,6 @@ function handleTitle(titleInput) {
   //djson.title = titleInput.val();
   var title = titleInput.val();
   document.title = title;
-  if (title.length < 1 ) {
-    $(titleInput).addClass('error');
-  } else {
-    $(titleInput).removeClass('error');
-  }
 }
 
 function initMap(json) {
