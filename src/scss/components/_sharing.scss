@@ -3,6 +3,10 @@
   padding-top: 20px;
   border-top: 1px solid #ccc;
   text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 20px;
+  left: 0;
   button {
     cursor: pointer;
     background-color: #777;
