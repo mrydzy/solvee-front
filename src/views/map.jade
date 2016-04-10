@@ -59,6 +59,8 @@ html
       h1= name
     div.map-wrapper
       div.map-meta
+        if (isOwner)
+          a#edit-map(href='http://www.localhost:3000/maps/build/' + id) Edit
         .creator Created by:
           span.creator-name= username
       div(class='map-row')

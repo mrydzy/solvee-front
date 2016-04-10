@@ -19,6 +19,11 @@ function sign(user) {
   return jwt.sign(getPayload(user), appSecret);
 }
 
+function readJWT(token) {
+  return jwt.verify(token, appSecret);
+}
+
 module.exports = {
-  sign
+  sign,
+  readJWT
 };

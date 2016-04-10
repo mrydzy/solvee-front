@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('isomorphic-fetch');
 const authUrl = require('../client/service/constants').authUrl;
+const decodeUser = require('../server/authSign').readJWT;
 
 module.exports = (passport) => {
 
@@ -22,9 +23,19 @@ module.exports = (passport) => {
       .catch(e => res.send(e));
   });
 
+  function isOwner(cookie, userFacebookId) {
+    const credentialsIndex = cookie.indexOf('credentials');
+    if (credentialsIndex > -1) {
+      var credentials = cookie.substring((credentialsIndex + 12), cookie.indexOf(';', credentialsIndex));
+      if (userFacebookId === decodeUser(credentials).facebookId) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   router.get('/show/:id', function(req, res) {
     const backendUrl = req.app.locals.settings.cfg.API_URI + "/trees";
-
     var treeId = req.params.id;
 
     fetch(backendUrl + '/' + treeId)
@@ -36,8 +47,8 @@ module.exports = (passport) => {
         return response.json();
       })
       .then(function(response) {
-        console.log(response);
-        res.render('map', { map: JSON.parse(response.data), name : response.name, id : response.id, username: response.User.name});
+
+        res.render('map', { map: JSON.parse(response.data), name : response.name, id : response.id, username: response.User.name, isOwner: isOwner(req.headers.cookie, response.User.facebookId)});
       })
       .catch(e => res.send(e));
 
