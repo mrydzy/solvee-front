@@ -2,15 +2,16 @@ include ./map-items.jade
 -var env = 'http://www.solvee.click/maps/show/'
 html
   head
-    meta(property='og:url', content='http://www.your-domain.com/your-page.html')
+    meta(property='og:url', content=env + id)
     meta(property='og:type', content='website')
-    meta(property='og:title', content='Solvee.click')
+    meta(property='og:title', content=name)
     meta(property='og:description', content='Your description')
     meta(property='og:image', content='http://www.solvee.click/assets/icon.jpg')
+    meta(property='fb:app_id', content='1701796373392975')
 
     link(rel="stylesheet", type="text/css", href="/assets/styles.css")
     script(src="/assets/main.js")
-    title= title
+    title= name
     script.
       (function (e, b) {
         if (!b.__SV) {

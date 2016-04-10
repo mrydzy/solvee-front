@@ -13,9 +13,10 @@
 
   //div.fb-like(data-href= env + id, data-layout='box_count', data-share="true", data-action='like')
   //a.twitter-share-button(href=env + id, data-hashtags='solvee') Tweet
-  button
+
+  a(href='http://www.facebook.com/sharer.php?u=' + env + map.id)
     span.icon.icon-fb
     span.share-label Share on Facebook
-  button
+  button#embed
     span.icon.icon-embed
     span.share-label Embed on your page

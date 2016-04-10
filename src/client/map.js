@@ -12,5 +12,10 @@ $(function() {
   $('#embed').click(function() {
     
   })
+  // $('#shareFb').click(function() {
+  //     u=location.href;t=document.title;window.open
+  //   ('http://www.facebook.com/sharer.php?u='+
+  //     encodeURIComponent(u));
+  // })
 });
 
