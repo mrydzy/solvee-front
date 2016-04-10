@@ -6,6 +6,22 @@ const decodeUser = require('../authSign').readJWT;
 
 module.exports = (passport) => {
 
+  router.get('/users/:id', function(req, res) {
+    var backendUrl = req.app.locals.settings.cfg.API_URI + "/users/" + req.params.id + '/trees';
+    fetch(backendUrl)
+      .then(function(response) {
+        if (response.status >= 400) {
+          res.status(500).send('Error - check the requested language');
+          throw new Error("Bad response from server", response);
+        }
+        return response.json();
+      })
+      .then(function(response) {
+        res.render('list-maps', { mapList: response, lang: req.params.lang});
+      })
+      .catch(e => res.send(e));
+  });
+  
   router.get('/list/:lang?', function(req, res) {
     const backendSuffix = req.params.lang ? '/'+ encodeURIComponent(req.params.lang) + '/lang' : '';
     var backendUrl = req.app.locals.settings.cfg.API_URI + "/trees" + backendSuffix;
