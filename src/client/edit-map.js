@@ -15,18 +15,27 @@ $(function() {
   getTree(path, function(json) {
     console.log('json', json);
     var jsonTree = JSON.parse(json.data);
+    $('#map-title-header').text('Editing map ' + json.name);
+    window.title = json.name;
+    preselectLanguage(json.languageId);
     $('#map-title').val(json.name);
-    $('#lang').val(json.languageId);
     var treeWithPlaceholders = populatePlaceholders(jsonTree);
     initMap(treeWithPlaceholders);
   });
 
+  function preselectLanguage(language) {
+    var languageRadioButton = $('[name="lang"]');
+    languageRadioButton.filter('[value=' + language + ']').prop('checked', true);
+    languageRadioButton.trigger('change');
+  }
+
   function callUpdateTree(e) {
     e.preventDefault();
     var title = $('#map-title').val();
-    var lang = $('#lang').val();
+    var lang = $('[name="lang"]').val();
     updateTree(getClearTree(), title, id, lang);
   }
+
   $('#map-form').on('submit', callUpdateTree);
   $(document).on('map-ready', function() {analytics(id);});
 

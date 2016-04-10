@@ -1,7 +1,7 @@
 const $ = require('jquery');
 const readCookie = require('./services').readCookie;
-// const backendUrl = "http://localhost:3300/trees";
-const backendUrl = "http://api-decisions.herokuapp.com/trees";
+const backendUrl = "http://localhost:3300/trees";
+// const backendUrl = "http://api-decisions.herokuapp.com/trees";
 
 
 function sendTree(tree, name, lang) {

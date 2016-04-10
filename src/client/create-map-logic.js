@@ -17,7 +17,18 @@ $(function() {
   jadeVar = $("#jadehi").html()
     .replace(/&gt;/g, '>')
     .replace(/&amp;/g, '&');
+  handleLanguages();
 });
+
+function handleLanguages() {
+  $('[name="lang"]').change(function(){
+    console.log('lang - change', this);
+    $('[name="lang"]').siblings('label').removeClass('active');
+    $('[name="lang"]:checked').siblings('label').addClass('active');
+    var radioValue = $(this).val();
+    console.log(radioValue);
+  })
+}
 
 function handleBlur(event) {
   var value = $.trim($(this).val());
