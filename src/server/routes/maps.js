@@ -17,7 +17,7 @@ module.exports = (passport) => {
         return response.json();
       })
       .then(function(response) {
-        res.render('list-maps', { mapList: response, lang: req.params.lang});
+        res.render('list-maps', { mapList: response});
       })
       .catch(e => res.send(e));
   });
@@ -64,7 +64,7 @@ module.exports = (passport) => {
       })
       .then(function(response) {
 
-        res.render('map', { map: JSON.parse(response.data), name : response.name, id : response.id, username: response.User.name, isOwner: isOwner(req.headers.cookie, response.User.facebookId)});
+        res.render('map', { map: JSON.parse(response.data), name : response.name, id : response.id, username: response.User.name, isOwner: isOwner(req.headers.cookie, response.User.facebookId), userId: response.User.id});
       })
       .catch(e => res.send(e));
 

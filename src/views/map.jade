@@ -62,7 +62,7 @@ html
         if (isOwner)
           a#edit-map(href='http://www.localhost:3000/maps/build/' + id) Edit
         .creator Created by:
-          span.creator-name= username
+          a.creator-name(href='http://www.localhost:3000/maps/users/'+ userId)= username
       div(class='map-row')
         each option, index in map.options
           +map-item(option, 'col-' + index)
