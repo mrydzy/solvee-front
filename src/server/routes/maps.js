@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('isomorphic-fetch');
-const authUrl = require('../client/service/constants').authUrl;
-const decodeUser = require('../server/authSign').readJWT;
+const authUrl = require('../../client/service/constants').authUrl;
+const decodeUser = require('../authSign').readJWT;
 
 module.exports = (passport) => {
 

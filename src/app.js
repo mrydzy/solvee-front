@@ -40,7 +40,7 @@ function configure(cfg) {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  app.use(require('./routes')(passport));
+  app.use(require('./server/routes')(passport));
 
   app.use(express.static(cfg.DIR));
 
