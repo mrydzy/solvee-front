@@ -51,6 +51,14 @@ function getHeaders() {
   return headers;
 }
 
+function deleteTree(treeId) {
+  send("DELETE", {}, '/' + treeId)
+    .done(function (event) {
+      window.location.href = '/maps/list';
+    });
+  
+}
+
 function send(type, data, suffix) {
   return $.ajax({
     type: type,
@@ -73,5 +81,6 @@ module.exports = {
   sendTree: sendTree,
   getTree: getTree,
   updateTree: updateTree,
-  validateTree: validateTree
+  validateTree: validateTree,
+  deleteTree: deleteTree
 };

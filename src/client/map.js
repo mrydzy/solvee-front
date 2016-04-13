@@ -2,7 +2,7 @@ require('./map-lib');
 require('iframe-resizer').iframeResizerContentWindow;
 const $ = require('jquery');
 const analytics = require('./service/tracking').showMapAnalytics;
-
+const deleteTree = require('./service/map-service').deleteTree;
 
 $(function() {
   var path = window.location.pathname;
@@ -11,6 +11,9 @@ $(function() {
   analytics(id);
   $('#embed').click(function() {
     
-  })
+  });
+  $('#delete-map').on("click", function() {
+    deleteTree(id);
+  });
 });
 
