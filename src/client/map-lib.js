@@ -178,10 +178,8 @@ function addActiveToNode(node, nodeId) {
 function removeOldNodes(target) {
   var classes = mapContainer[0].classList;
   var classesNumber = classes.length;
-  for (var i = 1; i <= classesNumber; i++) {
-    if (isOldNode(classes[i].filter((className) => {
-      className.startsWith('stage');
-    }), i, target)) {
+  for (var i = 0; i < classesNumber; i++) {
+    if (isOldNode(classes[i], i, target)) {
       mapContainer.removeClass(classes[i]);
       classesNumber--;
       i--;
@@ -191,7 +189,7 @@ function removeOldNodes(target) {
 
 function isOldNode(currentClass, currentIteration, target) {
   var rowId = rowIdRegex.exec(currentClass);
-  if (rowId !== null && target.substring(0, currentIteration) !== (rowId + "")) {
+  if (rowId !== null && !target.startsWith(rowId + "")) {
     return true;
   }
   return false;
