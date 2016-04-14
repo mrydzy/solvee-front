@@ -1,12 +1,21 @@
+$grid-width-tablet: 768px;
+$grid-width-desktop: 980px;
+$grid-width-mobile: 680px;
+
 $max-columns : 3;
 $max-rows : 7;
 
 $gray : #8c8c8c;
 $light-gray : #eFeFef;
 
-$color-option-bg: #538BDD;
-$color-option-bg-active: #538BDD;
-$color-option-bg-inactive: lighten(#4997DB, 20%);
+$main-color: #538BDD;
+
+$color-link: darken($main-color, 20%);
+
+$color-option-bg: $main-color;
+$color-option-bg: $main-color;
+$color-option-bg-active: $main-color;
+$color-option-bg-inactive: lighten($main-color, 20%);
 $color-option-text: #fff;
 $color-option-placeholder-light: #EEEEEE;
 $color-option-inactive: #888;

@@ -36,6 +36,8 @@ module.exports = {
     }
   },
 
+  noParse: /node_modules/,
+
   module: {
     loaders: [{
       test: /\.json/,

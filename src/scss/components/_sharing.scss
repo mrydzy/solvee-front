@@ -5,8 +5,10 @@
   text-align: center;
   position: fixed;
   width: 100%;
-  bottom: 20px;
+  bottom: 0;
   left: 0;
+  padding-bottom: 20px;
+  background-color: white;
   button, a {
     cursor: pointer;
     background-color: #777;

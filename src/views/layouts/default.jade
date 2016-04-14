@@ -1,0 +1,29 @@
+-var env = 'http://localhost:3000/maps/'
+html
+  head
+    meta(property='og:url', content='http://www.your-domain.com/your-page.html')
+    meta(property='og:type', content='website')
+    meta(property='og:title', content='Solvee.click')
+    meta(property='og:description', content='Your description')
+    meta(property='og:image', content='http://www.solvee.click/assets/icon.jpg')
+
+    link(rel="stylesheet", type="text/css", href="/assets/styles.css")
+    script(src="/assets/main.js")
+    block title
+      title Default title
+
+  body
+    include ../partials/analytics.jade
+    include ../partials/mixpanel.jade
+    header
+      .header-wrapper
+        img.header-logo(src='/assets/logo/logo_white.svg')
+        block header-text
+    nav.main-menu
+      .menu-wrapper
+        ul.menu
+          block menu
+        include ../partials/menu.jade
+
+    .content
+      block content

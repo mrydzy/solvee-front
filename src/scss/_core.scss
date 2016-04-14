@@ -4,8 +4,51 @@ body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   text-rendering: optimizeLegibility;
   box-sizing: border-box;
+  background-color: #fafafa;
 }
 
 *, *::before, *::after {
   box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: $color-link;
+}
+
+header {
+  padding: 20px;
+  background-color: $color-option-bg;
+  box-shadow: 0 1px 2px 0px #aaa;
+  position: relative;
+
+  .header-wrapper {
+    min-width: 600px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  h1 {
+    margin: 0;
+    color: white;
+    font-weight: 200;
+    letter-spacing: 0.03em;
+  }
+  img {
+    height: 80px;
+  }
+}
+
+.content {
+  min-width: 600px;
+  max-width: 1000px;
+  margin: 0 auto 110px;
+  padding: 20px 40px;
+  box-shadow: 0 1px 2px #ccc;
+  background-color: #fafafa;
 }

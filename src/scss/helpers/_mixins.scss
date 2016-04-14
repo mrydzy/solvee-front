@@ -1,18 +1,50 @@
 @mixin row-visible($id) {
   .stage-#{$id} {
     .map-row-#{$id} {
-      @extend %show-row;
+      display: flex;
+      flex-direction: column;
     }
   }
 }
 
 @mixin row-choice($id, $i) {
-  .map-row-#{$id} { @extend %hide-row; }
+  .map-row-#{$id} {
+    display: none;
+  }
   @include row-visible($id);
 
   @if ($i < $max-rows) {
     @for $j from 1 through $max-columns {
       @include row-choice($id+$j, $i+1);
+    }
+  }
+}
+
+@mixin respond-to($device) {
+  @if $device == mobile-only {
+    @media (max-width: $grid-width-tablet - 1) {
+      @content;
+    }
+  }
+  @else if $device == not-mobile {
+    @media (min-width: $grid-width-mobile) {
+      @content;
+    }
+  } @else if $device == tablet {
+    @media (min-width: $grid-width-tablet) {
+      @content;
+    }
+  } @else if $device == tablet-only {
+    @media (min-width: $grid-width-tablet) and (max-width: $grid-width-desktop - 1) {
+      @content;
+    }
+  } @else if $device == desktop {
+    @media (min-width: $grid-width-desktop) {
+      @content;
+    }
+  } @else if $device == desktop-down {
+    @media (max-width: $grid-width-desktop - 1) {
+      @content;
     }
   }
 }
