@@ -43,6 +43,7 @@ module.exports = {
       loader: 'json-loader'
     }, {
       test: /\.(scss|css)$/,
+      exclude: /node_modules/,
       loader: ExtractTextPlugin.extract('css!sass')
     }, {
       test: /\.html$/,
@@ -50,6 +51,7 @@ module.exports = {
       loader: 'html'
     }, {
       test: /\.(png|jpg|woff|woff2|svg)$/,
+      exclude: /node_modules/,
       loader: 'url-loader?limit=8192'
     }]
   },

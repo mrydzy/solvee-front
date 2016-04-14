@@ -13,6 +13,9 @@
     flex-direction: column;
     background-color: $color-option-bg;
   }
+  textarea {
+    color: $color-option-text;
+  }
   &.not-selected {
     background-color: $color-option-bg-inactive;
     &::after {
@@ -24,6 +27,7 @@
     background-color: $light-gray;
   }
   &.active {
+    @extend %placeholder-light;
     background-color: $color-option-bg-active;
     &::after {
       display: none;
@@ -31,6 +35,7 @@
   }
   &:hover {
     background-color: $color-option-bg-active;
+    @extend %placeholder-light;
     &::after {
       border-top-color: $color-option-bg-active;
       bottom: -32px;
@@ -49,7 +54,6 @@
   }
 
   &.parent {
-    @extend %pulse;
     @extend %map-item-frame;
     @extend %parent-frame;
     cursor: pointer;
@@ -62,4 +66,22 @@
 
 .node-remover {
   align-self: flex-end;
+}
+
+
+%placeholder-light {
+  ::-webkit-input-placeholder {
+    color: $color-option-placeholder-light;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: $color-option-placeholder-light;
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+    color: $color-option-placeholder-light;
+  }
+
+  :-ms-input-placeholder {
+    color: $color-option-placeholder-light;
+  }
 }

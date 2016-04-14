@@ -8,10 +8,6 @@
     text-transform: uppercase;
     letter-spacing: 0.02em;
     font-size: .8rem;
-    &::before {
-      content: '//';
-      margin-right: .3em;
-    }
   }
 
   input {
@@ -55,7 +51,7 @@
     position: relative;
     border-radius: 4px;
     border: none;
-    background-color: #4997DB;
+    background-color: $color-option-bg;
     font-weight: bold;
     letter-spacing: 0.02em;
     color: white;
@@ -66,14 +62,14 @@
     line-height: 37px;
     cursor: pointer;
     &::before {
-      content: '//';
+      content: '';
+      background-image: url(/assets/logo/sign_white.svg);
       position: absolute;
-      left: 20px;
-      z-index: 99;
-      font-size: 50px;
-      top: -3px;
-      font-weight: bold;
-      letter-spacing: -.07em;
+      height: 40px;
+      width: 40px;
+      display: block;
+      background-repeat: no-repeat;
+      margin-left: -40px;
     }
   }
 
@@ -112,7 +108,7 @@
         opacity: 1;
       }
       img {
-        height: 30px;
+        height: 28px;
         box-shadow: 0 1px 2px #aaa;
         transition: opacity ease-in-out .2s;
       }
@@ -123,10 +119,23 @@
 header {
   padding: 20px;
   background-color: $color-option-bg;
+
+  .header-wrapper {
+    min-width: 600px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+  }
+
   h1 {
     margin: 0;
     color: white;
     font-weight: 200;
     letter-spacing: 0.03em;
+  }
+  img {
+    height: 80px;
   }
 }
