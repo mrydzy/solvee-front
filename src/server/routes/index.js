@@ -8,6 +8,7 @@ const router = express.Router();
 module.exports = (passport) => {
   router.use('/maps', require('./maps')(passport));
   router.use('/auth', require('./auth')(passport));
+  router.use('/users', require('./users')(passport));
 
   return router;
 };
