@@ -40,7 +40,7 @@ module.exports = (passport) => {
             return response.json();
           })
           .then(function(response) {
-            res.render('list-maps', { mapList: response});
+            res.render('list-maps', { mapList: response, currentUser: req.user});
           })
           .catch(e => res.send(e));
   });
@@ -57,7 +57,7 @@ module.exports = (passport) => {
         return response.json();
       })
       .then(function(response) {
-        res.render('list-maps', { mapList: response, lang: req.params.lang});
+        res.render('list-maps', { mapList: response, lang: req.params.lang, currentUser: req.user});
       })
       .catch(e => res.send(e));
   });
@@ -87,7 +87,7 @@ module.exports = (passport) => {
       })
       .then(function(response) {
 
-        res.render('map', { map: JSON.parse(response.data), name : response.name, id : response.id, username: response.User.name, isOwner: isOwner(req.headers.cookie, response.User.facebookId), userId: response.User.id});
+        res.render('map', { map: JSON.parse(response.data), name : response.name, id : response.id, username: response.User.name, isOwner: isOwner(req.headers.cookie, response.User.facebookId), userId: response.User.id, currentUser: req.user});
       })
       .catch(e => res.send(e));
 

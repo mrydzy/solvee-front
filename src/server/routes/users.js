@@ -23,7 +23,7 @@ module.exports = (passport) => {
         return response.json();
       })
       .then(function(response) {
-        res.render('edit-user', { user: response});
+        res.render('edit-user', { user: response, currentUser: req.user});
       })
       .catch(e => res.send(e));
   });

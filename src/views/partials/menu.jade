@@ -1,3 +1,13 @@
 ul.menu
-  li
-    a(href='current') My maps
+
+  if (currentUser != undefined)
+    li
+      |Hi
+      span=currentUser.name
+    li
+      a(href='current') Account
+    li
+      a(href='') Logout
+  else
+    li
+      a(href='/auth/login') Login
