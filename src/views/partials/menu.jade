@@ -5,9 +5,9 @@ ul.menu
       |Hi
       span=currentUser.name
     li
-      a(href='current') Account
+      a(href='/users/edit') Account
     li
-      a(href='') Logout
+      a(href='/auth/logout') Logout
   else
     li
-      a(href='/auth/login') Login
+      a(href='/auth/facebook') Login using Facebook

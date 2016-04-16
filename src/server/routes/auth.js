@@ -8,6 +8,11 @@ module.exports = (passport) => {
     res.sendFile( 'login.html', {root: req.app.locals.settings.cfg.DIR + '/views/auth'});
   });
 
+  router.get('/logout', function(req, res) {
+    req.logOut();
+    res.redirect('/maps/list');
+  });
+
   router.get('/facebook', passport.authenticate('facebook', { scope: 'email'}));
 
   router.get('/success', function (req, res) {

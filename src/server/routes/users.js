@@ -6,7 +6,7 @@ const jwtSign = require('../authSign').sign;
 
 module.exports = (passport) => {
 
-  router.get('/', require('connect-ensure-login').ensureLoggedIn(authUrl),
+  router.get('/edit', require('connect-ensure-login').ensureLoggedIn(authUrl),
     (req, res) => {
     var backendUrl = req.app.locals.settings.cfg.API_URI + "/users";
 
