@@ -1,40 +1,24 @@
-html
-    head
-        link(rel="stylesheet", type="text/css", href="/assets/styles.css")
-        script(src="/assets/users.js")
+extends ./layouts/default
 
-    body
-        include ./partials/analytics.jade
-        include ./partials/mixpanel.jade
-        header
-            .header-wrapper
-                img.header-logo(src='/assets/logo/logo_white.svg')
-                block header-text
-        nav.main-menu
-            .menu-wrapper
-                ul.menu
-                    block menu
-                include ./partials/menu.jade
+block title
+    title Edit user
 
+block menu
+    li.active
+        a(href='') recent
 
-        block title
-           title Edit user
+block js
+    script(src="/assets/users.js")
 
-        block menu
-            li.active
-                a(href='') popular
-            li
-                a(href='') new
+block content
+    form#user-form
+        div
+            | Name
+            input#name(value=user.name,required=true)
+        div
+            | Email
+            input#email(value=user.email, type='email',required=true)
+        button(type='submit') Submit
 
-        block content
-            form#user-form
-                div
-                    | Name
-                    input#name(value=user.name,required=true)
-                div
-                    | Email
-                    input#email(value=user.email, type='email',required=true)
-                button(type='submit') Submit
-
-            div
-                a(href='/maps/current') My maps
+    div
+        a(href='/maps/current') My maps
