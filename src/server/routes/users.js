@@ -11,7 +11,6 @@ module.exports = (passport) => {
     (req, res) => {
     var backendUrl = req.app.locals.settings.cfg.API_URI + "/users";
 
-      // fetch.Headers.Authorization = "Bearer " + jwtSign(req.user);
       fetch(backendUrl, {
         headers: {
           Authorization: `Bearer ${jwtSign(req.user)}`

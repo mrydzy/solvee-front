@@ -1,13 +1,12 @@
-const $ = require('jquery');
-const readCookie = require('./services').readCookie;
-const backendUrl = "http://localhost:3300/trees";
+const send = require('./ajax-service').send
+const backendUrl = "http://localhost:3300";
 // const backendUrl = "http://api-decisions.herokuapp.com/trees";
 
 
 function sendTree(tree, name, lang) {
   if (validateTree(tree)) {
     var data = {data: JSON.stringify(tree), name : name, lang: lang};
-    send("POST", data, "")
+    send("POST", data, "/trees")
       .done(function(event) {
         alert('Congrats, tree was created!');
         window.location.href = '/maps/show/'+ event.id;
@@ -21,7 +20,7 @@ function sendTree(tree, name, lang) {
 function updateTree(tree, name, id, lang) {
   if (validateTree(tree)) {
     var data = {data: JSON.stringify(tree), name : name, lang: lang};
-    send("PUT", data, "/" + id)
+    send("PUT", data, "/trees/" + id)
       .done(function () {
           alert('Congrats, tree was created!');
           window.location.href = '/maps/show/'+id;
@@ -34,39 +33,16 @@ function updateTree(tree, name, id, lang) {
 }
 
 function getTree(treeId, success) {
-  $.getJSON(backendUrl + treeId, success);
+  $.getJSON(backendUrl + "/trees/" + treeId, success);
 }
 
-function addCredentials(headers) {
-  var credentials = readCookie('credentials');
-  if (credentials) {
-    headers.Authorization = "Bearer " + credentials;
-  }
-  return headers;
-}
-
-function getHeaders() {
-  var headers = {};
-  headers = addCredentials(headers);
-  return headers;
-}
 
 function deleteTree(treeId) {
-  send("DELETE", {}, '/' + treeId)
+  send("DELETE", {}, '/trees/' + treeId)
     .done(function (event) {
       window.location.href = '/maps/list';
     });
   
-}
-
-function send(type, data, suffix) {
-  return $.ajax({
-    type: type,
-    url: backendUrl + suffix,
-    data: data,
-    headers: getHeaders(),
-    dataType: 'text json'
-  });
 }
 
 function validateTree(tree) {
