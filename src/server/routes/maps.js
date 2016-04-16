@@ -3,6 +3,7 @@ const router = express.Router();
 const fetch = require('isomorphic-fetch');
 const authUrl = require('../../client/service/constants').authUrl;
 const decodeUser = require('../authSign').readJWT;
+const jwtSign = require('../authSign').sign;
 
 module.exports = (passport) => {
 
@@ -20,6 +21,28 @@ module.exports = (passport) => {
         res.render('list-maps', { mapList: response});
       })
       .catch(e => res.send(e));
+  });
+
+  router.get('/current',
+    require('connect-ensure-login').ensureLoggedIn(authUrl),
+      (req, res) => {
+          var backendUrl = req.app.locals.settings.cfg.API_URI + "/trees/current";
+          fetch(backendUrl, {
+            headers: {
+              Authorization: `Bearer ${jwtSign(req.user)}`
+            }
+          })
+          .then(function(response) {
+            if (response.status >= 400) {
+              res.status(500).send('Error - please try again later');
+              throw new Error("Bad response from server", response);
+            }
+            return response.json();
+          })
+          .then(function(response) {
+            res.render('list-maps', { mapList: response});
+          })
+          .catch(e => res.send(e));
   });
   
   router.get('/list/:lang?', function(req, res) {
