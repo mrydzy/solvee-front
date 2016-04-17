@@ -15,9 +15,6 @@ const getTreeTemplate = require('./service/map-service').getTreeTemplate
 var jadeVar;var djson = {};
 
 $(function() {
-  // jadeVar = $("#jadehi").html()
-  //   .replace(/&gt;/g, '>')
-  //   .replace(/&amp;/g, '&');
   getTreeTemplate().done((data) => {
       jadeVar = data;
       if (djson.options) {

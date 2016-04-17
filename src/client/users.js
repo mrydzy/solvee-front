@@ -1,5 +1,4 @@
 const $ = require('jquery');
-const backendUrl = 'http://localhost:3300/users';
 const send = require('./service/ajax-service').send;
 
 $(() => {

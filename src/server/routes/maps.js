@@ -18,7 +18,7 @@ module.exports = (passport) => {
         return response.json();
       })
       .then(function(response) {
-        res.render('list-maps', { mapList: response});
+        res.render('list-maps', { mapList: response, currentUser: req.user});
       })
       .catch(e => res.send(e));
   });
@@ -96,13 +96,13 @@ module.exports = (passport) => {
   router.get('/build',
     require('connect-ensure-login').ensureLoggedIn(authUrl),
     (req, res) => {
-      res.render( 'map-builder');
+      res.render( 'map-builder', {currentUser: req.user});
     });
 
   router.get('/build/:id',
     require('connect-ensure-login').ensureLoggedIn(authUrl),
       (req, res) => {
-        res.render( 'map-editor');
+        res.render( 'map-editor', {currentUser: req.user});
       }
   );
 
