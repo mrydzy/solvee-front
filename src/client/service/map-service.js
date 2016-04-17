@@ -1,4 +1,5 @@
-const send = require('./ajax-service').send
+const send = require('./ajax-service').send;
+const $ = require('jquery');
 const backendUrl = "http://localhost:3300";
 // const backendUrl = "http://api-decisions.herokuapp.com/trees";
 
@@ -15,6 +16,10 @@ function sendTree(tree, name, lang) {
       alert('There was an error submitting your request :(. Please contact us for support or try again later!');
     });
   }
+}
+
+function getTreeTemplate() {
+  return $.get( "/assets/map-template.jade");
 }
 
 function updateTree(tree, name, id, lang) {
@@ -58,5 +63,6 @@ module.exports = {
   getTree: getTree,
   updateTree: updateTree,
   validateTree: validateTree,
-  deleteTree: deleteTree
+  deleteTree: deleteTree,
+  getTreeTemplate: getTreeTemplate
 };

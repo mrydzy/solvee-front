@@ -10,23 +10,26 @@ const initMapRows = mapUtils.initMapRows;
 const textIdPrefix = 'text-';
 const maxChildren = require('./service/constants').maxChildren;
 const maxDepth = require('./service/constants').maxDepth;
+const getTreeTemplate = require('./service/map-service').getTreeTemplate
 
 var jadeVar;var djson = {};
 
 $(function() {
-  jadeVar = $("#jadehi").html()
-    .replace(/&gt;/g, '>')
-    .replace(/&amp;/g, '&');
+  // jadeVar = $("#jadehi").html()
+  //   .replace(/&gt;/g, '>')
+  //   .replace(/&amp;/g, '&');
+  getTreeTemplate().done((data) => {
+      jadeVar = data;
+      prepareMap();
+  });
   handleLanguages();
 });
 
 function handleLanguages() {
   $('[name="lang"]').change(function(){
-    console.log('lang - change', this);
     $('[name="lang"]').siblings('label').removeClass('active');
     $('[name="lang"]:checked').siblings('label').addClass('active');
     var radioValue = $(this).val();
-    console.log(radioValue);
   })
 }
 
@@ -136,7 +139,7 @@ function initMap(json) {
   djson = json;
   var mapTitleInput = $('#map-title');
   handleTitle(mapTitleInput);
-  prepareMap();
+  // prepareMap();
   mapTitleInput.change(function() {
     handleTitle($(this));
   });
