@@ -10,20 +10,24 @@
   padding-bottom: 20px;
   background-color: white;
   button, a {
-    cursor: pointer;
-    background-color: #777;
-    border: none;
-    color: white;
-    padding: 10px;
+    @extend .btn-secondary;
     margin-left: 20px;
-    border-radius: 4px;
-    font-size: 1.5rem;
-    text-decoration: none;
-  }
-  .share-label {
-    font-size: 1rem;
-    position: relative;
-    top: -4px;
+    padding-left: 50px;
+    .icon {
+      position: absolute;
+      display: inline-block;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      padding: 8px 10px 0 11px;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      background-color: #aaa;
+    }
+    &:before {
+      display: none;
+    }
   }
 }
 
@@ -31,9 +35,9 @@
   &::before {
     content: '';
     display: inline-block;
-    width: 1em;
+    width: 1.5em;
     position: relative;
-    height: 1em;
+    height: 1.5em;
     top: 2px;
     background-repeat: no-repeat;
     background-position: center;

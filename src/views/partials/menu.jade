@@ -1,16 +1,17 @@
-ul.menu
-  if (currentUser != undefined)
+if (currentUser != undefined)
+  ul.menu
     li#name-menu
-      | Hi
-      span=currentUser.name
+      a(href='/users/edit') Hi, #{currentUser.name}
+  ul.menu
     li#recent-maps-menu
-        a(href='') recent
+      a(href='') recent
     li#build-menu
       a(href='/maps/build') Create map
     li#user-menu
       a(href='/users/edit') Account
     li#logout-menu
       a(href='/auth/logout') Logout
-  else
+else
+  ul.menu
     li#login-menu
-      a(href='/auth/facebook') Login using Facebook
+      a(href='/auth/facebook') Login

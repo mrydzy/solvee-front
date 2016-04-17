@@ -1,0 +1,47 @@
+.btn {
+  width: 100%;
+  max-width: 300px;
+  height: 40px;
+  position: relative;
+  border-radius: 4px;
+  border: none;
+  background-color: $color-option-bg;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  color: white;
+  text-align: left;
+  padding: 0 40px 0 60px;
+  min-width: 300px;
+  line-height: 41px;
+  text-transform: uppercase;
+  font-size: .8rem;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color .2s ease-in-out;
+  &:hover {
+    background-color: lighten($color-option-bg, 10%);
+  }
+  &::before {
+    content: '';
+    background-image: url(/assets/logo/sign_white.svg);
+    position: absolute;
+    height: 80px;
+    width: 60px;
+    display: block;
+    background-repeat: no-repeat;
+    left: 5px;
+    top: -8px;
+  }
+}
+
+.btn-primary {
+  @extend .btn;
+}
+
+.btn-secondary {
+  @extend .btn;
+  background-color: #777;
+  &:hover {
+    background-color: lighten(#777, 10%);
+  }
+}
