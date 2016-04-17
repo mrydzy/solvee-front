@@ -15,7 +15,7 @@ $(function() {
   getTree(path, function(json) {
     console.log('json', json);
     var jsonTree = JSON.parse(json.data);
-    $('#map-title-header').text('Editing map ' + json.name);
+    // $('#map-title-header').text('Editing map ' + json.name);
     window.title = json.name;
     preselectLanguage(json.languageId);
     $('#map-title').val(json.name);

@@ -96,13 +96,13 @@ module.exports = (passport) => {
   router.get('/build',
     require('connect-ensure-login').ensureLoggedIn(authUrl),
     (req, res) => {
-      res.render( 'map-builder', {root: req.app.get('cfg').DIR + '/views'});
+      res.render( 'map-builder');
     });
 
   router.get('/build/:id',
     require('connect-ensure-login').ensureLoggedIn(authUrl),
       (req, res) => {
-        res.sendFile( 'map-editor.html', {root: req.app.get('cfg').DIR + '/views'});
+        res.render( 'map-editor');
       }
   );
 

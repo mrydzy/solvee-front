@@ -20,7 +20,9 @@ $(function() {
   //   .replace(/&amp;/g, '&');
   getTreeTemplate().done((data) => {
       jadeVar = data;
-      prepareMap();
+      if (djson.options) {
+        prepareMap();
+      }
   });
   handleLanguages();
 });
@@ -143,6 +145,9 @@ function initMap(json) {
   mapTitleInput.change(function() {
     handleTitle($(this));
   });
+  if (jadeVar) {
+    prepareMap();
+  }
 }
 
 function prepareMap() {

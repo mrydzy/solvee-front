@@ -38,7 +38,7 @@ function updateTree(tree, name, id, lang) {
 }
 
 function getTree(treeId, success) {
-  $.getJSON(backendUrl + "/trees/" + treeId, success);
+  $.getJSON(backendUrl + "/trees" + treeId, success);
 }
 
 
