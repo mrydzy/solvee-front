@@ -5,7 +5,7 @@ const sign = require('../authSign').sign;
 module.exports = (passport) => {
 
   router.get('/login', function(req, res) {
-    res.sendFile( 'login.html', {root: req.app.locals.settings.cfg.DIR + '/views/auth'});
+    res.render( 'login', {root: req.app.locals.settings.cfg.DIR + '/views/auth'});
   });
 
   router.get('/logout', function(req, res) {
