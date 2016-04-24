@@ -18,12 +18,20 @@ block content
           a.map-link(href=env + 'show/' + map.id)
             .map-image
               img(src='http://placekitten.com/800/600')
-            .map-title= map.name
-            .map-description Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in velit vel est dapibus vestibulum. Nunc blandit porta quam ut fringilla. Sed eu varius felis. Donec cursus, nisi sit amet interdum rutrum, nisi leo posuere orci, in volutpat neque ante id mauris. Nam quis ex quis libero sollicitudin consequat. Fusce imperdiet volutpat nulla, id finibus magna tristique ut. Nulla facilisi. Suspendisse tellus ex, dictum id malesuada vel, aliquet quis urna.
-            .map-footer
-              div.map-author
-                span.label Author&nbsp;
-                span.value= map.User.name
-              div.map-created
-                span.label Added&nbsp;
-                span.value= map.createdAt
+            .map-info
+              .map-title= map.name
+              .map-excerpt
+                .map-row
+                  .map-col.parent
+                    | Somethin somethin first opt
+                  .map-col.parent
+                    | Second option here
+                  .map-col.parent
+                    | ...and the third option
+              .map-footer
+                div.map-author
+                  span.label Author&nbsp;
+                  span.value= map.User.name
+                div.map-created
+                  span.label Added&nbsp;
+                  span.value= map.createdAt

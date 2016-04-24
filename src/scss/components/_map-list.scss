@@ -7,16 +7,10 @@
   list-style: none;
 
   .map-item {
-    @include respond-to(tablet) {
-      width: calc(50% - 10px);
-      &:nth-child(odd) {
-        margin-right: 20px;
-      }
-    }
     position: relative;
+    overflow: hidden;
     width: 100%;
-    padding-bottom: 75px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     box-shadow: 0 1px 2px $color-option-bg;
     &:hover {
       outline: 1px solid $color-option-bg;
@@ -28,15 +22,52 @@
   }
 
   .map-image {
-    margin-bottom: 20px;
     img {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       width: 100%;
+    }
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&0+0,1+100 */
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100 */
+      background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+
+      //background-color: rgba(255, 255, 255, .8);
+    }
+  }
+
+  .map-info {
+    position: relative;
+    z-index: 3;
+  }
+
+  .map-excerpt {
+    padding: 40px;
+    margin-bottom: 20px;
+    .map-col {
+      box-shadow: 0 1px 2px 0px #888;
     }
   }
 
   .map-title {
     font-size: 2rem;
-    padding: 0 20px;
+    text-align: center;
+    padding: 70px 40px 20px;
+    color: #333;
   }
 
   .map-description {
@@ -45,18 +76,14 @@
   }
 
   .map-footer {
-    position: absolute;
     display: flex;
     justify-content: space-between;
-    background-color: $color-option-bg;
+    background-color: rgba(100,100,100,.5);
     color: white;
     padding: 20px;
     text-transform: uppercase;
     font-size: .8rem;
     letter-spacing: .02em;
-    width: 100%;
-    bottom: 0;
-    lefT: 0;
     .label {
       font-weight: bold;
     }
