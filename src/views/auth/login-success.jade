@@ -1,11 +1,10 @@
 extends ./../layouts/default
 
 block title
-    title Login
-
-block menu
-    li.active
-        a(href='') Recent
+    title Logged in
 
 block content
-    a(href="/auth/facebook") Login with Facebook
+  script(type='text/javascript').
+    window.location.href = '../maps/list';
+
+  span You have logged in! We'll redirect you to some more useful place.

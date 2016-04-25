@@ -40,23 +40,22 @@ function configure(cfg) {
 
   app.use(cookieParser('4l4m4'));
 
-
   app.use(session({ secret: '4l4m4', resave: true, saveUninitialized: true }));
   app.use(passport.initialize());
   app.use(passport.session());
 
-  app.use(function(req, res, next) {
-    console.log('-- session --');
-    console.dir(req.session);
-    console.log('-------------');
-    console.log('-- cookies --');
-    console.dir(req.cookies);
-    console.log('-------------');
-    console.log('-- signed cookies --');
-    console.dir(req.signedCookies);
-    console.log('-------------');
-    next()
-  });
+  // app.use(function(req, res, next) {
+  //   console.log('-- session --');
+  //   console.dir(req.session);
+  //   console.log('-------------');
+  //   console.log('-- cookies --');
+  //   console.dir(req.cookies);
+  //   console.log('-------------');
+  //   console.log('-- signed cookies --');
+  //   console.dir(req.signedCookies);
+  //   console.log('-------------');
+  //   next()
+  // });
 
   app.use(require('./server/routes')(passport));
 
