@@ -6,6 +6,8 @@ const session = require('express-session');
 const app = express();
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
+var cookieParser = require('cookie-parser');
+
 
 const clientId = require('./client/service/constants').clientId;
 const clientSecret = require('./client/service/constants').clientSecret;
@@ -36,9 +38,25 @@ function configure(cfg) {
   app.set('views', path.join(cfg.DIR, 'views'));
   app.set('view engine', 'jade');
 
-  app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+  app.use(cookieParser('4l4m4'));
+
+
+  app.use(session({ secret: '4l4m4', resave: true, saveUninitialized: true }));
   app.use(passport.initialize());
   app.use(passport.session());
+
+  app.use(function(req, res, next) {
+    console.log('-- session --');
+    console.dir(req.session);
+    console.log('-------------');
+    console.log('-- cookies --');
+    console.dir(req.cookies);
+    console.log('-------------');
+    console.log('-- signed cookies --');
+    console.dir(req.signedCookies);
+    console.log('-------------');
+    next()
+  });
 
   app.use(require('./server/routes')(passport));
 
