@@ -44,6 +44,11 @@ function configure(cfg) {
   app.use(passport.initialize());
   app.use(passport.session());
 
+  app.use(function(req, res, next) {
+    res.locals.url = req.url;
+    next();
+  });
+
   // app.use(function(req, res, next) {
   //   console.log('-- session --');
   //   console.dir(req.session);

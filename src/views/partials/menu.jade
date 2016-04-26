@@ -3,15 +3,16 @@ if (currentUser != undefined)
     li#name-menu
       a(href='/users/edit') Hi, #{currentUser.name}
   ul.menu
-    li#recent-maps-menu
+    li#recent-maps-menu(class=url === "/maps/list" ? "active" : "")
       a(href='/maps/list') recent
-    li#build-menu
+    li#build-menu(class=url === '/maps/build' ? "active" : "")
       a(href='/maps/build') Create map
-    li#user-menu
+    li#user-menu(class=url === '/users/edit' ? "active" : "")
       a(href='/users/edit') Account
-    li#logout-menu
+    li#logout-menu(class=url === '/auth/logout' ? "active" : "")
       a(href='/auth/logout') Logout
 else
   ul.menu
     li#login-menu
       a(href='/auth/facebook') Login
+
