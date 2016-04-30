@@ -14,18 +14,18 @@ html
   body
     include ../partials/analytics.jade
     include ../partials/mixpanel.jade
-    if mapCoverUrl
-      header(style='background-image:url(' + mapCoverUrl  + ')')
-        .header-wrapper
-          a(href='/maps/list')
-            img.header-logo(src='/assets/logo/logo_white.svg')
-          block header-text
-    else
-      header
-        .header-wrapper
-          a(href='/maps/list')
-            img.header-logo(src='/assets/logo/logo_white.svg')
-          block header-text
+    //if mapCoverUrl
+    //  header(style='background-image:url(' + mapCoverUrl  + ')')
+    //    .header-wrapper
+    //      a(href='/maps/list')
+    //        img.header-logo(src='/assets/logo/logo_white.svg')
+    //      block header-text
+    //else
+    header
+      .header-wrapper
+        a(href='/maps/list')
+          img.header-logo(src='/assets/logo/logo_white.svg')
+        block header-text
     nav.main-menu
       .menu-wrapper
         include ../partials/menu.jade

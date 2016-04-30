@@ -11,6 +11,8 @@ block title
 
 block content
   .map-wrapper
+    .map-header(style='background-image:url(' + mapCoverUrl + ')')
+      h2.map-title= name
     .map-row
       each option, index in map.options
         +map-item(option, 'col-' + index)
