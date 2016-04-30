@@ -24,7 +24,8 @@ function submitTree(e) {
   console.log('submit!!!');
   var title = $('#map-title').val();
   var lang = $('[name="lang"]').val();
-  sendTree(getClearTree(), title, lang);
+  var photoLink = $('#map-photo-url').val();
+  sendTree(getClearTree(), title, lang, photoLink);
 }
 
 $(function() {

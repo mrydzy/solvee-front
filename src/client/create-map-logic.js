@@ -22,7 +22,15 @@ $(function() {
       }
   });
   handleLanguages();
+  handlePhoto();
+  
 });
+
+function handlePhoto() {
+  $('#map-photo-url').on('blur', function() {
+    $('#map-photo').attr("src",$(this).val());
+  })
+}
 
 function handleLanguages() {
   $('[name="lang"]').change(function(){

@@ -19,9 +19,17 @@ $(function() {
     window.title = json.name;
     preselectLanguage(json.languageId);
     $('#map-title').val(json.name);
+    if (json.photoLink) {
+      loadPhoto(json.photoLink);
+    }
     var treeWithPlaceholders = populatePlaceholders(jsonTree);
     initMap(treeWithPlaceholders);
   });
+
+  function loadPhoto(photoLink) {
+    $('#map-photo-url').val(photoLink);
+    $('#map-photo').attr("src", photoLink);
+  }
 
   function preselectLanguage(language) {
     var languageRadioButton = $('[name="lang"]');
@@ -33,7 +41,8 @@ $(function() {
     e.preventDefault();
     var title = $('#map-title').val();
     var lang = $('[name="lang"]').val();
-    updateTree(getClearTree(), title, id, lang);
+    var photoLink = $('#map-photo-url').val();
+    updateTree(getClearTree(), title, id, lang, photoLink);
   }
 
   $('#map-form').on('submit', callUpdateTree);

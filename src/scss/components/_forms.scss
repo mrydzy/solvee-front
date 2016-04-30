@@ -73,6 +73,16 @@
   flex-grow: 1;
 }
 
+.map-photo {
+  flex-grow: 1;
+}
+
+.map-photo-preview {
+  display: block;
+  width:400px;
+  height:196px;
+}
+
 .map-language {
   display: flex;
   flex-direction: column;

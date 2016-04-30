@@ -4,9 +4,12 @@ const backendUrl = "http://localhost:3300";
 // const backendUrl = "http://api-decisions.herokuapp.com/trees";
 
 
-function sendTree(tree, name, lang) {
+function sendTree(tree, name, lang, photoLink) {
   if (validateTree(tree)) {
     var data = {data: JSON.stringify(tree), name : name, lang: lang};
+    if (photoLink) {
+      data.photoLink = photoLink
+    }
     send("POST", data, "/trees")
       .done(function(event) {
         alert('Congrats, tree was created!');
@@ -22,9 +25,12 @@ function getTreeTemplate() {
   return $.get( "/assets/map-template.jade");
 }
 
-function updateTree(tree, name, id, lang) {
+function updateTree(tree, name, id, lang, photoLink) {
   if (validateTree(tree)) {
     var data = {data: JSON.stringify(tree), name : name, lang: lang};
+    if (photoLink) {
+      data.photoLink = photoLink
+    }
     send("PUT", data, "/trees/" + id)
       .done(function () {
           alert('Congrats, tree was created!');
