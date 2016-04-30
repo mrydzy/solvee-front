@@ -30,8 +30,24 @@ header {
 
   &.small {
     padding: 5px;
+    margin-top: 40px;
     img {
+      margin-left: 0;
       height: 40px;
+    }
+    span {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      color: white;
+      position: relative;
+      top: -14px;
+      &::before {
+        content: '|';
+        margin-right: .5em;
+        position: relative;
+        top: -1px;
+      }
     }
   }
 }

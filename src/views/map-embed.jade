@@ -10,17 +10,18 @@ block title
   title= name
 
 block content
-  .map-wrapper
+  .map-wrapper.embed
     .map-header(style='background-image:url(' + mapCoverUrl + ')')
       h2.map-title= name
+    .map-meta
+      .creator Created by:
+        a.creator-name(href='http://www.localhost:3000/maps/users/'+ userId)= username
     .map-row
       each option, index in map.options
         +map-item(option, 'col-' + index)
     +child-rows(map.options)
-    .map-meta
-      .creator Created by:
-        a.creator-name(href='http://www.localhost:3000/maps/users/'+ userId)= username
   header.small
     .header-wrapper
-      a(href='/maps/list')
+      a(href='http://solvee.click')
         img.header-logo(src='/assets/logo/logo_white.svg')
+        span Create your own decision maps
