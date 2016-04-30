@@ -1,5 +1,5 @@
 .map-col {
-
+  word-break: break-all;
   &.parent:empty:before {
     content: "?";
   }

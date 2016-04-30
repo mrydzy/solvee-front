@@ -13,7 +13,9 @@ mixin map-item(item, colClass)
         textarea(class='col-input')&attributes({
             'data-target': item.id,
             'id': "text-" + item.id,
-            'placeholder': "Placeholder. Add text to keep, leave empty to remove."
+            'placeholder': "Placeholder. Add text to keep, leave empty to remove.",
+             maxlength: 255
+
         })=item.text
 //adds empty columns so that single items are always under their parent
 mixin single-kid(column, kid)
