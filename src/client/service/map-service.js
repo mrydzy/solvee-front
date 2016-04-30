@@ -2,6 +2,7 @@ const send = require('./ajax-service').send;
 const $ = require('jquery');
 const backendUrl = "http://localhost:3300";
 // const backendUrl = "http://api-decisions.herokuapp.com/trees";
+const alert = require('./dialogs').alert;
 
 
 function sendTree(tree, name, lang, photoLink) {
@@ -53,7 +54,7 @@ function deleteTree(treeId) {
     .done(function (event) {
       window.location.href = '/maps/list';
     });
-  
+
 }
 
 function validateTree(tree) {

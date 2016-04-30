@@ -1,6 +1,8 @@
 const $ = require('jquery');
 const send = require('./service/ajax-service').send;
 
+const alert = require('./service/dialogs').alert;
+
 $(() => {
  $('#user-form').on('submit', () => {
     saveUser({
