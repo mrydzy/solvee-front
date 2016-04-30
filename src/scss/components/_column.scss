@@ -1,4 +1,9 @@
 .map-col {
+
+  &.parent:empty:before {
+    content: "?";
+  }
+
   @extend %map-item-frame;
   .map-list & {
     opacity: .7;
