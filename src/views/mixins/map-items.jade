@@ -1,7 +1,3 @@
-- var topLinePrefix = 'top-'
-- var bottomLinePrefix = 'bottom-'
-- var left = '-left'
-- var right = '-right'
 mixin map-item(item, colClass)
     -var classes=[]
     if (item.children.length > 0)
@@ -48,8 +44,8 @@ mixin lines(column, numberOfChildren, id)
 mixin right(numberOfChildren, id)
     case numberOfChildren
         when 1
-            +right-one(topLinePrefix + id)
-            +right-one(bottomLinePrefix + id)
+            +right-one('top-' + id)
+            +right-one('bottom-' + id)
         when 2
             +right-two(id)
         when 3
@@ -57,8 +53,8 @@ mixin right(numberOfChildren, id)
 mixin middle(numberOfChildren ,id)
   case numberOfChildren
     when 1
-      +middle-one(topLinePrefix + id + left)
-      +middle-one(bottomLinePrefix + id + right)
+      +middle-one('top-' + id + '-left')
+      +middle-one('bottom-' + id + '-right')
     when 2
       +middle-two(id)
     when 3
@@ -66,46 +62,46 @@ mixin middle(numberOfChildren ,id)
 mixin left(numberOfChildren, id)
     case numberOfChildren
         when 1
-            +left-one(topLinePrefix + id)
-            +left-one(bottomLinePrefix + id)
+            +left-one('top-' + id)
+            +left-one('bottom-' + id)
         when 2
             +left-two(id)
         when 3
             +left-three(id)
 
 mixin right-three(id)
-    +right-one(topLinePrefix + id)
-    +three-lines(bottomLinePrefix + id)
+    +right-one('top-' + id)
+    +three-lines('bottom-' + id)
 mixin right-two(id)
-    +right-one(topLinePrefix + id)
-    +two-lines(bottomLinePrefix + id)
+    +right-one('top-' + id)
+    +two-lines('bottom-' + id)
 mixin right-one(prefixedId)
     div.map-lines-row
-        div(id=prefixedId + right).map-lines.right.single
+        div(id=prefixedId + '-right').map-lines.right.single
 mixin middle-one(prefixedId)
     div.map-lines-row
-        div(id=prefixedId + left).map-lines.right
-        div(id=prefixedId + right).map-lines
+        div(id=prefixedId + '-left').map-lines.right
+        div(id=prefixedId + '-right').map-lines
 mixin middle-two(id)
-  +middle-one(topLinePrefix + id)
-  +two-lines(bottomLinePrefix + id)
+  +middle-one('top-' + id)
+  +two-lines('bottom-' + id)
 mixin middle-three(id)
-    +middle-one(topLinePrefix + id)
-    +three-lines(bottomLinePrefix + id)
+    +middle-one('top-' + id)
+    +three-lines('bottom-' + id)
 mixin left-three(id)
-    +left-one(topLinePrefix + id)
-    +three-lines(bottomLinePrefix + id)
+    +left-one('top-' + id)
+    +three-lines('bottom-' + id)
 mixin left-two(id)
-    +left-one(topLinePrefix + id)
-    +two-lines(id)
+    +left-one('top-' + id)
+    +two-lines('bottom-' + id)
 mixin left-one(prefixedId)
     div.map-lines-row
-        div(id=prefixedId + left).map-lines.left.single
+        div(id=prefixedId + '-left').map-lines.left.single
 mixin two-lines(prefixedId)
-  div.map-lines-row
-      div(id=prefixedId + left).map-lines.top.left
-      div(id=prefixedId + right).map-lines.top.right
+    div.map-lines-row
+        div(id=prefixedId + '-left').map-lines.top.left
+        div(id=prefixedId + '-right').map-lines.top.right
 mixin three-lines(prefixedId)
     div.map-lines-row
-        div(id=prefixedId + left).map-lines.top.left.right
-        div(id=prefixedId + right).map-lines.top.right
+        div(id=prefixedId + '-left').map-lines.top.left.right
+        div(id=prefixedId + '-right').map-lines.top.right
