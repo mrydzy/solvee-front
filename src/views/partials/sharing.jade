@@ -3,11 +3,11 @@
     .embed-info
       | Add the following code to your page
     textarea
-      | var someEmbed=true;f dasf dsa; dssadsa
+      | <script>window._mapsCfg={mapId:#{id}}</script><script id="solvee" src="/assets/embed.js" async></script>
     .embed-tooltip
       | Ctrl+C / Cmd+C to copy to clipboard
 
-  a(href='http://www.facebook.com/sharer.php?u=' + env + map.id)
+  a(href='http://www.facebook.com/sharer.php?u=' + env + id)
     span.icon.icon-fb
     span.share-label Share on Facebook
   a#embed

@@ -1,0 +1,18 @@
+-var env = 'http://www.localhost:3000/maps/'
+html
+  head
+    meta(property='og:url', content='http://www.your-domain.com/your-page.html')
+    meta(property='og:type', content='website')
+    meta(property='og:title', content='Solvee.click')
+    meta(property='og:description', content='Your description')
+    meta(property='og:image', content='http://www.solvee.click/assets/icon.jpg')
+
+    link(rel="stylesheet", type="text/css", href="/assets/styles.css")
+    block title
+      title Default title
+
+  body
+    include ../partials/analytics.jade
+    include ../partials/mixpanel.jade
+    block content
+    block js

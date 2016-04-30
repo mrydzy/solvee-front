@@ -101,6 +101,32 @@ module.exports = (passport) => {
 
   });
 
+  router.get('/show/:id/embed', function(req, res) {
+    const backendUrl = req.app.locals.settings.cfg.API_URI + "/trees";
+    var treeId = req.params.id;
+
+    fetch(backendUrl + '/' + treeId)
+      .then(response => {
+        if (response.status >= 400) {
+          throw new Error("Bad response from server", response);
+        }
+        return response.json();
+      })
+      .then(function(response) {
+        const parsedMap = JSON.parse(response.data);
+        res.render('map-embed', {
+          map: parsedMap,
+          name : response.name,
+          id : response.id,
+          username: response.User.name,
+          userId: response.User.id,
+          currentUser: req.user,
+          mapCoverUrl: '//placekitten.com/800/600'
+        });
+      })
+      .catch(e => res.json(e));
+  });
+
   router.get('/build',
     require('connect-ensure-login').ensureLoggedIn(authUrl),
     (req, res) => {
