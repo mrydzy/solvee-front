@@ -1,5 +1,6 @@
 .map-col {
   @extend %map-item-frame;
+  opacity: 0.7;
   &, .map-col-blank {
     position: relative;
     color: $color-option-text;
@@ -35,9 +36,10 @@
   }
   &:hover {
     background-color: $color-option-bg-active;
+    opacity: 0.9;
     @extend %placeholder-light;
     &::after {
-      border-top-color: $color-option-bg-active;
+      border-top-color: $main-color;
       bottom: -32px;
     }
 

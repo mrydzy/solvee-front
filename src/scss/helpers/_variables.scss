@@ -9,14 +9,14 @@ $gray : #8c8c8c;
 $light-gray : #eFeFef;
 
 $main-color: #538BDD;
+$background-color: white;
 
 $color-link: darken($main-color, 20%);
 
-$color-option-bg: $main-color;
-$color-option-bg: $main-color;
-$color-option-bg-active: $main-color;
+$color-option-bg: $background-color;
+$color-option-bg-active: $background-color;
 $color-option-bg-inactive: lighten($main-color, 20%);
-$color-option-text: #fff;
+$color-option-text: $main-color;
 $color-option-placeholder-light: #EEEEEE;
 $color-option-inactive: #888;
 

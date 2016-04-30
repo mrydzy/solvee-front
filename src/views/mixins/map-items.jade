@@ -55,14 +55,14 @@ mixin right(numberOfChildren, id)
         when 3
             +right-three(id)
 mixin middle(numberOfChildren ,id)
-    case numberOfChildren
-        when 1
-            +middle-one(topLinePrefix + id + left)
-            +middle-one(bottomLinePrefix + id + right)
-        when 2
-            +middle-two(id)
-        when 3
-            +middle-three(id)
+  case numberOfChildren
+    when 1
+      +middle-one(topLinePrefix + id + left)
+      +middle-one(bottomLinePrefix + id + right)
+    when 2
+      +middle-two(id)
+    when 3
+      +middle-three(id)
 mixin left(numberOfChildren, id)
     case numberOfChildren
         when 1
@@ -87,8 +87,8 @@ mixin middle-one(prefixedId)
         div(id=prefixedId + left).map-lines.right
         div(id=prefixedId + right).map-lines
 mixin middle-two(id)
-    +middle-one(topLinePrefix + id)
-    +two-lines(bottomLinePrefix + id)
+  +middle-one(topLinePrefix + id)
+  +two-lines(bottomLinePrefix + id)
 mixin middle-three(id)
     +middle-one(topLinePrefix + id)
     +three-lines(bottomLinePrefix + id)
@@ -97,14 +97,14 @@ mixin left-three(id)
     +three-lines(bottomLinePrefix + id)
 mixin left-two(id)
     +left-one(topLinePrefix + id)
-    +two-lines(bottomLinePrefix + id)
+    +two-lines(id)
 mixin left-one(prefixedId)
     div.map-lines-row
         div(id=prefixedId + left).map-lines.left.single
 mixin two-lines(prefixedId)
-    div.map-lines-row
-        div(id=prefixedId + left).map-lines.top.left
-        div(id=prefixedId + right).map-lines.top.right
+  div.map-lines-row
+      div(id=prefixedId + left).map-lines.top.left
+      div(id=prefixedId + right).map-lines.top.right
 mixin three-lines(prefixedId)
     div.map-lines-row
         div(id=prefixedId + left).map-lines.top.left.right
