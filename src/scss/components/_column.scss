@@ -1,6 +1,11 @@
 .map-col {
   @extend %map-item-frame;
-  opacity: 0.7;
+  .map-list & {
+    opacity: .7;
+    &::after {
+      display: none;
+    }
+  }
   &, .map-col-blank {
     position: relative;
     color: $color-option-text;
@@ -18,9 +23,9 @@
     color: $color-option-text;
   }
   &.not-selected {
-    background-color: $color-option-bg-inactive;
+    opacity: .3;
     &::after {
-      border-top-color: $color-option-bg-inactive;
+      opacity: .3;
     }
   }
   &.map-placeholder {
@@ -39,7 +44,8 @@
     opacity: 0.9;
     @extend %placeholder-light;
     &::after {
-      border-top-color: $main-color;
+      opacity: 1;
+      border-top-color: $color-primary;
       bottom: -32px;
     }
 

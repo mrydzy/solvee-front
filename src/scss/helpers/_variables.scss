@@ -8,15 +8,15 @@ $max-rows : 7;
 $gray : #8c8c8c;
 $light-gray : #eFeFef;
 
-$main-color: #538BDD;
+$color-primary: #538BDD;
 $background-color: white;
 
-$color-link: darken($main-color, 20%);
+$color-link: darken($color-primary, 20%);
 
 $color-option-bg: $background-color;
 $color-option-bg-active: $background-color;
-$color-option-bg-inactive: lighten($main-color, 20%);
-$color-option-text: $main-color;
+$color-option-bg-inactive: lighten($color-primary, 20%);
+$color-option-text: $color-primary;
 $color-option-placeholder-light: #EEEEEE;
 $color-option-inactive: #888;
 

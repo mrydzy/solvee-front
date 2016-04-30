@@ -11,15 +11,15 @@
     width: 32px;
     height: 32px;
     border: 16px solid transparent;
-    border-top-color: $color-option-bg;
+    border-top-color: $color-primary;
     transition: all .3s ease-in-out;
   }
 }
 
 %map-item-frame {
-  border: 5px solid $main-color;
+  border: 3px solid $color-primary;
   padding: 15px;
-  border-radius: 14px;
+  border-radius: 6px;
 }
 
 
