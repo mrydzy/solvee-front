@@ -53,8 +53,8 @@ mixin right(numberOfChildren, id)
 mixin middle(numberOfChildren ,id)
   case numberOfChildren
     when 1
-      +middle-one('top-' + id + '-left')
-      +middle-one('bottom-' + id + '-right')
+      +middle-one('top-' + id)
+      +middle-one('bottom-' + id)
     when 2
       +middle-two(id)
     when 3

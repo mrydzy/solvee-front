@@ -172,6 +172,10 @@ function getCleanTree() {
 
 function cleanNode(node) {
   node.children = filterEmpty(node.children);
+  if (node.children.length == 1) {
+    alignSingleChild(node);
+  }
+
   if (node.children.length == 2) {
     distributeTwins(node);
   }
@@ -182,19 +186,26 @@ function filterEmpty(array) {
   return array.filter(function(node){return node.text !== ""})
 }
 
-function distributeTwins(node) { //if there are just 2 children, 1 should be set!
-  if ((node.children[0].id % 10) !== 1) { //with twins, the first one has to be set
-    updateId(node.id*10+1, node.children[0], 1);
-  }
-  if ((node.children[1].id % 10) !== 3) { //with twins, the first one has to be set
-    updateId(node.id*10+3, node.children[1], 3);
+function alignSingleChild(node) {//if there is just one child, it should be under parent
+  var requiredId = node.id*10 + node.id%10;
+  if (node.children[0].id !== requiredId) {
+    updateId(requiredId, node.children[0]);
   }
 }
 
-function updateId(newId, node, suffix) {
+function distributeTwins(node) { //if there are just 2 children, 1 should be set!
+  if ((node.children[0].id % 10) !== 1) { //with twins, the first one has to be set
+    updateId(node.id*10+1, node.children[0]);
+  }
+  if ((node.children[1].id % 10) !== 3) { //with twins, the first one has to be set
+    updateId(node.id*10+3, node.children[1]);
+  }
+}
+
+function updateId(newId, node) {
   node.id = newId;
   for (var i = 0; i < node.children.length; i++) {
-    updateId(newId * 10 + i + 1, node.children[i], suffix);
+    updateId(newId * 10 + i + 1, node.children[i]);
   }
 }
 
