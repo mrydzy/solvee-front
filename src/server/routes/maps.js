@@ -44,7 +44,7 @@ module.exports = (passport) => {
           })
           .catch(e => res.send(e));
   });
-  
+
   router.get('/list/:lang?', function(req, res) {
     const backendSuffix = req.params.lang ? '/'+ encodeURIComponent(req.params.lang) + '/lang' : '';
     var backendUrl = req.app.locals.settings.cfg.API_URI + "/trees" + backendSuffix;
@@ -78,9 +78,8 @@ module.exports = (passport) => {
     var treeId = req.params.id;
 
     fetch(backendUrl + '/' + treeId)
-      .then(function(response) {
+      .then(response => {
         if (response.status >= 400) {
-          res.status(500).send('Unexpected Error');
           throw new Error("Bad response from server", response);
         }
         return response.json();
@@ -93,12 +92,12 @@ module.exports = (passport) => {
           id : response.id,
           username: response.User.name,
           isOwner: isOwner(req.headers.cookie, response.User.facebookId),
-          userId: response.User.id, 
+          userId: response.User.id,
           currentUser: req.user,
           mapCoverUrl: '//placekitten.com/800/600'
         });
       })
-      .catch(e => res.send(e));
+      .catch(e => res.json(e));
 
   });
 
