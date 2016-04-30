@@ -86,8 +86,17 @@ module.exports = (passport) => {
         return response.json();
       })
       .then(function(response) {
-
-        res.render('map', { map: JSON.parse(response.data), name : response.name, id : response.id, username: response.User.name, isOwner: isOwner(req.headers.cookie, response.User.facebookId), userId: response.User.id, currentUser: req.user});
+        const parsedMap = JSON.parse(response.data);
+        res.render('map', {
+          map: parsedMap,
+          name : response.name,
+          id : response.id,
+          username: response.User.name,
+          isOwner: isOwner(req.headers.cookie, response.User.facebookId),
+          userId: response.User.id, 
+          currentUser: req.user,
+          mapCoverUrl: '//placekitten.com/800/600'
+        });
       })
       .catch(e => res.send(e));
 
