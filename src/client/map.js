@@ -8,14 +8,14 @@ const deleteTree = require('./service/map-service').deleteTree;
 const confirm = require('./service/dialogs').confirm;
 
 $(function() {
-  console.log('??');
   var path = window.location.pathname;
   path = path.substring(path.lastIndexOf('/'));
   var id = parseInt(path.substring(1));
   analytics(id);
   $('#delete-map').click(() => {
     confirm('Are you sure you want to delete this tree?')
-      .then(() => deleteTree(id));
+      .then(() => deleteTree(id))
+      .done(() => window.location.href = '/maps/list');
   });
 
   $('#embed').click(() => {

@@ -33,7 +33,7 @@ function updateTree(tree, name, id, lang, photoLink) {
       data.photoLink = photoLink
     }
     send("PUT", data, "/trees/" + id)
-      .done(function () {
+      .done(() => {
           alert('Congrats, tree was created!');
           window.location.href = '/maps/show/'+id;
         }
@@ -50,11 +50,7 @@ function getTree(treeId, success) {
 
 
 function deleteTree(treeId) {
-  send("DELETE", {}, '/trees/' + treeId)
-    .done(function (event) {
-      window.location.href = '/maps/list';
-    });
-
+  return send("DELETE", {}, '/trees/' + treeId);
 }
 
 function validateTree(tree) {
