@@ -17,7 +17,6 @@ $(function() {
   });
   $('.embed-code textarea').focus(e => {
     e.currentTarget.select();
-    $('.embed-tooltip').addClass('active');
   })
 });
 

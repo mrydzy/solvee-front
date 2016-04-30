@@ -20,16 +20,16 @@
       margin-bottom: 10px;
     }
     .embed-tooltip {
+      display: none;
+    }
+    textarea:focus ~ .embed-tooltip {
+      display: block;
       font-style: italic;
       font-size: .8rem;
       color: #888;
       width: 620px;
       margin: 10px auto;
       text-align: left;
-      display: none;
-      &.active {
-        display: block;
-      }
     }
     textarea {
       display: block;
