@@ -1,0 +1,28 @@
+.modal-wrapper {
+  background-color: rgba(255,255,255,.8);
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal-btns {
+  .yes-btn, .ok-btn {
+    @extend .btn-primary;
+  }
+  .no-btn {
+    @extend .btn-secondary;
+    margin-left: 20px;
+  }
+}
+
+.modal-content {
+  padding: 20px;
+  font-size: 1.25rem;
+}

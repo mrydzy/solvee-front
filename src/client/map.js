@@ -1,5 +1,8 @@
 require('./map-lib');
 require('iframe-resizer').iframeResizerContentWindow;
+
+const alert = require('./service/dialogs').alert;
+
 const $ = require('jquery');
 const analytics = require('./service/tracking').showMapAnalytics;
 const deleteTree = require('./service/map-service').deleteTree;
@@ -12,11 +15,13 @@ $(function() {
   $('#delete-map').on("click", function() {
     deleteTree(id);
   });
+
   $('#embed').click(() => {
     $('.embed-code').toggleClass('active');
   });
+
   $('.embed-code textarea').focus(e => {
     e.currentTarget.select();
-  })
+  });
 });
 
