@@ -21,7 +21,6 @@ var emptyMapJson = {
 
 function submitTree(e) {
   e.preventDefault();
-  console.log('submit!!!');
   var title = $('#map-title').val();
   var lang = $('[name="lang"]').val();
   var photoLink = $('#map-photo-url').val();
