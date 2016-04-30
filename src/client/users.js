@@ -12,7 +12,7 @@ $(() => {
  })
 });
 
-function saveUser(user) {x
+function saveUser(user) {
   send('PUT', user, '/users').done(function () {
       alert('Congrats, tree was created!');
       window.location.href = '/maps/show/'+id;
