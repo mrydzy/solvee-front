@@ -22,12 +22,9 @@ block content
               h2.map-title= map.name
               .map-excerpt
                 .map-row
-                  .map-col.parent
-                    | Somethin somethin first opt
-                  .map-col.parent
-                    | Second option here
-                  .map-col.parent
-                    | ...and the third option
+                  .map-col.parent=map.child1
+                  .map-col.parent=map.child2
+                  .map-col.parent=map.child3
               .map-footer
                 div.map-author
                   span.label Author&nbsp;
