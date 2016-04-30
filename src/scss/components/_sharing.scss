@@ -9,10 +9,47 @@
   left: 0;
   padding-bottom: 20px;
   background-color: white;
+
+  .embed-code {
+    display: none;
+    padding: 20px;
+    &.active {
+      display: block;
+    }
+    .embed-info {
+      margin-bottom: 10px;
+    }
+    .embed-tooltip {
+      font-style: italic;
+      font-size: .8rem;
+      color: #888;
+      width: 620px;
+      margin: 10px auto;
+      text-align: left;
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
+    textarea {
+      display: block;
+      width: 620px;
+      margin: 0 auto;
+      resize: none;
+      border: 1px solid #ccc;
+      padding: 5px;
+      font-family: monospace;
+      height: 25px;
+    }
+  }
+
   button, a {
     @extend .btn-secondary;
-    margin-left: 20px;
     padding-left: 50px;
+    margin-left: 20px;
+    &:first-of-type {
+      margin-left: 0;
+    }
     .icon {
       position: absolute;
       display: inline-block;

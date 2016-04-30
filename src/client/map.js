@@ -9,11 +9,15 @@ $(function() {
   path = path.substring(path.lastIndexOf('/'));
   var id = parseInt(path.substring(1));
   analytics(id);
-  $('#embed').click(function() {
-    
-  });
   $('#delete-map').on("click", function() {
     deleteTree(id);
   });
+  $('#embed').click(() => {
+    $('.embed-code').toggleClass('active');
+  });
+  $('.embed-code textarea').focus(e => {
+    e.currentTarget.select();
+    $('.embed-tooltip').addClass('active');
+  })
 });
 
