@@ -32,6 +32,9 @@ $(function() {
   if ($mapTitle.val()) {
     $mapTitle.val('');
   }
+  $mapTitle.keyup(() => {
+    $('.map-title-preview').text($mapTitle.val());
+  });
   $('#map-form').on('submit', submitTree);
   initMap(emptyMapJson);
   $(document).on('map-ready', analytics);

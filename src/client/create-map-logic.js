@@ -23,12 +23,14 @@ $(function() {
   });
   handleLanguages();
   handlePhoto();
-  
+
 });
 
 function handlePhoto() {
-  $('#map-photo-url').on('blur', function() {
-    $('#map-photo').attr("src",$(this).val());
+  const $mapPhotoInput = $('#map-photo-url');
+  $mapPhotoInput.on('blur', () => {
+    const imageUrl = $mapPhotoInput.val();
+    $('#map-photo-preview').css("background-image",`url(${imageUrl})`);
   })
 }
 

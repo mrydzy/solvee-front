@@ -33,11 +33,12 @@ block content
                   label(for='lang-pl')
                     img(src='/assets/flag_pl.svg', alt='')
                   input#lang-pl(type='radio', name='lang', value='pl')
-        .field-wrapper
+        .field-wrapper.image-input
           .field-container.map-photo
             label(for='map-title') Map photo url
             input#map-photo-url(type='url', placeholder='Enter photo url')
-          img#map-photo.map-photo-preview
+        .map-header.map-photo-preview#map-photo-preview
+          h2.map-title.map-title-preview Question?
       #so='Please enable javascript'
       .field-container.actions
         button#save-tree-button(type='submit') Save
