@@ -45,6 +45,11 @@ $(function() {
     updateTree(getClearTree(), title, id, lang, photoLink);
   }
 
+  const $mapTitle = $('#map-title');
+  $mapTitle.keyup(() => {
+    $('.map-title-preview').text($mapTitle.val());
+  });
+
   $('#map-form').on('submit', callUpdateTree);
   $(document).on('map-ready', function() {analytics(id);});
 
