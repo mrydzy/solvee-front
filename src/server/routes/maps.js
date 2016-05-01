@@ -8,7 +8,7 @@ const jwtSign = require('../authSign').sign;
 module.exports = (passport) => {
 
   router.get('/users/:id', function(req, res) {
-    var backendUrl = req.app.locals.settings.cfg.API_URI + "/users/" + req.params.id + '/trees';
+    var backendUrl = req.app.locals.settings.cfg.API_URI + "/trees/" + req.params.id + '/user';
     fetch(backendUrl)
       .then(function(response) {
         if (response.status >= 400) {
@@ -46,8 +46,10 @@ module.exports = (passport) => {
   });
 
   router.get('/list/:lang?', function(req, res) {
-    const backendSuffix = req.params.lang ? '/'+ encodeURIComponent(req.params.lang) + '/lang' : '';
-    var backendUrl = req.app.locals.settings.cfg.API_URI + "/trees" + backendSuffix;
+    var backendUrl = req.app.locals.settings.cfg.API_URI + '/index';
+    if (req.params.lang) {
+      backendUrl += '?lang=' + encodeURIComponent(req.params.lang);
+    }
     fetch(backendUrl)
       .then(function(response) {
         if (response.status >= 400) {
