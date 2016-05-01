@@ -19,6 +19,13 @@
                                     img(src='/assets/flag_pl.svg', alt='')
                                 input#lang-pl(type='radio', name='lang', value='pl')
             .field-wrapper
+                .field-container.map-style
+                    select(id='map-style-select', name="map-style-select")
+                        option(value=1) Solvee
+                        option(value=2) Pink
+                        option(value=3) Dark
+                        option(value=4) Autumn
+            .field-wrapper
                 .field-container.map-photo
                     label(for='map-title') Map photo url
                     input#map-photo-url(type='url', placeholder='Enter photo url')

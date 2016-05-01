@@ -21,10 +21,22 @@ var emptyMapJson = {
 
 function submitTree(e) {
   e.preventDefault();
-  var title = $('#map-title').val();
-  var lang = $('[name="lang"]').val();
+  // var title = $('#map-title').val();
+  // var lang = $('[name="lang"]').val();
+  // var photoLink = $('#map-photo-url').val();
+
+  var treeObj = {
+    data: JSON.stringify(getClearTree()),
+    name : $('#map-title').val(),
+    lang: $('[name="lang"]').val(),
+    styleId: $('#map-style-select').val()
+  };
   var photoLink = $('#map-photo-url').val();
-  sendTree(getClearTree(), title, lang, photoLink);
+  if (photoLink) {
+    treeObj.photoLink = photoLink
+  }
+  
+  sendTree(treeObj);
 }
 
 $(function() {

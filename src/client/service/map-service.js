@@ -5,12 +5,7 @@ const backendUrl = "http://localhost:3300";
 const alert = require('./dialogs').alert;
 
 
-function sendTree(tree, name, lang, photoLink) {
-  if (validateTree(tree)) {
-    var data = {data: JSON.stringify(tree), name : name, lang: lang};
-    if (photoLink) {
-      data.photoLink = photoLink
-    }
+function sendTree(data) {
     send("POST", data, "/trees")
       .done(function(event) {
         alert('Congrats, tree was created!');
@@ -19,19 +14,13 @@ function sendTree(tree, name, lang, photoLink) {
     ).fail(function (event) {
       alert('There was an error submitting your request :(. Please contact us for support or try again later!');
     });
-  }
 }
 
 function getTreeTemplate() {
   return $.get( "/assets/map-template.jade");
 }
 
-function updateTree(tree, name, id, lang, photoLink) {
-  if (validateTree(tree)) {
-    var data = {data: JSON.stringify(tree), name : name, lang: lang};
-    if (photoLink) {
-      data.photoLink = photoLink
-    }
+function updateTree(data, id) {
     send("PUT", data, "/trees/" + id)
       .done(() => {
           alert('Congrats, tree was created!');
@@ -41,31 +30,21 @@ function updateTree(tree, name, id, lang, photoLink) {
       .fail(function (event) {
         alert('There was an error submitting your request :(. Please contact us for support or try again later!');
     });
-  }
 }
 
 function getTree(treeId, success) {
   $.getJSON(backendUrl + "/trees" + treeId, success);
 }
 
-
 function deleteTree(treeId) {
   return send("DELETE", {}, '/trees/' + treeId);
 }
 
-function validateTree(tree) {
-  if (tree.options.length < 1) {
-    throw 'hey, create some selection there!';
-    return false;
-  }
-  return true;
-}
 
 module.exports = {
   sendTree: sendTree,
   getTree: getTree,
   updateTree: updateTree,
-  validateTree: validateTree,
   deleteTree: deleteTree,
   getTreeTemplate: getTreeTemplate
 };

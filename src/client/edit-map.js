@@ -13,12 +13,10 @@ $(function() {
   var id = parseInt(path.substring(1));
 
   getTree(path, function(json) {
-    console.log('json', json);
     var jsonTree = JSON.parse(json.data);
-    $('h1').text('Edit ' + json.name);
-    window.title = json.name;
     preselectLanguage(json.languageId);
-    $('#map-title').val(json.name);
+    setTitle(json.name);
+    preselectStyle(json.Style.id);
     if (json.photoLink) {
       loadPhoto(json.photoLink);
     }
@@ -26,9 +24,19 @@ $(function() {
     initMap(treeWithPlaceholders);
   });
 
+  function setTitle(title) {
+    $('#map-title').val(title);
+    window.title = title;
+    $('h1').text('Edit ' + title);
+  }
+
   function loadPhoto(photoLink) {
     $('#map-photo-url').val(photoLink);
     $('#map-photo').attr("src", photoLink);
+  }
+
+  function preselectStyle(styleId) {
+    $(`#map-style-select option[value=${styleId}]`).attr('selected','selected');
   }
 
   function preselectLanguage(language) {
@@ -39,10 +47,17 @@ $(function() {
 
   function callUpdateTree(e) {
     e.preventDefault();
-    var title = $('#map-title').val();
-    var lang = $('[name="lang"]').val();
+    var treeObj = {
+      data: JSON.stringify(getClearTree()),
+      name : $('#map-title').val(),
+      lang: $('[name="lang"]').val(),
+      styleId: $('#map-style-select').val()
+    };
     var photoLink = $('#map-photo-url').val();
-    updateTree(getClearTree(), title, id, lang, photoLink);
+    if (photoLink) {
+      treeObj.photoLink = photoLink
+    }
+    updateTree(treeObj, id);
   }
 
   const $mapTitle = $('#map-title');

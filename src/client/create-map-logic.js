@@ -23,7 +23,6 @@ $(function() {
   });
   handleLanguages();
   handlePhoto();
-
 });
 
 function handlePhoto() {
