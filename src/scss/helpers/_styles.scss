@@ -6,6 +6,9 @@
       &:hover::after, &::after {
         border-top-color: $color;
       }
+      textarea {
+        color: $color;
+      }
     }
     .map-header .map-title {
       background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, transparentize($color, .3) 100%); /* FF3.6-15 */

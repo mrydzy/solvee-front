@@ -23,6 +23,17 @@
     border-radius: 4px;
   }
 
+  select {
+    border: 1px solid #ccc;
+    padding: 0 10px;
+    width: 100%;
+    line-height: 32px;
+    height: 32px;
+    font-size: 16px;
+    border-radius: 4px;
+    background-color: transparent;
+  }
+
   .radio-groups-wrapper {
     display: flex;
     justify-content: space-around;
@@ -73,6 +84,11 @@
 .map-photo-preview {
   display: block;
   height: 300px;
+}
+
+.map-style {
+  width: 200px;
+  padding: 0 20px;
 }
 
 .map-language {

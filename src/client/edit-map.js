@@ -30,13 +30,17 @@ $(function() {
     $('h1').text('Edit ' + title);
   }
 
-  function loadPhoto(photoLink) {
-    $('#map-photo-url').val(photoLink);
-    $('#map-photo').attr("src", photoLink);
+  function loadPhoto(imageUrl) {
+    $('#map-photo-url').val(imageUrl);
+    $('#map-photo-preview').css("background-image",`url(${imageUrl})`);
   }
 
   function preselectStyle(styleId) {
     $(`#map-style-select option[value=${styleId}]`).attr('selected','selected');
+    const currentStyle = $('#map-style-select').find('option:selected').text() || '';
+    $('.map-wrapper')
+      .removeClass('pink autumn solvee dark')
+      .addClass(currentStyle.toLowerCase());
   }
 
   function preselectLanguage(language) {

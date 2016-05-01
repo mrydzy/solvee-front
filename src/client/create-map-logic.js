@@ -23,7 +23,23 @@ $(function() {
   });
   handleLanguages();
   handlePhoto();
+  handleStyles();
 });
+
+function handleStyles() {
+  $('#map-style-select').change(handleStyleChange);
+}
+
+function handleStyleChange(e) {
+  const currentStyle = $(e.currentTarget).find('option:selected').text() || '';
+  changeStyle(currentStyle);
+}
+
+function changeStyle(style) {
+  $('.map-wrapper')
+    .removeClass('pink autumn solvee dark')
+    .addClass(style.toLowerCase());
+}
 
 function handlePhoto() {
   const $mapPhotoInput = $('#map-photo-url');
