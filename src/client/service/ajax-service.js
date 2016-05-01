@@ -1,5 +1,6 @@
 const readCookie = require('./services').readCookie;
-const backendUrl = "http://localhost:3300";
+const backendUrl = "http://api-decisions.herokuapp.com/trees";
+// const backendUrl = "http://localhost:3300";
 const $ = require('jquery');
 
 function addCredentials(headers) {
