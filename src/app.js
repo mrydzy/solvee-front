@@ -35,7 +35,7 @@ function configure(cfg) {
 
   app.set('cfg', cfg);
 
-  app.set('views', path.join(cfg.DIR, 'views'));
+  app.set('views', path.join(`${__dirname}`, 'views'));
   app.set('view engine', 'jade');
 
   app.use(cookieParser('4l4m4'));

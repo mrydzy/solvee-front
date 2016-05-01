@@ -3,7 +3,7 @@ const send = require('./service/ajax-service').send;
 
 const alert = require('./service/dialogs').alert;
 
-$(() => {
+$(function() {
  $('#user-form').on('submit', () => {
     saveUser({
       name: $('#name').val(),
