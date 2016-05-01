@@ -6,14 +6,11 @@
     }
   }
 }
-
+//
 @mixin row-choice($id, $i) {
-  .map-row-#{$id} {
-    display: none;
-  }
   @include row-visible($id);
 
-  @if ($i < $max-rows) {
+  @if ($i < $max-rows - 1) {
     @for $j from 1 through $max-columns {
       @include row-choice($id+$j, $i+1);
     }

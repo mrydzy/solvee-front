@@ -1,5 +1,9 @@
 @include row-choice('', 0);
 
+div[class^="map-row-"], div[class*="map-row-"] {
+  display: none;
+}
+
 .row-wrapper {
   width: 100%;
 }
