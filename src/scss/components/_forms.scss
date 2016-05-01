@@ -1,5 +1,6 @@
 .field-container {
   margin: 20px 0;
+  width: 100%;
 
   label {
     display: block;
@@ -65,16 +66,20 @@
   flex-grow: 1;
 }
 
+.image-input {
+  flex-direction: column;
+}
+
 .map-photo-preview {
   display: block;
-  width:400px;
-  height:196px;
+  height: 300px;
 }
 
 .map-language {
   display: flex;
   flex-direction: column;
   padding: 0 20px;
+  width: 200px;
   .radio-group {
     label {
       opacity: .4;
