@@ -16,7 +16,7 @@ block content
       ul.map-list
         each map in mapList
           li.map-item
-            a.map-link(href=env + 'show/' + map.id)
+            a.map-link(href=env + '/maps/show/' + map.id)
               .map-image
                 if (map.photoLink)
                   img(src=map.photoLink)
