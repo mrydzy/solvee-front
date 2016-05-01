@@ -1,0 +1,38 @@
+@mixin generateTheme($name, $color) {
+  .#{$name} {
+    .map-col {
+      border: 3px solid $color;
+      color: $color;
+      &:hover::after, &::after {
+        border-top-color: $color;
+      }
+    }
+    .map-header .map-title {
+      background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, transparentize($color, .3) 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%, transparentize($color, .3) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%, transparentize($color, .3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+    }
+    .map-footer {
+      background-color: transparentize($color, .3)
+    }
+    .map-lines {
+      &.top.top-active, &.top.top-active-highlight {
+        border-top-color: $color;
+      }
+      &.right.right-active, &.right.right-active-highlight {
+        border-right-color: $color;
+      }
+      &.bottom.bottom-active, &.bottom.bottom-active-highlight {
+        border-bottom-color: $color;
+      }
+      &.left.left-active, &.left.left-active-highlight {
+        border-left-color: $color;
+      }
+    }
+  }
+}
+
+@include generateTheme(pink, $color-pink);
+@include generateTheme(dark, $color-dark);
+@include generateTheme(autumn, $color-autumn);

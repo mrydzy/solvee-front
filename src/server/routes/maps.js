@@ -98,7 +98,8 @@ module.exports = (passport) => {
           isOwner: isOwner(req.headers.cookie, response.User.facebookId),
           userId: response.User.id,
           currentUser: req.user,
-          mapCoverUrl: response.photoLink
+          mapCoverUrl: response.photoLink,
+          style: response.Style ? response.Style.name.toLowerCase() : 'solvee'
         });
       })
       .catch(e => res.json(e));
@@ -125,7 +126,8 @@ module.exports = (passport) => {
           username: response.User.name,
           userId: response.User.id,
           currentUser: req.user,
-          mapCoverUrl: '//placekitten.com/800/600'
+          mapCoverUrl: response.photoLink,
+          style: response.Style ? response.Style.name.toLowerCase() : 'solvee'
         });
       })
       .catch(e => res.json(e));
