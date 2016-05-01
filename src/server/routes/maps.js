@@ -23,10 +23,11 @@ module.exports = (passport) => {
       .catch(e => res.send(e));
   });
 
-  router.get('/current',
+  router.get('/current/:page?',
     require('connect-ensure-login').ensureLoggedIn(authUrl),
       (req, res) => {
-          var backendUrl = req.app.locals.settings.cfg.API_URI + "/trees/current";
+          var backendUrl = req.app.locals.settings.cfg.API_URI + "/trees/current?page=";
+          backendUrl += req.params.page ? + req.params.page : '1';
           fetch(backendUrl, {
             headers: {
               Authorization: `Bearer ${jwtSign(req.user)}`

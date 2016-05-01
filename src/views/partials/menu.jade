@@ -4,7 +4,7 @@ if (currentUser != undefined)
       a(href='/maps/current') Hi, #{currentUser.name}
   ul.menu
     li#recent-maps-menu(class=url.indexOf("/maps/list") == 0 ? "active" : "")
-      a(href='/maps/list/0') recent
+      a(href='/maps/list') recent
     li#build-menu(class=url === '/maps/build' ? "active" : "")
       a(href='/maps/build') Create map
     li#user-menu(class=url === '/users/edit' ? "active" : "")
