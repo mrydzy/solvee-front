@@ -1,7 +1,6 @@
 extends ./layouts/default
 
 include ./mixins/map-items.jade
--env = 'http://www.solvee.click/maps/show/'
 
 block title
   title= 'Edit your decision map'
@@ -13,34 +12,6 @@ block header-text
   h1= 'Edit '
 
 block content
-  .map-wrapper.builder
-    form#map-form
-      .map-meta
-        .field-wrapper
-          .field-container.map-title
-            label(for='map-title') Map title
-            input#map-title(type='text', placeholder='Enter map title', required='')
-          // TODO: init from backend /languages
-          .field-container.map-language
-            label Map language
-            .radio-groups-wrapper
-              .radio-group
-                label(for='lang-en')
-                  img(src='/assets/flag_gb.svg', alt='')
-                input#lang-en(type='radio', name='lang', value='en')
-              .radio-group
-                .radio-group
-                  label(for='lang-pl')
-                    img(src='/assets/flag_pl.svg', alt='')
-                  input#lang-pl(type='radio', name='lang', value='pl')
-        .field-wrapper
-          .field-container.map-photo
-            label(for='map-title') Map photo url
-            input#map-photo-url(type='url', placeholder='Enter photo url')
-        .map-header.map-photo-preview#map-photo-preview
-          h2.map-title.map-title-preview Question?
-      #so='Please enable javascript'
-      .field-container.actions
-        button#save-tree-button(type='submit') Save
+  include ./partials/map-creator.jade
 
 
