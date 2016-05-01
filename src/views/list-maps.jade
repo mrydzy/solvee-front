@@ -18,7 +18,8 @@ block content
           li.map-item
             a.map-link(href=env + 'show/' + map.id)
               .map-image
-                img(src='//placekitten.com/800/600')
+                if (map.photoLink)
+                  img(src=map.photoLink)
               .map-info
                 h2.map-title= map.name
                 .map-excerpt

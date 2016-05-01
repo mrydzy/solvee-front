@@ -98,7 +98,7 @@ module.exports = (passport) => {
           isOwner: isOwner(req.headers.cookie, response.User.facebookId),
           userId: response.User.id,
           currentUser: req.user,
-          mapCoverUrl: '//placekitten.com/800/600'
+          mapCoverUrl: response.photoLink
         });
       })
       .catch(e => res.json(e));
