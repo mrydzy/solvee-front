@@ -32,3 +32,7 @@ block content
                 div.map-created
                   span.label Added&nbsp;
                   span.value= map.createdAt
+    -var currentPage = url !== '/maps/list' ? parseInt(url.substring(url.lastIndexOf('/') + 1, url.length)) : 0;
+    -var nextPageUrl = '/maps/list/' + (currentPage + 1) ;
+    a.next-page(href=nextPageUrl)
+      | Next page

@@ -45,10 +45,11 @@ module.exports = (passport) => {
           .catch(e => res.send(e));
   });
 
-  router.get('/list/:lang?', function(req, res) {
-    var backendUrl = req.app.locals.settings.cfg.API_URI + '/index';
+  router.get('/list/:page?/:lang?', function(req, res) {
+    var backendUrl = req.app.locals.settings.cfg.API_URI + '/index?page=';
+    backendUrl += req.params.page ? + req.params.page : '1';
     if (req.params.lang) {
-      backendUrl += '?lang=' + encodeURIComponent(req.params.lang);
+      backendUrl += '&lang=' + encodeURIComponent(req.params.lang);
     }
     fetch(backendUrl)
       .then(function(response) {
