@@ -62,9 +62,9 @@ function configure(cfg) {
   //   next()
   // });
 
-  app.use(require('./server/routes')(passport));
-
   app.use(express.static(cfg.DIR));
+
+  app.use(require('./server/routes')(passport));
 
   return app;
 }

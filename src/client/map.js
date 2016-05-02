@@ -15,7 +15,7 @@ $(function() {
   $('#delete-map').click(() => {
     confirm('Are you sure you want to delete this tree?')
       .then(() => deleteTree(id))
-      .done(() => window.location.href = '/maps/list');
+      .done(() => window.location.href = '/');
   });
 
   $('#embed').click(() => {

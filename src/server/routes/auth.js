@@ -10,7 +10,7 @@ module.exports = (passport) => {
 
   router.get('/logout', function(req, res) {
     req.logOut();
-    res.redirect('/maps/list');
+    res.redirect('/');
   });
 
   router.get('/facebook', passport.authenticate('facebook', { scope: 'email'}));
