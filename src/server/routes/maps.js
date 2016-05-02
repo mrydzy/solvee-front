@@ -48,26 +48,6 @@ module.exports = (passport) => {
           .catch(e => res.send(e));
   });
 
-  router.get('/', function(req, res) {
-    var backendUrl = req.app.locals.settings.cfg.API_URI + '/index?page=';
-    backendUrl += req.params.page ? + req.params.page : '1';
-    if (req.params.lang) {
-      backendUrl += '&lang=' + encodeURIComponent(req.params.lang);
-    }
-    fetch(backendUrl)
-      .then(function(response) {
-        if (response.status >= 400) {
-          res.status(500).send('Error - check the requested language');
-          throw new Error("Bad response from server", response);
-        }
-        return response.json();
-      })
-      .then(function(response) {
-        res.render('map-list', { mapList: response, lang: req.params.lang, currentUser: req.user, currentPage: 1, nextPagePrefix: '/maps/'});
-      })
-      .catch(e => res.send(e));
-  });
-
   function isOwner(cookie, userFacebookId) {
     const credentialsIndex = cookie.indexOf('credentials');
     if (credentialsIndex > -1) {
@@ -146,6 +126,23 @@ module.exports = (passport) => {
         res.render( 'map-editor', {currentUser: req.user});
       }
   );
+  
+  router.get('/', function(req, res) {
+    var backendUrl = req.app.locals.settings.cfg.API_URI + '/index?page=';
+    backendUrl += req.params.page ? + req.params.page : '1';
+    fetch(backendUrl)
+      .then(function(response) {
+        if (response.status >= 400) {
+          res.status(500).send('Error - check the requested language');
+          throw new Error("Bad response from server", response);
+        }
+        return response.json();
+      })
+      .then(function(response) {
+        res.render('map-list', { mapList: response, lang: req.params.lang, currentUser: req.user, currentPage: 1, nextPagePrefix: '/maps/'});
+      })
+      .catch(e => res.send(e));
+  });
 
   router.get('/maps/:page?/:lang?', function(req, res) {
     var backendUrl = req.app.locals.settings.cfg.API_URI + '/index?page=';
