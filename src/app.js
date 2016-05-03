@@ -49,7 +49,7 @@ function getSessionOptions() {
 passport.use(new FacebookStrategy({
     clientID: clientId,
     clientSecret: clientSecret,
-    callbackURL: "http://www.localhost:3000/auth/facebook/callback",
+    callbackURL: process.env.WEBSITE_URL + "/auth/facebook/callback",
     enableProof: true,
     profileFields: ['id', 'displayName', 'emails']
   },

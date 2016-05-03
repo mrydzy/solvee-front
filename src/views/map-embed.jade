@@ -15,7 +15,7 @@ block content
       h2.map-title= name
     .map-meta
       .creator Created by:
-        a.creator-name(href='http://www.localhost:3000/maps/users/'+ userId)= username
+        a.creator-name(href='http://solvee.click/maps/users/'+ userId)= username
     .map-row
       each option, index in map.options
         +map-item(option, 'col-' + index)
