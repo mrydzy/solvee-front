@@ -9,9 +9,6 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const redis = require('redis');
 const RedisStore = require('connect-redis')(session);
 
-const clientId = require('./client/service/constants').clientId;
-const clientSecret = require('./client/service/constants').clientSecret;
-
 function getSessionOptions() {
   const maxAge = process.env.SESSION_MAX_AGE || 86400000; // def: 24h
   const sessionOptionsDefaults = {
@@ -47,8 +44,8 @@ function getSessionOptions() {
 }
 
 passport.use(new FacebookStrategy({
-    clientID: clientId,
-    clientSecret: clientSecret,
+    clientID: process.env.FACEBOOK_CLIENT_ID,
+    clientSecret: process.env.APP_SECRET,
     callbackURL: process.env.WEBSITE_URL + "/auth/facebook/callback",
     enableProof: true,
     profileFields: ['id', 'displayName', 'emails']
