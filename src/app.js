@@ -72,7 +72,7 @@ function configure(cfg) {
   app.set('views', path.join(`${__dirname}`, 'views'));
   app.set('view engine', 'jade');
 
-  app.use(cookieParser('4l4m4'));
+  app.use(cookieParser(process.env.SESSION_SECRET));
 
   app.use(session(getSessionOptions()));
   app.use(passport.initialize());
