@@ -41,7 +41,7 @@
     "webpack-dev-middleware": "^1.5.1"
   },
   "scripts": {
-    "postinstall": "webpack --verbose --colors --display-error-details --config webpack.config.dist.js",
+    "postinstall": "scripts/build.sh",
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
