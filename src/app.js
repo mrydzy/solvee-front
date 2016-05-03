@@ -6,7 +6,6 @@ const session = require('express-session');
 const app = express();
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
-const cookieParser = require('cookie-parser');
 const redis = require('redis');
 const RedisStore = require('connect-redis')(session);
 
@@ -14,11 +13,14 @@ const clientId = require('./client/service/constants').clientId;
 const clientSecret = require('./client/service/constants').clientSecret;
 
 function getSessionOptions() {
+  const maxAge = process.env.SESSION_MAX_AGE || 86400000; // def: 24h
   const sessionOptionsDefaults = {
     secret: process.env.SESSION_SECRET,
     resave: true,
+    saveUninitialized: false,
     cookie: {
-      maxAge: process.env.SESSION_MAX_AGE
+      maxAge: maxAge,
+      expires: new Date(Date.now() + maxAge)
     },
     rolling: true,
     name: 'SolveeFront'
@@ -43,7 +45,6 @@ function getSessionOptions() {
     });
   }
 }
-
 
 passport.use(new FacebookStrategy({
     clientID: clientId,
@@ -71,8 +72,6 @@ function configure(cfg) {
 
   app.set('views', path.join(`${__dirname}`, 'views'));
   app.set('view engine', 'jade');
-
-  app.use(cookieParser(process.env.SESSION_SECRET));
 
   app.use(session(getSessionOptions()));
   app.use(passport.initialize());

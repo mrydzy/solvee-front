@@ -1,5 +1,5 @@
 {
-  "name": "quiz-generator",
+  "name": "solvee",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -23,7 +23,7 @@
     "jade": "^1.11.0",
     "jquery": "^2.2.1",
     "json-loader": "^0.5.4",
-    "jsonwebtoken": "^5.7.0",
+    "jsonwebtoken": "^6.2.0",
     "lodash": "^4.6.1",
     "node-sass": "^3.4.2",
     "passport": "^0.3.2",
@@ -46,7 +46,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node": "5.9"
+    "node": "6.0"
   },
   "author": "Majka Rydzy",
   "license": "ISC"
