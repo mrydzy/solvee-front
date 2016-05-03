@@ -6,11 +6,46 @@ const session = require('express-session');
 const app = express();
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
-var cookieParser = require('cookie-parser');
-
+const redis = require('redis');
+const RedisStore = require('connect-redis')(session);
 
 const clientId = require('./client/service/constants').clientId;
 const clientSecret = require('./client/service/constants').clientSecret;
+
+function getSessionOptions() {
+  const maxAge = process.env.SESSION_MAX_AGE || 86400000; // def: 24h
+  const sessionOptionsDefaults = {
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: maxAge,
+      expires: new Date(Date.now() + maxAge)
+    },
+    rolling: true,
+    name: 'SolveeFront'
+  };
+
+  if (process.env.REDIS_URL) {
+    const redisClient = redis.createClient({url: process.env.REDIS_URL});
+    return Object.assign(sessionOptionsDefaults, {
+      store: new RedisStore({
+        client: redisClient,
+        ttl: sessionOptionsDefaults.cookie.maxAge
+      })
+    });
+  } else { // Use file store on local environment
+    console.log('WARNING: No REDIS_URL env var found. Using file session storage.');
+    const FileStore = require('session-file-store')(session);
+    return Object.assign(sessionOptionsDefaults, {
+      store: new FileStore({
+        path: '/tmp/sessions',
+        ttl: sessionOptionsDefaults.cookie.maxAge
+      })
+    });
+  }
+}
+
 passport.use(new FacebookStrategy({
     clientID: clientId,
     clientSecret: clientSecret,
@@ -38,9 +73,7 @@ function configure(cfg) {
   app.set('views', path.join(`${__dirname}`, 'views'));
   app.set('view engine', 'jade');
 
-  app.use(cookieParser('4l4m4'));
-
-  app.use(session({ secret: '4l4m4', resave: true, saveUninitialized: true }));
+  app.use(session(getSessionOptions()));
   app.use(passport.initialize());
   app.use(passport.session());
 
@@ -48,19 +81,6 @@ function configure(cfg) {
     res.locals.url = req.url;
     next();
   });
-
-  // app.use(function(req, res, next) {
-  //   console.log('-- session --');
-  //   console.dir(req.session);
-  //   console.log('-------------');
-  //   console.log('-- cookies --');
-  //   console.dir(req.cookies);
-  //   console.log('-------------');
-  //   console.log('-- signed cookies --');
-  //   console.dir(req.signedCookies);
-  //   console.log('-------------');
-  //   next()
-  // });
 
   app.use(express.static(cfg.DIR));
 

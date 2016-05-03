@@ -1,5 +1,5 @@
 {
-  "name": "quiz-generator",
+  "name": "solvee",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -10,9 +10,11 @@
     "babel-preset-es2015": "^6.6.0",
     "boom": "^3.1.2",
     "connect-ensure-login": "^0.1.1",
+    "connect-redis": "^3.0.2",
     "cookie-parser": "^1.4.1",
     "css-loader": "^0.23.1",
     "dotenv": "^2.0.0",
+    "express": "^4.13.4",
     "express-session": "^1.13.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
@@ -22,12 +24,14 @@
     "jade": "^1.11.0",
     "jquery": "^2.2.1",
     "json-loader": "^0.5.4",
-    "jsonwebtoken": "^5.7.0",
+    "jsonwebtoken": "^6.2.0",
     "lodash": "^4.6.1",
     "node-sass": "^3.4.2",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
+    "redis": "^2.6.0-2",
     "sass-loader": "^3.2.0",
+    "session-file-store": "^0.2.0",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.14"
@@ -37,13 +41,13 @@
     "webpack-dev-middleware": "^1.5.1"
   },
   "scripts": {
-    "postinstall": "webpack --verbose --colors --display-error-details --config webpack.config.dist.js",
+    "postinstall": "scripts/build.sh",
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node": "5.9"
+    "node": "6.0"
   },
   "author": "Majka Rydzy",
   "license": "ISC"
