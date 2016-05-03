@@ -1,5 +1,5 @@
 "use strict";
-require('dotenv').load();
+require('dotenv').load({silent: true});
 
 const _DEV_ = process.env.NODE_ENV !== 'production';
 
