@@ -31,7 +31,8 @@ function handleStyles() {
 }
 
 function handleStyleChange(e) {
-  const currentStyle = $(e.currentTarget).find('option:selected').text() || '';
+  const currentStyle = $(e.currentTarget)
+      .find('option:selected').text() || '';
   changeStyle(currentStyle);
 }
 
@@ -53,7 +54,6 @@ function handleLanguages() {
   $('[name="lang"]').change(function(){
     $('[name="lang"]').siblings('label').removeClass('active');
     $('[name="lang"]:checked').siblings('label').addClass('active');
-    var radioValue = $(this).val();
   })
 }
 
@@ -70,7 +70,7 @@ function handleBlur(event) {
 }
 
 function getCurrentNode(id) {
-  var current = djson.options[id.charAt(0) - 1]
+  var current = djson.options[id.charAt(0) - 1];
   log("mining for current", current, id);
   for (var i = 1; i < id.length; i++ ) {
     current = current.children[id.charAt(i) - 1];
@@ -139,31 +139,28 @@ function initColsActions() {
   $(".col-input:empty").each(function() {
     return $(this.parentNode).addClass('map-placeholder');
   });
-  autosize($('textarea'));
-  $('textarea').on('blur', handleBlur);
+  const $textarea = $('textarea'); 
+  autosize($textarea);
+  $textarea.on('blur', handleBlur);
   $('.node-remover').click(removeNodeOnClick);
 }
 
-function removeNodeOnClick(event) {
+function removeNodeOnClick() {
   log('removing', this.id);
   var id = this.id.replace('nr-', '');
   var current = getCurrentNode(id);
-
   var wrapper = $(this.parent).parent();
   confirmRemoveBranch(current, wrapper)
 }
 
 function handleTitle(titleInput) {
-  //djson.title = titleInput.val();
-  var title = titleInput.val();
-  document.title = title;
+  document.title = titleInput.val();
 }
 
 function initMap(json) {
   djson = json;
   var mapTitleInput = $('#map-title');
   handleTitle(mapTitleInput);
-  // prepareMap();
   mapTitleInput.change(function() {
     handleTitle($(this));
   });
