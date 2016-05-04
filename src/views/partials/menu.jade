@@ -1,8 +1,5 @@
 if currentUser
   ul.menu
-    li#name-menu(class=url === "/maps/current" ? "active" : "")
-      a(href='/maps/current') Hi, #{currentUser.name}
-  ul.menu
     li#recent-maps-menu(class=url === "/" ? "active" : "")
       a(href='/') recent
     li#build-menu(class=url === '/maps/build' ? "active" : "")
@@ -11,3 +8,6 @@ if currentUser
       a(href='/users/edit') Account
     li#logout-menu(class=url === '/auth/logout' ? "active" : "")
       a(href='/auth/logout') Logout
+  ul.menu
+    li#name-menu(class=url === "/maps/current" ? "active" : "")
+      a(href='/maps/current') Hi, #{currentUser.name}
