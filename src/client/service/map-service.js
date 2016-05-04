@@ -1,7 +1,7 @@
 const send = require('./ajax-service').send;
 const $ = require('jquery');
 // const backendUrl = "http://localhost:3300";
-const backendUrl = "http://api-decisions.herokuapp.com";
+const backendUrl = "http://solvee-api.herokuapp.com";
 const alert = require('./dialogs').alert;
 
 
