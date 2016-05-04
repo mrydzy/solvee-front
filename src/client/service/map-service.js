@@ -9,7 +9,7 @@ function sendTree(data) {
     send("POST", data, "/trees")
       .done(function(event) {
         alert('Congrats, tree was created!');
-        window.location.href = '/maps/show/'+ event.id;
+        window.location.href = '/maps/'+ event.id;
       }
     ).fail(function (event) {
       alert('There was an error submitting your request :(. Please contact us for support or try again later!');
@@ -24,7 +24,7 @@ function updateTree(data, id) {
     send("PUT", data, "/trees/" + id)
       .done(() => {
           alert('Congrats, tree was created!');
-          window.location.href = '/maps/show/'+id;
+          window.location.href = '/'+id;
         }
       )
       .fail(function (event) {

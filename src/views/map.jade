@@ -1,7 +1,7 @@
 extends ./layouts/default
 
 include ./mixins/map-items.jade
--env = 'http://www.solvee.click/maps/show/'
+-env = 'http://www.solvee.click/'
 
 block metadata
   meta(property='og:url', content=env+url)
@@ -24,14 +24,14 @@ block content
     .map-header(style='background-image:url(' + mapCoverUrl  + ')')
       h2.map-title= name
     .map-meta
-      if (isOwner)
       .creator Created by:
         a.creator-name(href='http://solvee.click/maps/users/'+ userId)= username
     .map-row
       each option, index in map.options
         +map-item(option, 'col-' + index)
     +child-rows(map.options)
-    .owner-buttons
-      a.btn-secondary#edit-map(href='http://solvee.click:3000/maps/build/' + id) Edit
-      a.btn-secondary#delete-map Delete
+    if (isOwner)
+      .owner-buttons
+        a.btn-secondary#edit-map(href='http://solvee.click/maps/build/' + id) Edit
+        a.btn-secondary#delete-map Delete
     include ./partials/sharing.jade

@@ -59,7 +59,42 @@ module.exports = (passport) => {
     return false;
   }
 
-  router.get('/maps/show/:id', function(req, res) {
+  router.get('/maps/build',
+    require('connect-ensure-login').ensureLoggedIn(authUrl),
+    (req, res) => {
+      res.render( 'map-builder', {currentUser: req.user});
+    });
+
+  router.get('/maps/build/:id',
+    require('connect-ensure-login').ensureLoggedIn(authUrl),
+      (req, res) => {
+        res.render( 'map-editor', {currentUser: req.user});
+      }
+  );
+
+  router.get('/maps/:page?/:lang?', function(req, res) {
+    var backendUrl = req.app.locals.settings.cfg.API_URI + '/index?page=';
+    backendUrl += req.params.page ? + req.params.page : '1';
+    if (req.params.lang) {
+      backendUrl += '&lang=' + encodeURIComponent(req.params.lang);
+    }
+    fetch(backendUrl)
+      .then(function(response) {
+        if (response.status >= 400) {
+          res.status(500).send('Error - check the requested language');
+          throw new Error("Bad response from server", response);
+        }
+        return response.json();
+      })
+      .then(function(response) {
+        var currentPage = parseInt(res.locals.url.replace('/maps/', ''));
+        res.render('map-list', { mapList: response, lang: req.params.lang, currentUser: req.user, currentPage: currentPage, nextPagePrefix: '/maps/'});
+      })
+      .catch(e => res.send(e));
+  });
+
+
+  router.get('/:id', function(req, res) {
     const backendUrl = req.app.locals.settings.cfg.API_URI + "/trees";
     var treeId = req.params.id;
 
@@ -87,7 +122,7 @@ module.exports = (passport) => {
       .catch(e => res.json(e));
   });
 
-  router.get('/maps/show/:id/embed', function(req, res) {
+  router.get('/:id/embed', function(req, res) {
     const backendUrl = req.app.locals.settings.cfg.API_URI + "/trees";
     var treeId = req.params.id;
 
@@ -114,19 +149,7 @@ module.exports = (passport) => {
       .catch(e => res.json(e));
   });
 
-  router.get('/maps/build',
-    require('connect-ensure-login').ensureLoggedIn(authUrl),
-    (req, res) => {
-      res.render( 'map-builder', {currentUser: req.user});
-    });
 
-  router.get('/maps/build/:id',
-    require('connect-ensure-login').ensureLoggedIn(authUrl),
-      (req, res) => {
-        res.render( 'map-editor', {currentUser: req.user});
-      }
-  );
-  
   router.get('/', function(req, res) {
     var backendUrl = req.app.locals.settings.cfg.API_URI + '/index?page=';
     backendUrl += req.params.page ? + req.params.page : '1';
@@ -140,27 +163,6 @@ module.exports = (passport) => {
       })
       .then(function(response) {
         res.render('map-list', { mapList: response, lang: req.params.lang, currentUser: req.user, currentPage: 1, nextPagePrefix: '/maps/'});
-      })
-      .catch(e => res.send(e));
-  });
-
-  router.get('/maps/:page?/:lang?', function(req, res) {
-    var backendUrl = req.app.locals.settings.cfg.API_URI + '/index?page=';
-    backendUrl += req.params.page ? + req.params.page : '1';
-    if (req.params.lang) {
-      backendUrl += '&lang=' + encodeURIComponent(req.params.lang);
-    }
-    fetch(backendUrl)
-      .then(function(response) {
-        if (response.status >= 400) {
-          res.status(500).send('Error - check the requested language');
-          throw new Error("Bad response from server", response);
-        }
-        return response.json();
-      })
-      .then(function(response) {
-        var currentPage = parseInt(res.locals.url.replace('/maps/', ''));
-        res.render('map-list', { mapList: response, lang: req.params.lang, currentUser: req.user, currentPage: currentPage, nextPagePrefix: '/maps/'});
       })
       .catch(e => res.send(e));
   });
