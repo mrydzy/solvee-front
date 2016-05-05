@@ -1,13 +1,14 @@
 if currentUser
+
+  ul.menu
+    li#name-menu(class=url === "/users/edit" ? "active" : "")
+      a(href='/users/edit') Hi, #{currentUser.name}
   ul.menu
     li#recent-maps-menu(class=url === "/" ? "active" : "")
       a(href='/') recent
     li#build-menu(class=url === '/maps/build' ? "active" : "")
       a(href='/maps/build') Create map
-    li#user-menu(class=url === '/users/edit' ? "active" : "")
-      a(href='/users/edit') Account
+    li#user-menu(class=url === '/maps/current' ? "active" : "")
+      a(href='/maps/current') My maps
     li#logout-menu(class=url === '/auth/logout' ? "active" : "")
       a(href='/auth/logout') Logout
-  ul.menu
-    li#name-menu(class=url === "/maps/current" ? "active" : "")
-      a(href='/maps/current') Hi, #{currentUser.name}
