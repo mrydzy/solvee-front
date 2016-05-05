@@ -76,6 +76,7 @@ function configure(cfg) {
 
   app.use(function(req, res, next) {
     res.locals.url = req.url;
+    res.locals.env = process.env.WEBSITE_URL
     next();
   });
 
