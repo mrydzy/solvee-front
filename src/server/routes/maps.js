@@ -4,6 +4,7 @@ const fetch = require('isomorphic-fetch');
 const authUrl = require('../../client/service/constants').authUrl;
 const decodeUser = require('../authSign').readJWT;
 const jwtSign = require('../authSign').sign;
+const facbeookClientId = process.env.FACEBOOK_CLIENT_ID;
 
 module.exports = (passport) => {
 
@@ -116,7 +117,8 @@ module.exports = (passport) => {
           userId: response.User.id,
           currentUser: req.user,
           mapCoverUrl: response.photoLink,
-          style: response.Style ? response.Style.name.toLowerCase() : 'solvee'
+          style: response.Style ? response.Style.name.toLowerCase() : 'solvee',
+          fbClientId: facbeookClientId
         });
       })
       .catch(e => res.json(e));
