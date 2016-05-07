@@ -10,21 +10,46 @@ const initMapRows = mapUtils.initMapRows;
 const textIdPrefix = 'text-';
 const maxChildren = require('./service/constants').maxChildren;
 const maxDepth = require('./service/constants').maxDepth;
-const getTreeTemplate = require('./service/map-service').getTreeTemplate
+const getTreeTemplate = require('./service/map-service').getTreeTemplate;
 
-var jadeVar;var djson = {};
+let jadeVar;
+let djson = {};
+let currentTree = {};
 
 $(function() {
-  getTreeTemplate().done((data) => {
+  getTreeTemplate()
+    .done((data) => {
       jadeVar = data;
       if (djson.options) {
         prepareMap();
       }
-  });
+    });
   handleLanguages();
   handlePhoto();
   handleStyles();
 });
+
+$(document).on('map-ready', (ev, tree) => {
+  updateActionButtons(tree && tree.publishedAt ? 'published' : 'draft')
+});
+
+function updateActionButtons(state) {
+  log('Updating action buttons for:', state);
+  switch (state) {
+    case 'draft':
+      return showSaveAndPublishButton();
+    case 'published':
+      return showUnpublishButton();
+  }
+}
+
+function showUnpublishButton() {
+  $('.unpublish-button').addClass('active');
+}
+
+function showSaveAndPublishButton() {
+  $('.save-publish-button').addClass('active');
+}
 
 function handleStyles() {
   $('#map-style-select').change(handleStyleChange);
@@ -114,7 +139,7 @@ function updateNode(area, value, wrapper) {
     }
     prepareMap();
   } else { //textarea ie empty
-      confirmRemoveBranch(current, wrapper);
+    confirmRemoveBranch(current, wrapper);
   }
 }
 
@@ -139,7 +164,7 @@ function initColsActions() {
   $(".col-input:empty").each(function() {
     return $(this.parentNode).addClass('map-placeholder');
   });
-  const $textarea = $('textarea'); 
+  const $textarea = $('textarea');
   autosize($textarea);
   $textarea.on('blur', handleBlur);
   $('.node-remover').click(removeNodeOnClick);
@@ -157,8 +182,9 @@ function handleTitle(titleInput) {
   document.title = titleInput.val();
 }
 
-function initMap(json) {
-  djson = json;
+function initMap(optionsOnly, tree) {
+  djson = optionsOnly;
+  currentTree = tree;
   var mapTitleInput = $('#map-title');
   handleTitle(mapTitleInput);
   mapTitleInput.change(function() {
@@ -176,7 +202,7 @@ function prepareMap() {
   $('#text-1').attr('required', true);
   initColsActions();
   initMapRows();
-  $(document).trigger( "map-ready");
+  $(document).trigger('map-ready', currentTree);
 }
 
 function getCleanTree() {

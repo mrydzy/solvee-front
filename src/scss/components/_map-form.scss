@@ -1,0 +1,20 @@
+.actions {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+
+  .unpublish-button,
+  .save-publish-button {
+    display: none;
+    &.active {
+      display: inline-block;
+    }
+  }
+
+  button {
+    margin-bottom: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

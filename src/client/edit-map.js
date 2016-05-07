@@ -3,6 +3,7 @@ const getTree = require('./service/map-service').getTree;
 const getClearTree = require('./create-map-logic').getCleanTree;
 const populatePlaceholders = require('./create-map-logic').populatePlaceholders;
 const updateTree = require('./service/map-service').updateTree;
+const unpublishTree = require('./service/map-service').unpublishTree();
 const analytics = require('./service/tracking').editMapAnalytics;
 
 const $ = require('jquery');
@@ -21,7 +22,7 @@ $(function() {
       loadPhoto(json.photoLink);
     }
     var treeWithPlaceholders = populatePlaceholders(jsonTree);
-    initMap(treeWithPlaceholders);
+    initMap(treeWithPlaceholders, json);
   });
 
   function setTitle(title) {
@@ -49,7 +50,7 @@ $(function() {
     languageRadioButton.trigger('change');
   }
 
-  function callUpdateTree(e) {
+  function callUpdateTree(e, shouldPublish) {
     e.preventDefault();
     var treeObj = {
       data: JSON.stringify(getClearTree()),
@@ -57,18 +58,30 @@ $(function() {
       lang: $('[name="lang"]').val(),
       styleId: $('#map-style-select').val()
     };
+
+    if (shouldPublish) {
+      treeObj.published = true;
+    }
+
     var photoLink = $('#map-photo-url').val();
     if (photoLink) {
       treeObj.photoLink = photoLink
     }
+
     updateTree(treeObj, id);
   }
 
+  function unpublishTree() {
+    unpublishTree(id);
+  }
+
   const $mapTitle = $('#map-title');
+
   $mapTitle.keyup(() => {
     $('.map-title-preview').text($mapTitle.val());
   });
-
+  $('.unpublish-button').click(unpublishTree);
+  $('.save-publish-button').click((e) => callUpdateTree(e, true));
   $('#map-form').on('submit', callUpdateTree);
   $(document).on('map-ready', function() {analytics(id);});
 

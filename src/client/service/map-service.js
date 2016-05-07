@@ -40,11 +40,16 @@ function deleteTree(treeId) {
   return send("DELETE", {}, '/trees/' + treeId);
 }
 
+function unpublishTree(treeId) {
+  return send("PATCH", { publlished: true }, '/trees/' + treeId);
+}
+
 
 module.exports = {
   sendTree: sendTree,
   getTree: getTree,
   updateTree: updateTree,
   deleteTree: deleteTree,
+  unpublishTree: unpublishTree,
   getTreeTemplate: getTreeTemplate
 };
