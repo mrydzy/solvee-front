@@ -20,13 +20,18 @@ function initMapRows() {
     var target = e.currentTarget.dataset.target;
     handleNodes(target);
     mapContainer.addClass('stage-' + target);
-    removeOldNodes(target);
+    console.log($(e.currentTarget).offset().top);
     currentPath = target;
-    // $.scrollTo($('#map-bottom'), 500, {offset: (-($(window).height() - 100))});
+    $('html, body').animate({
+      scrollTop: $(e.currentTarget).offset().top - 200
+      }, 500)
+      .promise()
+      .then(() => {
+        removeOldNodes(target);
+      });
   });
   $('.map-col').on('mouseenter', highlightPath);
   $('.map-col').on('mouseleave', clearHighlightPath);
-
 }
 
 var activeNodeTracker = [];
