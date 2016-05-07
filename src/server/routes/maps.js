@@ -4,7 +4,7 @@ const fetch = require('isomorphic-fetch');
 const authUrl = require('../../client/service/constants').authUrl;
 const decodeUser = require('../authSign').readJWT;
 const jwtSign = require('../authSign').sign;
-const facbeookClientId = process.env.FACEBOOK_CLIENT_ID;
+const facebookClientId = process.env.FACEBOOK_CLIENT_ID;
 
 module.exports = (passport) => {
 
@@ -50,6 +50,10 @@ module.exports = (passport) => {
   });
 
   function isOwner(cookie, userFacebookId) {
+    if (cookie == undefined) {
+      return false;
+    }
+    
     const credentialsIndex = cookie.indexOf('credentials');
     if (credentialsIndex > -1) {
       var credentials = cookie.substring((credentialsIndex + 12), cookie.indexOf(';', credentialsIndex));
@@ -118,7 +122,7 @@ module.exports = (passport) => {
           currentUser: req.user,
           mapCoverUrl: response.photoLink,
           style: response.Style ? response.Style.name.toLowerCase() : 'solvee',
-          fbClientId: facbeookClientId
+          fbClientId: facebookClientId
         });
       })
       .catch(e => res.json(e));
