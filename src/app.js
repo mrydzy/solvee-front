@@ -45,7 +45,7 @@ function getSessionOptions() {
 
 passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_CLIENT_ID,
-    clientSecret: process.env.APP_SECRET,
+    clientSecret: process.env.APP_FB_SECRET,
     callbackURL: process.env.WEBSITE_URL + "/auth/facebook/callback",
     enableProof: true,
     profileFields: ['id', 'displayName', 'emails']
