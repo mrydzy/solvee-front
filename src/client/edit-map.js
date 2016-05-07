@@ -3,8 +3,9 @@ const getTree = require('./service/map-service').getTree;
 const getClearTree = require('./create-map-logic').getCleanTree;
 const populatePlaceholders = require('./create-map-logic').populatePlaceholders;
 const updateTree = require('./service/map-service').updateTree;
-const unpublishTree = require('./service/map-service').unpublishTree();
+const unpublishTree = require('./service/map-service').unpublishTree;
 const analytics = require('./service/tracking').editMapAnalytics;
+const confirm = require('./service/dialogs').confirm;
 
 const $ = require('jquery');
 
@@ -72,7 +73,9 @@ $(function() {
   }
 
   function handleUnpublishClick() {
-    unpublishTree(id);
+    confirm('Are you sure you want to unpublish?')
+      .then(() => unpublishTree(id))
+      .then(() => location.reload());
   }
 
   const $mapTitle = $('#map-title');
