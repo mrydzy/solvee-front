@@ -71,7 +71,7 @@ $(function() {
     updateTree(treeObj, id);
   }
 
-  function unpublishTree() {
+  function handleUnpublishClick() {
     unpublishTree(id);
   }
 
@@ -80,7 +80,7 @@ $(function() {
   $mapTitle.keyup(() => {
     $('.map-title-preview').text($mapTitle.val());
   });
-  $('.unpublish-button').click(unpublishTree);
+  $('.unpublish-button').click(handleUnpublishClick);
   $('.save-publish-button').click((e) => callUpdateTree(e, true));
   $('#map-form').on('submit', callUpdateTree);
   $(document).on('map-ready', function() {analytics(id);});
