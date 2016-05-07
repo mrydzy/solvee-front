@@ -11,6 +11,7 @@ const textIdPrefix = 'text-';
 const maxChildren = require('./service/constants').maxChildren;
 const maxDepth = require('./service/constants').maxDepth;
 const getTreeTemplate = require('./service/map-service').getTreeTemplate;
+const confirm = require('./service/dialogs').confirm;
 
 let jadeVar;
 let djson = {};
@@ -111,14 +112,12 @@ function removeBranch(current, wrapper) {
 }
 
 function confirmRemoveBranch(current, wrapper) {
-  var confirmRemove = window.confirm('Are you sure you want to remove option\'s branch');
-  if (confirmRemove) {
+  confirm('Are you sure you want to remove option\'s branch')
+    .then(() => {
       removeBranch(current, wrapper);
       prepareMap();
     $(document).trigger( "remove-branch", [ 'remove-' + current.id ] );
-  } else {
-    prepareMap();
-  }
+  }).catch(prepareMap);
 }
 
 function updateNode(area, value, wrapper) {
