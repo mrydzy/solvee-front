@@ -7,6 +7,7 @@ const router = express.Router();
 
 module.exports = (passport) => {
   router.use('/', require('./maps')(passport));
+  router.use('/info', require('./about')(passport));
   router.use('/auth', require('./auth')(passport));
   router.use('/users', require('./users')(passport));
 
