@@ -43,7 +43,7 @@ block content
                     span.value= map.User.name
                   div.map-created
                     span.label Added&nbsp;
-                    span.value= map.createdAt
+                    span.value(title=moment(map.createdAt).format('lll'))= moment(map.createdAt).fromNow()
       -if (currentPage > 1)
         a.btn.page-navigation(href=nextPagePrefix + (currentPage - 1))
           | Previous page

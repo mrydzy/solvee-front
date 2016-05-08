@@ -6,7 +6,7 @@ const decodeUser = require('../authSign').readJWT;
 const jwtSign = require('../authSign').sign;
 const facebookClientId = process.env.FACEBOOK_CLIENT_ID;
 
-module.exports = (passport) => {
+module.exports = () => {
 
   router.get('/maps/users/:id/:page?', function(req, res) {
     var backendUrl = req.app.locals.settings.cfg.API_URI + "/trees/" + req.params.id + '/user?page="';
