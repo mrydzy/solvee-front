@@ -22,13 +22,11 @@ function initMapRows() {
     mapContainer.addClass('stage-' + target);
     console.log($(e.currentTarget).offset().top);
     currentPath = target;
+    removeOldNodes(target);
     $('html, body').animate({
       scrollTop: $(e.currentTarget).offset().top - 400
-      }, 300)
-      .promise()
-      .then(() => {
-        removeOldNodes(target);
-      });
+      }, 300);
+      
   });
   $('.map-col').on('mouseenter', highlightPath);
   $('.map-col').on('mouseleave', clearHighlightPath);

@@ -18,7 +18,7 @@ block content
     .map-row
       each option, index in map.options
         +map-item(option, 'col-' + index)
-    +child-rows(map.options)
+    +child-rows(map.options, 0)
   header.small
     .header-wrapper
       a(href=env)

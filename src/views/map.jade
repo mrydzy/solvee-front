@@ -31,7 +31,7 @@ block content
     .map-row
       each option, index in map.options
         +map-item(option, 'col-' + index)
-    +child-rows(map.options)
+    +child-rows(map.options, 0)
     if (isOwner)
       .owner-buttons
         a.btn-secondary#edit-map(href='/maps/build/' + id) Edit
