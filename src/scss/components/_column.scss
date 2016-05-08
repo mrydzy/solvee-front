@@ -5,6 +5,16 @@
     content: "?";
   }
 
+  p {
+    margin: .5rem 0;
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   @extend %map-item-frame;
   .map-list & {
     opacity: .7;

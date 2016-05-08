@@ -3,7 +3,7 @@ mixin map-item(item, colClass)
     if (item.children.length > 0)
         -classes.push("parent")
     -classes.push(colClass)
-    div.map-col(class = classes)&attributes({'data-target': item.id, 'id': "node-" + item.id})=item.text
+    div.map-col(class = classes)&attributes({'data-target': item.id, 'id': "node-" + item.id})!= mapHelpers.formatOptionContent(item.text)
 //adds empty columns so that single items are always under their parent
 mixin single-kid(column, kid)
     if (column > 0)

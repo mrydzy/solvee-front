@@ -9,6 +9,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const redis = require('redis');
 const RedisStore = require('connect-redis')(session);
 const moment = require('moment');
+const mapHelpers = require('./utils/map-helpers');
 
 function getSessionOptions() {
   const maxAge = process.env.SESSION_MAX_AGE || 86400000; // def: 24h
@@ -69,6 +70,7 @@ function configure(cfg) {
   app.set('cfg', cfg);
 
   app.locals.moment = moment;
+  app.locals.mapHelpers = mapHelpers;
 
   app.set('views', path.join(`${__dirname}`, 'views'));
   app.set('view engine', 'jade');

@@ -53,7 +53,7 @@ module.exports = () => {
     if (cookie == undefined) {
       return false;
     }
-    
+
     const credentialsIndex = cookie.indexOf('credentials');
     if (credentialsIndex > -1) {
       var credentials = cookie.substring((credentialsIndex + 12), cookie.indexOf(';', credentialsIndex));
@@ -112,8 +112,17 @@ module.exports = () => {
       })
       .then(function(response) {
         const parsedMap = JSON.parse(response.data);
+        const oneParagraph = 'Some text';
+        const twoParagraphs = 'Some text\nanother line';
+        const multipleNewLines = 'Some text\n\n\nsecond line\n\nthird';
         res.render('map', {
-          map: parsedMap,
+          map: Object.assign({}, parsedMap, {
+            options: [
+              { id: 1, text: oneParagraph, children: [] },
+              { id: 2, text: twoParagraphs, children: [] },
+              { id: 3, text: multipleNewLines, children: [] }
+            ]
+          }),
           name : response.name,
           id : response.id,
           username: response.User.name,
