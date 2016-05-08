@@ -7,14 +7,7 @@ const alert = require('./dialogs').alert;
 
 
 function sendTree(data) {
-    send("POST", data, "/trees")
-      .done(function(event) {
-        alert('Congrats, tree was created!');
-        window.location.href = '/maps/'+ event.id;
-      }
-    ).fail(function (event) {
-      alert('There was an error submitting your request :(. Please contact us for support or try again later!');
-    });
+    return send("POST", data, "/trees");
 }
 
 function getTreeTemplate() {

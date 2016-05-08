@@ -3,6 +3,7 @@ const getClearTree = require('./create-map-logic').getCleanTree;
 const sendTree = require('./service/map-service').sendTree;
 const analytics = require('./service/tracking').createMapAnalytics;
 const $ = require('jquery');
+const alert = require('./service/dialogs').alert;
 
 var emptyMapJson = {
   options: [{
@@ -36,7 +37,14 @@ function submitTree(e) {
     treeObj.photoLink = photoLink
   }
   
-  sendTree(treeObj);
+  sendTree(treeObj)
+    .done(function(event) {
+        alert('Congrats, tree was created!');
+        window.location.href = '/'+ event.id;
+      }
+    ).fail(function (event) {
+    alert('There was an error submitting your request :(. Please contact us for support or try again later!');
+  });
 }
 
 $(function() {
