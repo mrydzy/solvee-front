@@ -51,17 +51,22 @@ $(function() {
     languageRadioButton.trigger('change');
   }
 
-  function callUpdateTree(e, shouldPublish) {
+  function callUpdateTree(e) {
+    const $shouldPublishNode = $('[name="shouldPublish"]');
+    const shouldPublish = $shouldPublishNode.val();
+
     e.preventDefault();
-    var treeObj = {
+
+    let treeObj = {
       data: JSON.stringify(getClearTree()),
       name : $('#map-title').val(),
       lang: $('[name="lang"]').val(),
       styleId: $('#map-style-select').val()
     };
 
-    if (shouldPublish) {
+    if (shouldPublish === true) {
       treeObj.published = true;
+      $shouldPublishNode.val(false);
     }
 
     var photoLink = $('#map-photo-url').val();
@@ -84,7 +89,7 @@ $(function() {
     $('.map-title-preview').text($mapTitle.val());
   });
   $('.unpublish-button').click(handleUnpublishClick);
-  $('.save-publish-button').click((e) => callUpdateTree(e, true));
+  $('.save-publish-button').click(() => $('[name="shouldPublish"]').val(true));
   $('#map-form').on('submit', callUpdateTree);
   $(document).on('map-ready', function() {analytics(id);});
 

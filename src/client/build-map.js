@@ -21,30 +21,36 @@ var emptyMapJson = {
   }]};
 
 function submitTree(e) {
-  e.preventDefault();
-  // var title = $('#map-title').val();
-  // var lang = $('[name="lang"]').val();
-  // var photoLink = $('#map-photo-url').val();
+  const $shouldPublishNode = $('[name="shouldPublish"]');
+  const shouldPublish = $shouldPublishNode.val();
 
-  var treeObj = {
+  e.preventDefault();
+
+  let treeObj = {
     data: JSON.stringify(getClearTree()),
     name : $('#map-title').val(),
     lang: $('[name="lang"]').val(),
     styleId: $('#map-style-select').val()
   };
+
+  if (shouldPublish === true) {
+    treeObj.published = true;
+    $shouldPublishNode.val(false);
+  }
+
   var photoLink = $('#map-photo-url').val();
   if (photoLink) {
     treeObj.photoLink = photoLink
   }
-  
+
   sendTree(treeObj)
-    .done(function(event) {
-        alert('Congrats, tree was created!');
-        window.location.href = '/'+ event.id;
-      }
-    ).fail(function (event) {
-    alert('There was an error submitting your request :(. Please contact us for support or try again later!');
-  });
+    .done(event => {
+      alert('Congrats, tree was created!');
+      window.location.href = '/'+ event.id;
+    })
+    .fail(() => {
+      alert('There was an error submitting your request :(. Please contact us for support or try again later!');
+    });
 }
 
 $(function() {
@@ -56,6 +62,7 @@ $(function() {
     $('.map-title-preview').text($mapTitle.val());
   });
   $('#map-form').on('submit', submitTree);
+  $('.save-publish-button').click(() => $('[name="shouldPublish"]').val(true));
   initMap(emptyMapJson);
   $(document).on('map-ready', analytics);
 });
