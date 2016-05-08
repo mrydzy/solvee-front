@@ -6,7 +6,7 @@ function createIframe() {
   var ref = d.getElementById('solvee');
   var iframe = d.createElement('iframe');
   var DEV_URI = 'http://www.localhost:3000/' + window._mapsCfg.mapId + '/embed';
-  var PROD_URI = 'http://solvee.click'+ window._mapsCfg.mapId + '/embed';
+  var PROD_URI = 'http://solvee.click/'+ window._mapsCfg.mapId + '/embed';
   iframe.src = PROD_URI;
   iframe.scrolling = "no";
   iframe.style.border = 'none';
