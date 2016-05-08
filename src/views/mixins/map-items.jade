@@ -18,19 +18,22 @@ mixin row(children, id, column)
         +lines(column, children.length, id)
         div.map-row
             +child-cols(children, column)
-        +child-rows(children)
+        +child-rows(children, column)
 mixin child-cols(children, column)
     if (children.length == 1)
         +single-kid(column, children[0])
     else
         each child, index in children
             +map-item(child, 'col-' + index)
-mixin child-rows(children)
+mixin child-rows(children, parentColumn)
     each child, index in children
         if child.children.length > 0
             if index == 1 && children.length == 2
                 +row(child.children, child.id, 2)
             else
+              if children.length == 1
+                +row(child.children, child.id, parentColumn)
+              else
                 +row(child.children, child.id, index)
 //lines
 mixin lines(column, numberOfChildren, id)

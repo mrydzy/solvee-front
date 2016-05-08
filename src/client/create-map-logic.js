@@ -11,7 +11,6 @@ const textIdPrefix = 'text-';
 const maxChildren = require('./service/constants').maxChildren;
 const maxDepth = require('./service/constants').maxDepth;
 const getTreeTemplate = require('./service/map-service').getTreeTemplate;
-const confirm = require('./service/dialogs').confirm;
 
 let jadeVar;
 let djson = {};
@@ -112,12 +111,14 @@ function removeBranch(current, wrapper) {
 }
 
 function confirmRemoveBranch(current, wrapper) {
-  confirm('Are you sure you want to remove option\'s branch')
-    .then(() => {
+  var confirmRemove = window.confirm('Are you sure you want to remove option\'s branch');
+  if (confirmRemove) {
       removeBranch(current, wrapper);
       prepareMap();
     $(document).trigger( "remove-branch", [ 'remove-' + current.id ] );
-  }).catch(prepareMap);
+  } else {
+    prepareMap();
+  }
 }
 
 function updateNode(area, value, wrapper) {
@@ -214,7 +215,6 @@ function cleanNode(node) {
   if (node.children.length == 1) {
     alignSingleChild(node);
   }
-
   if (node.children.length == 2) {
     distributeTwins(node);
   }
@@ -236,7 +236,7 @@ function distributeTwins(node) { //if there are just 2 children, 1 should be set
   if ((node.children[0].id % 10) !== 1) { //with twins, the first one has to be set
     updateId(node.id*10+1, node.children[0]);
   }
-  if ((node.children[1].id % 10) !== 3) { //with twins, the first one has to be set
+  if ((node.children[1].id % 10) !== 3) { //with twins, the second one has to be set
     updateId(node.id*10+3, node.children[1]);
   }
 }
@@ -250,6 +250,11 @@ function updateId(newId, node) {
 
 function clearTree(json) {
   json.options = filterEmpty(json.options);
+  if (json.options.length == 2) {
+    if (json.options[1].id !== 3) {
+      updateId(3, json.options[1]);
+    }
+  }
   json.options.forEach(cleanNode);
   return json;
 }
