@@ -10,6 +10,7 @@ const redis = require('redis');
 const RedisStore = require('connect-redis')(session);
 const moment = require('moment');
 const mapHelpers = require('./utils/map-helpers');
+const sign = require('./server/authSign').sign;
 
 function getSessionOptions() {
   const maxAge = process.env.SESSION_MAX_AGE || 86400000; // def: 24h
@@ -53,7 +54,12 @@ passport.use(new FacebookStrategy({
     profileFields: ['id', 'displayName', 'emails']
   },
   function(accessToken, refreshToken, profile, done) {
-    done(null, {id: profile.id, name: profile.displayName, email: profile.emails[0].value});
+    const user = {
+      id: profile.id,
+      name: profile.displayName,
+      email: profile.emails[0].value
+    };
+    done(null, Object.assign({}, user, { jwt: sign(user) }));
   }
 ));
 

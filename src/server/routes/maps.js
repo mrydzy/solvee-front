@@ -103,7 +103,12 @@ module.exports = () => {
     const backendUrl = req.app.locals.settings.cfg.API_URI + "/trees";
     var treeId = req.params.id;
 
-    fetch(backendUrl + '/' + treeId)
+    fetch(backendUrl + '/' + treeId,
+      req.user ? {
+        headers: {
+          Authorization: `Bearer ${req.user.jwt}`
+        }
+      } : undefined)
       .then(response => {
         if (response.status >= 400) {
           throw new Error("Bad response from server", response);
