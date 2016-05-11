@@ -9,7 +9,7 @@ module.exports = (passport) => {
   });
 
   router.get('/logout', function(req, res) {
-    res.cookie('credentials', '');
+    res.clearCookie('credentials');
     req.logOut();
     res.redirect('/');
   });
