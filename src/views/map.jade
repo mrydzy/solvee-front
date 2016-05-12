@@ -34,6 +34,9 @@ block content
     +child-rows(map.options, 0)
     if (isOwner)
       .owner-buttons
+        if (!publishedAt)
+          a.btn-secondary#publish-map Publish
         a.btn-secondary#edit-map(href='/maps/build/' + id) Edit
         a.btn-secondary#delete-map Delete
+
     include ./partials/sharing.jade

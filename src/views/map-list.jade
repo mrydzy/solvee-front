@@ -42,8 +42,11 @@ block content
                     span.label Author&nbsp;
                     span.value= map.User.name
                   div.map-created
-                    span.label Added&nbsp;
-                    span.value(title=moment(map.createdAt).format('lll'))= moment(map.createdAt).fromNow()
+                    if (map.publishedAt)
+                      span.label Published&nbsp;
+                      span.value(title=moment(map.publishedAt).format('lll'))= moment(map.publishedAt).fromNow()
+                    else
+                      | NOT PUBLISHED YET
       -if (currentPage > 1)
         a.btn.page-navigation(href=nextPagePrefix + (currentPage - 1))
           | Previous page
