@@ -1,5 +1,6 @@
 const readCookie = require('./services').readCookie;
 const backendUrl = "http://solvee-api.herokuapp.com";
+// const backendUrl = "http://solvee-api-stage.herokuapp.com";
 // const backendUrl = "http://localhost:3300";
 const $ = require('jquery');
 

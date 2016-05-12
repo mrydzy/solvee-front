@@ -26,8 +26,9 @@ function updateTree(data, id) {
     });
 }
 
-function getTree(treeId, success) {
-  $.getJSON(backendUrl + "/trees" + treeId, success);
+function getTree(treeId) {
+  // $.getJSON(backendUrl + "/trees" + treeId, success);
+  return send("GET", {}, '/trees' + treeId);
 }
 
 function deleteTree(treeId) {
@@ -35,7 +36,7 @@ function deleteTree(treeId) {
 }
 
 function unpublishTree(treeId) {
-  return send("PATCH", { publlished: true }, '/trees/' + treeId);
+  return send("PATCH", { published: true }, '/trees/' + treeId);
 }
 
 

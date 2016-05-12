@@ -14,7 +14,7 @@ $(function() {
   path = path.substring(path.lastIndexOf('/'));
   var id = parseInt(path.substring(1));
 
-  getTree(path, function(json) {
+  getTree(path).then((json) => {
     var jsonTree = JSON.parse(json.data);
     preselectLanguage(json.languageId);
     setTitle(json.name);
