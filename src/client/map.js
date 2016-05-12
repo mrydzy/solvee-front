@@ -6,6 +6,8 @@ const $ = require('jquery');
 const analytics = require('./service/tracking').showMapAnalytics;
 const deleteTree = require('./service/map-service').deleteTree;
 const confirm = require('./service/dialogs').confirm;
+const alert = require('./service/dialogs').alert;
+const publish = require('./service/map-service').publishTree;
 
 $(function() {
   var path = window.location.pathname;
@@ -20,6 +22,14 @@ $(function() {
 
   $('#embed').click(() => {
     $('.embed-code').toggleClass('active');
+  });
+
+  $('#publish-map').click(() => {
+    publish(id).then(() => {
+      alert('Map was published!');
+    }).then(() => {
+      location.reload();
+    });
   });
 
   $('.embed-code textarea').focus(e => {

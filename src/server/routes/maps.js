@@ -127,7 +127,8 @@ module.exports = () => {
           currentUser: req.user,
           mapCoverUrl: response.photoLink,
           style: response.Style ? response.Style.name.toLowerCase() : 'solvee',
-          fbClientId: facebookClientId
+          fbClientId: facebookClientId,
+          publishedAt: response.publishedAt
         });
       })
       .catch(e => res.json(e));
