@@ -20,13 +20,15 @@ function initMapRows() {
     var target = e.currentTarget.dataset.target;
     handleNodes(target);
     mapContainer.addClass('stage-' + target);
-    console.log($(e.currentTarget).offset().top);
+    log($(e.currentTarget).offset().top);
     currentPath = target;
     removeOldNodes(target);
+    console.log($(e.currentTarget).offset().top)
+    console.log($( window ).height())
     $('html, body').animate({
-      scrollTop: $(e.currentTarget).offset().top - 400
+      scrollTop: $( window ).height() - $(e.currentTarget).offset().top
       }, 300);
-      
+
   });
   $('.map-col').on('mouseenter', highlightPath);
   $('.map-col').on('mouseleave', clearHighlightPath);

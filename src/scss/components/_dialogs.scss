@@ -13,6 +13,7 @@
 }
 
 .modal-btns {
+  display: flex;
   .yes-btn, .ok-btn {
     @extend .btn-primary;
   }
