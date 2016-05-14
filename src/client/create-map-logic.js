@@ -177,11 +177,12 @@ function initColsActions() {
     input('Enter the URL of the picture that you own', 'url', current).then((img) =>{
       current.image = img;
       if (img) {
+        console.log('update image', img);
         $('#image-'+current.id).attr("src", img);
-        $('#image-'+current.id).addClass('option-image');
+        $('#image-'+current.id).parent().addClass('option-image');
       }
       else
-        $('#image-'+current.id).removeClass('option-image');
+        $('#image-'+current.id).parent().removeClass('option-image');
     }).catch((err) => console.error(err));
 
   })

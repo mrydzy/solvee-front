@@ -10,10 +10,12 @@ mixin map-item(item, colClass)
     div.map-col(class = classes)&attributes({'data-target': item.id, 'id': "node-" + item.id})
         if (item.children.length > 0)
             div.node-remover(id='nr-' + item.id)="x"
-        if item.image
-          img.option-image(src=item.image id='image-'+item.id)
-        else
-          img(id='image-'+item.id)
+          if item.image
+            .img-wrapper.option-image
+              img(src=item.image id='image-'+item.id)
+          else
+            .img-wrapper
+              img(id='image-'+item.id)
         textarea(class='col-input')&attributes({
             'data-target': item.id,
             'id': "text-" + item.id,

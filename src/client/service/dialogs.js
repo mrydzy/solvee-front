@@ -45,13 +45,11 @@ function buildContent(message) {
 function buildInput(inputType, linkValue) {
   return $(`<span></span>`, {
     class: 'field-container'
-  }).append($(`<input id="modal-input" class="modal-input" type=${inputType} value=${linkValue}> `));
+  }).append($(`<input id="modal-input" class="modal-input" maxlength="255" type=${inputType} value=${linkValue}> `));
 }
 
 function buildPreview(imageUrl) {
-  return $(`<img src="${imageUrl}" class="modal-image-preview">`, {
-    class: 'modal-image-preview'
-  });
+  return $(`<div class="modal-image-wrapper"><img src="${imageUrl}" alt="my logo" class="modal-image-preview"></div>`);
 }
 
 function appendToBody(modal) {
@@ -115,7 +113,7 @@ function input(message, inputType, currentNode) {
     let input = modal.find('#modal-input');
     const preview = modal.find('.modal-image-preview')
     preview.attr("src", input.val());
-      input.blur(() => {
+      input.change(() => {
         preview.attr("src", input.val());
       })
   })

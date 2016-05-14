@@ -7,7 +7,8 @@ mixin map-item(item, colClass)
     -classes.push(colClass)
     div.map-col(class = classes)&attributes({'data-target': item.id, 'id': "node-" + item.id})
       if item.image
-        img.option-image(src=item.image)
+        .img-wrapper.option-image
+          img.option-image(src=item.image)
       div.option-text!=mapHelpers.formatOptionContent(item.text)
 //adds empty columns so that single items are always under their parent
 mixin single-kid(column, kid)
