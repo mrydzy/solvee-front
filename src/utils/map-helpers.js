@@ -1,5 +1,12 @@
 "use strict";
 
+function displayOptionContent(item) {
+  if (item.image) {
+    return `<img src=${item.image}>`;
+  }
+  return formatOptionContent(item.text);
+}
+
 function formatOptionContent(content) {
   if (!content || !content.trim()) {
     return '';
@@ -12,5 +19,6 @@ function formatOptionContent(content) {
 }
 
 module.exports = {
-  formatOptionContent
+  formatOptionContent,
+  displayOptionContent
 };

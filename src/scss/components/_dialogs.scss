@@ -27,3 +27,20 @@
   padding: 20px;
   font-size: 1.25rem;
 }
+
+.field-container {
+  text-align: center;
+}
+
+.modal-input {
+  max-width: 600px;
+}
+
+.modal-image-preview {
+  width: 240px;
+  min-height: 90px;
+  max-height: 120px;
+  background: no-repeat;
+  background-size: cover;
+  margin: 20px;
+}

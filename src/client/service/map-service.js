@@ -1,8 +1,5 @@
 const send = require('./ajax-service').send;
 const $ = require('jquery');
-// const backendUrl = "http://localhost:3300";
-// const backendUrl = "http://solvee-api-stage.herokuapp.com";
-const backendUrl = "http://solvee-api.herokuapp.com";
 const alert = require('./dialogs').alert;
 
 
@@ -36,6 +33,10 @@ function deleteTree(treeId) {
 }
 
 function unpublishTree(treeId) {
+  return send("PATCH", { published: false }, '/trees/' + treeId);
+}
+
+function publishTree(treeId) {
   return send("PATCH", { published: true }, '/trees/' + treeId);
 }
 
@@ -46,5 +47,6 @@ module.exports = {
   updateTree: updateTree,
   deleteTree: deleteTree,
   unpublishTree: unpublishTree,
+  publishTree: publishTree,
   getTreeTemplate: getTreeTemplate
 };

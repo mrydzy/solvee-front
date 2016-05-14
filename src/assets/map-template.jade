@@ -10,6 +10,10 @@ mixin map-item(item, colClass)
     div.map-col(class = classes)&attributes({'data-target': item.id, 'id': "node-" + item.id})
         if (item.children.length > 0)
             div.node-remover(id='nr-' + item.id)="x"
+        if item.image
+          img.option-image(src=item.image id='image-'+item.id)
+        else
+          img(id='image-'+item.id)
         textarea(class='col-input')&attributes({
             'data-target': item.id,
             'id': "text-" + item.id,
@@ -17,6 +21,8 @@ mixin map-item(item, colClass)
              maxlength: 255
 
         })=item.text
+        if (item.children.length > 0)
+          span.icon.icon-image(id='image-' + item.id)
 //adds empty columns so that single items are always under their parent
 mixin single-kid(column, kid)
     if (column > 0)

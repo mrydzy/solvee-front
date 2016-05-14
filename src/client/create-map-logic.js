@@ -12,6 +12,7 @@ const maxChildren = require('./service/constants').maxChildren;
 const maxDepth = require('./service/constants').maxDepth;
 const getTreeTemplate = require('./service/map-service').getTreeTemplate;
 const confirm = require('./service/dialogs').confirm;
+const input = require('./service/dialogs').input;
 
 let jadeVar;
 let djson = {};
@@ -26,7 +27,7 @@ $(function() {
       }
     });
   handleLanguages();
-  handlePhoto();
+  handlePhotos();
   handleStyles();
 });
 
@@ -68,12 +69,12 @@ function changeStyle(style) {
     .addClass(style.toLowerCase());
 }
 
-function handlePhoto() {
+function handlePhotos() {
   const $mapPhotoInput = $('#map-photo-url');
   $mapPhotoInput.on('blur', () => {
     const imageUrl = $mapPhotoInput.val();
     $('#map-photo-preview').css("background-image",`url(${imageUrl})`);
-  })
+  });
 }
 
 function handleLanguages() {
@@ -169,11 +170,26 @@ function initColsActions() {
   autosize($textarea);
   $textarea.on('blur', handleBlur);
   $('.node-remover').click(removeNodeOnClick);
+
+  $('.icon-image').on('click', (e) => {
+    const id = e.target.id.replace('image-', '');
+    var current = getCurrentNode(id);
+    input('Enter the URL of the picture that you own', 'url', current).then((img) =>{
+      current.image = img;
+      if (img) {
+        $('#image-'+current.id).attr("src", img);
+        $('#image-'+current.id).addClass('option-image');
+      }
+      else
+        $('#image-'+current.id).removeClass('option-image');
+    }).catch((err) => console.error(err));
+
+  })
 }
 
 function removeNodeOnClick() {
   log('removing', this.id);
-  var id = this.id.replace('nr-', '');
+  const id = this.id.replace('nr-', '');
   var current = getCurrentNode(id);
   var wrapper = $(this.parent).parent();
   confirmRemoveBranch(current, wrapper)

@@ -23,8 +23,6 @@ function initMapRows() {
     log($(e.currentTarget).offset().top);
     currentPath = target;
     removeOldNodes(target);
-    console.log($(e.currentTarget).offset().top)
-    console.log($( window ).height())
     $('html, body').animate({
       scrollTop: $( window ).height() - $(e.currentTarget).offset().top
       }, 300);

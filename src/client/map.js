@@ -14,6 +14,9 @@ $(function() {
   path = path.substring(path.lastIndexOf('/'));
   var id = parseInt(path.substring(1));
   analytics(id);
+
+  
+
   $('#delete-map').click(() => {
     confirm('Are you sure you want to delete this tree?')
       .then(() => deleteTree(id))
