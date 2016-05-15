@@ -53,7 +53,7 @@ function buildPreview(imageUrl) {
 }
 
 function appendToBody(modal) {
-  $(modal).appendTo('body');
+  $(modal).appendTo('.map-wrapper');
 }
 
 function confirm(message) {
@@ -70,6 +70,17 @@ function confirm(message) {
       throw removeModal(modal);
     });
 }
+
+function mapResult(node, title) {
+  return new Promise((resolve, reject) => {
+    const modal = buildWrapper()
+      .append(node)
+      .append(buildOkBtn());
+    appendToBody(modal);
+    modal.find('.ok-btn').click(() => resolve(modal));
+  }) .then(removeModal);
+}
+
 
 function removeModal(modal) {
   if (modal.remove) {
@@ -125,5 +136,6 @@ function input(message, inputType, currentNode) {
 module.exports = {
   alert,
   confirm,
-  input
+  input,
+  mapResult
 };
