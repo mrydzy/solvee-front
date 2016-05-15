@@ -64,15 +64,33 @@
   box-sizing: border-box;
 }
 
-.icon-image {
-  align-self: flex-end;
+@mixin image-icon($url) {
+  .icon-image {
+    align-self: flex-end;
 
-  &::before {
-    background-image: url('/assets/icon-image.svg');
-    background-size: 1em !important;
-    width: 1em !important;
-    margin-right: 0px !important;
+    &::before {
+      background-image: url($url);
+      background-size: 1em !important;
+      width: 1em !important;
+      margin-right: 0px !important;
+    }
   }
+}
+
+.solvee {
+  @include image-icon('/assets/icon-image.svg');
+}
+
+.pink {
+  @include image-icon('/assets/icon-image-pink.svg');
+}
+
+.autumn {
+  @include image-icon('/assets/icon-image-autumn.svg');
+}
+
+.dark {
+  @include image-icon('/assets/icon-image-dark.svg');
 }
 
 .option-text {
