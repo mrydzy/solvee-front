@@ -16,6 +16,8 @@ $(function() {
   var id = parseInt(path.substring(1));
   analytics(id);
 
+  
+
   $('.only-child').click((e) => {
     const result = $(e.currentTarget).clone();
     result.removeClass('map-col');

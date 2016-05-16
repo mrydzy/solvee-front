@@ -22,7 +22,7 @@ block header-text
   h1= name
 
 block content
-  div(class='map-wrapper ' + style)
+  div(class='map-wrapper ' + style + ' stage-' + selectedOption)
     .map-header(style='background-image:url(' + mapCoverUrl  + ')')
       h2.map-title= name
     .map-meta

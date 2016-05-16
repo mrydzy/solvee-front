@@ -102,7 +102,6 @@ module.exports = () => {
   router.get('/:id', function(req, res) {
     const backendUrl = req.app.locals.settings.cfg.API_URI + "/trees";
     var treeId = req.params.id;
-
     fetch(backendUrl + '/' + treeId,
       req.user ? {
         headers: {
@@ -128,7 +127,8 @@ module.exports = () => {
           mapCoverUrl: response.photoLink,
           style: response.Style ? response.Style.name.toLowerCase() : 'solvee',
           fbClientId: facebookClientId,
-          publishedAt: response.publishedAt
+          publishedAt: response.publishedAt,
+          selectedOption: req.query.selectedOption ? req.query.selectedOption : 0
         });
       })
       .catch(e => res.json(e));
