@@ -12,12 +12,11 @@
   flex-direction: column;
   text-align: center;
   .img-wrapper {
-    width: 80vw;
+    padding: 20px;
     text-align: center;
     img {
       max-width: 100%;
       max-height: 60vh;
-      margin: 20px;
     }
   }
   .only-child {
@@ -60,9 +59,8 @@
 }
 
 .modal-image-wrapper {
-  height: 120px;
   overflow: hidden;
-  width: 240px;
+  width: 100%;
   margin-bottom: 20px;
   text-indent: 100vw;
   display: flex;
