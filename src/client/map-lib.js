@@ -23,9 +23,10 @@ function initMapRows() {
     log($(e.currentTarget).offset().top);
     currentPath = target;
     removeOldNodes(target);
+
     $('html, body').animate({
-      scrollTop: $( window ).height() - $(e.currentTarget).offset().top
-      }, 300);
+      scrollTop: $(e.currentTarget).offset().top
+    }, 1000);
 
   });
   $('.map-col').on('mouseenter', highlightPath);
