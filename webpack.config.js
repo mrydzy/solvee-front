@@ -20,7 +20,9 @@ module.exports = {
     builder: './src/client/build-map.js',
     editor: './src/client/edit-map.js',
     embed: './src/client/service/embed.js',
-    users: './src/client/users.js'
+    users: './src/client/users.js',
+    list: './src/client/map-list.js'
+
   },
 
   stats: {

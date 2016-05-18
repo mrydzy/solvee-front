@@ -1,4 +1,19 @@
 const $ = require('jquery');
+const info = require('./dialogs').info;
+const setCookie = require('./services').setCookie;
+
+$(function () {
+  trackingInfo();
+});
+
+function trackingInfo() {
+  if (document.cookie.indexOf('SolveeCookies') === -1) {
+    console.log('show alert');
+    info("SOLVEE uses cookies to provide you with more personalized experience.").then(() => {
+      setCookie('SolveeCookies', true);
+    });
+  }
+}
 
 function callAnalytics(category, action, label, value, fields) {
   if (ga) {
@@ -78,5 +93,6 @@ function editMapAnalytics(mapId) {
 module.exports = {
   showMapAnalytics: showMapAnalytics,
   createMapAnalytics: createMapAnalytics,
-  editMapAnalytics: editMapAnalytics
+  editMapAnalytics: editMapAnalytics,
+  trackingInfo: trackingInfo
 };

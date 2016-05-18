@@ -14,7 +14,14 @@ function readCookie(name) {
   return null;
 }
 
+function setCookie(key, value) {
+  var expires = new Date();
+  expires.setTime(expires.getTime() + (24 * 60 * 60 * 1000));
+  document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();
+}
+
 module.exports = {
   log: log,
-  readCookie: readCookie
+  readCookie: readCookie,
+  setCookie: setCookie
 };

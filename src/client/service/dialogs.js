@@ -27,6 +27,12 @@ function buildOkBtn() {
     .append($('<button class="ok-btn">OK</button>'));
 }
 
+function buildSecondaryBtn() {
+  return $('<div></div>', {
+    class: 'modal-btns alert-btns'
+  })
+    .append($('<button class="btn-secondary">OK</button>'));
+}
 
 function buildSubmitBtn() {
   return $('<div></div>', {
@@ -52,8 +58,13 @@ function buildPreview(imageUrl) {
   return $(`<div class="modal-image-wrapper"><img src="${imageUrl}" alt="my logo" class="modal-image-preview"></div>`);
 }
 
-function appendToBody(modal) {
-  $(modal).appendTo('.map-wrapper');
+function appendToBody(modal, appendToTag) {
+  if (appendToTag) {
+    $(modal).appendTo(appendToTag);
+  } else {
+    $(modal).appendTo('body');
+  }
+
 }
 
 function confirm(message) {
@@ -71,16 +82,31 @@ function confirm(message) {
     });
 }
 
-function mapResult(node, title) {
+function mapResult(node) {
   return new Promise((resolve, reject) => {
     const modal = buildWrapper()
       .append(node)
       .append(buildOkBtn());
-    appendToBody(modal);
+    appendToBody(modal, '.map-wrapper');
     modal.find('.ok-btn').click(() => resolve(modal));
   }) .then(removeModal);
 }
 
+function buildStickyFooter() {
+  return $('<div></div>', {
+    class: 'sticky-footer'
+  });
+}
+
+function info(message) {
+  return new Promise((resolve, reject) => {
+    const modal = buildStickyFooter()
+      .append(buildContent(message))
+      .append(buildSecondaryBtn());
+    appendToBody(modal);
+    modal.find('.btn-secondary').click(() => resolve(modal));
+  }) .then(removeModal);
+}
 
 function removeModal(modal) {
   if (modal.remove) {
@@ -122,7 +148,7 @@ function input(message, inputType, currentNode) {
     });
     modal.find('.no-btn').click(() => reject(modal));
     let input = modal.find('#modal-input');
-    const preview = modal.find('.modal-image-preview')
+    const preview = modal.find('.modal-image-preview');
     preview.attr("src", input.val());
       input.change(() => {
         preview.attr("src", input.val());
@@ -137,5 +163,6 @@ module.exports = {
   alert,
   confirm,
   input,
-  mapResult
+  mapResult,
+  info
 };
