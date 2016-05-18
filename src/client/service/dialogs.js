@@ -64,7 +64,6 @@ function appendToBody(modal, appendToTag) {
   } else {
     $(modal).appendTo('body');
   }
-
 }
 
 function confirm(message) {

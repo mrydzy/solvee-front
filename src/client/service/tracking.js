@@ -9,7 +9,7 @@ $(function () {
 function trackingInfo() {
   if (document.cookie.indexOf('SolveeCookies') === -1) {
     console.log('show alert');
-    info("SOLVEE uses cookies to provide you with more personalized experience.").then(() => {
+    info("SOLVEE uses cookies to provide you with more personalized experience. By using website you agree to our Terms of use").then(() => {
       setCookie('SolveeCookies', true);
     });
   }

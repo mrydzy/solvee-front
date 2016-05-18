@@ -7,6 +7,9 @@ module.exports = (passport) => {
     res.render('about', {});
   });
 
+  router.get('/privacy', function(req, res) {
+    res.render('privacy-policy', {});
+  });
   return router;
 
 };
