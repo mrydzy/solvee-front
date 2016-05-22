@@ -37,7 +37,7 @@ block content
                 h2.map-title= map.name
                 .map-excerpt
                   .map-row
-                    -var lastChildIndex = map.child3=== '' ? 2 : 3
+                    -var lastChildIndex = map.child3 === null ? 3 : 2
                     a.map-col.parent(href='/' + map.id + '?selectedOption=' + 1)=map.child1
                     a.map-col.parent(href='/' + map.id + '?selectedOption=' + lastChildIndex)=map.child2
                     a.map-col.parent(href='/' + map.id + '?selectedOption=' + 3)=map.child3
